@@ -130,7 +130,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         // Dispose of any resources that can be recreated.
     }
     
-    private func displayCorporateLogo() {
+    fileprivate func displayCorporateLogo() {
         let label = UILabel(frame: CGRect(x: 20, y: Const.Screen.Size.height - 50, width: 100, height: 30))
         label.text = "IT-ai"
         label.textColor = Const.Color.CorporateLogo
