@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TopViewController.swift
 //  WhatIsThat
 //
 //  Created by 渡邊浩二 on 2016/10/13.
@@ -10,7 +10,7 @@ import UIKit
 import GLKit
 import AVFoundation
 
-class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate
+class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate
 {
     var videoDisplayView: GLKView!
     var videoDisplayViewRect: CGRect!
