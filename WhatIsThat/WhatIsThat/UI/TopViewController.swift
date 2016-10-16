@@ -44,6 +44,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         videoDisplayView.frame = view.bounds
         view.addSubview(videoDisplayView)
         
+        displayCorporateLogo()
+        
         renderContext = CIContext(eaglContext: videoDisplayView.context)
         videoDisplayView.bindDrawable()
         videoDisplayViewRect = CGRect(x: 0, y: 0, width: videoDisplayView.drawableWidth, height: videoDisplayView.drawableHeight)
@@ -126,5 +128,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func displayCorporateLogo() {
+        let label = UILabel(frame: CGRect(x: 20, y: Const.Screen.Size.height - 50, width: 100, height: 30))
+        label.text = "IT-ai"
+        label.textColor = Const.Color.CorporateLogo
+        view.addSubview(label)
     }
 }
