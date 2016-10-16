@@ -45,6 +45,7 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         view.addSubview(videoDisplayView)
         
         displayCorporateLogo()
+        displayHelpButton()
         
         renderContext = CIContext(eaglContext: videoDisplayView.context)
         videoDisplayView.bindDrawable()
@@ -135,5 +136,21 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         label.text = "IT-ai"
         label.textColor = Const.Color.CorporateLogo
         view.addSubview(label)
+    }
+    
+    private func displayHelpButton() {
+        let button = UIButton()
+        button.frame = CGRect(x: Const.Screen.Size.width - 50, y: Const.Screen.Size.height - 50, width: 30, height: 30)
+        button.backgroundColor = Const.Color.HelpButtonBackground
+        button.addTarget(self, action: #selector(TopViewController.tappedHelpButton(sender:)), for: .touchUpInside)
+        view.addSubview(button)
+    }
+    
+    func tappedHelpButton(sender: UIButton) {
+        let view = fromStoryboard(clazz: ResultViewController.self)
+        view?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        view?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+        self.present(view!, animated: true, completion: nil)
     }
 }
