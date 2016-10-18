@@ -9,15 +9,8 @@
 import Foundation
 import UIKit
 
-protocol Xibable {
-    
-    static var xibName: String { get }
-}
-
-func fromXib<T: AnyObject>(clazz: T.Type, owner: AnyObject? = nil, options: [NSObject: AnyObject]? = nil, atIndex index: Int = 0) -> T! where T: Xibable {
-    
-    let name = T.xibName
-    
+func fromXib<T: AnyObject>(clazz: T.Type, owner: AnyObject? = nil, options: [NSObject: AnyObject]? = nil, atIndex index: Int = 0) -> T! {
+    let name = String(describing: T.self)
     let xib = UINib(nibName: name, bundle: nil)
     return xib.instantiate(withOwner: owner, options: options)[index] as? T
 }

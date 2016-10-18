@@ -8,10 +8,7 @@
 
 import UIKit
 
-class ResultViewController: UIViewController, Storyboardable {
-    internal static var storyboardIdentifier: String = "ResultViewController"
-    internal static var storyboardName: String = "ResultViewController"
-
+class ResultViewController: UIViewController {
     @IBOutlet weak var result1: UILabel!
     @IBOutlet weak var result2: UILabel!
     @IBOutlet weak var result3: UILabel!

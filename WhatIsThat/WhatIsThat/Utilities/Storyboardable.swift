@@ -9,17 +9,9 @@
 import Foundation
 import UIKit
 
-protocol Storyboardable {
-    
-    static var storyboardIdentifier: String { get }
-    static var storyboardName: String { get }
-}
-
-func fromStoryboard<T: AnyObject>(clazz: T.Type) -> T! where T: Storyboardable {
-    
-    let identifier = T.storyboardIdentifier
-    let name = T.storyboardName
-    
+func fromStoryboard<T: AnyObject>(clazz: T.Type) -> T! {
+    let identifier = String(describing: T.self)
+    let name = String(describing: T.self)
     let storyboard = UIStoryboard(name: name, bundle: nil)
     return storyboard.instantiateViewController(withIdentifier: identifier) as? T
 }
