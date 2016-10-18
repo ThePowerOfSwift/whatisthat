@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		01B843DF1DB362A3002624F4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B843DE1DB362A3002624F4 /* Default-568h@2x.png */; };
+		01B843E21DB36603002624F4 /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B843E11DB36603002624F4 /* Storyboardable.swift */; };
+		01B843E41DB36656002624F4 /* Xibable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B843E31DB36656002624F4 /* Xibable.swift */; };
+		01B843E61DB36842002624F4 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B843E51DB36842002624F4 /* ResultViewController.swift */; };
+		01B843E81DB3686B002624F4 /* ResultViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B843E71DB3686B002624F4 /* ResultViewController.storyboard */; };
+		01B843EA1DB65667002624F4 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B843E91DB65667002624F4 /* Alamofire.framework */; };
+		01B843ED1DB656AF002624F4 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B843EC1DB656AF002624F4 /* ObjectMapper.framework */; };
 		01D6EC191DB33972000BDCDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D6EC181DB33972000BDCDD /* AppDelegate.swift */; };
 		01D6EC1E1DB33972000BDCDD /* TopViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D6EC1C1DB33972000BDCDD /* TopViewController.storyboard */; };
 		01D6EC201DB33972000BDCDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01D6EC1F1DB33972000BDCDD /* Assets.xcassets */; };
@@ -38,6 +44,12 @@
 
 /* Begin PBXFileReference section */
 		01B843DE1DB362A3002624F4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		01B843E11DB36603002624F4 /* Storyboardable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
+		01B843E31DB36656002624F4 /* Xibable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Xibable.swift; sourceTree = "<group>"; };
+		01B843E51DB36842002624F4 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		01B843E71DB3686B002624F4 /* ResultViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ResultViewController.storyboard; sourceTree = "<group>"; };
+		01B843E91DB65667002624F4 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		01B843EC1DB656AF002624F4 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		01D6EC151DB33972000BDCDD /* WhatIsThat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatIsThat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01D6EC181DB33972000BDCDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01D6EC1D1DB33972000BDCDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TopViewController.storyboard; sourceTree = "<group>"; };
@@ -61,6 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01B843EA1DB65667002624F4 /* Alamofire.framework in Frameworks */,
+				01B843ED1DB656AF002624F4 /* ObjectMapper.framework in Frameworks */,
 				F32ADDF48C0BE82D950E1B20 /* Pods_WhatIsThat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,6 +96,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01B843E01DB365B6002624F4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				01B843E11DB36603002624F4 /* Storyboardable.swift */,
+				01B843E31DB36656002624F4 /* Xibable.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		01D6EC0C1DB33972000BDCDD = {
 			isa = PBXGroup;
 			children = (
@@ -109,8 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				01D6EC181DB33972000BDCDD /* AppDelegate.swift */,
-				01D6EC491DB33F14000BDCDD /* Resources */,
+				01B843E01DB365B6002624F4 /* Utilities */,
 				01D6EC461DB33EF3000BDCDD /* UI */,
+				01D6EC491DB33F14000BDCDD /* Resources */,
 			);
 			path = WhatIsThat;
 			sourceTree = "<group>";
@@ -138,6 +162,8 @@
 			children = (
 				01D6EC471DB33EF3000BDCDD /* TopViewController.swift */,
 				01D6EC1C1DB33972000BDCDD /* TopViewController.storyboard */,
+				01B843E51DB36842002624F4 /* ResultViewController.swift */,
+				01B843E71DB3686B002624F4 /* ResultViewController.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -164,6 +190,8 @@
 		B2BF70FB36F18E8F0CD4E49B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01B843EC1DB656AF002624F4 /* ObjectMapper.framework */,
+				01B843E91DB65667002624F4 /* Alamofire.framework */,
 				448C8B4C0EE396AEFB316CC8 /* Pods_WhatIsThat.framework */,
 			);
 			name = Frameworks;
@@ -182,6 +210,7 @@
 				01D6EC131DB33972000BDCDD /* Resources */,
 				D5FE37F07F1ABCBCA3FC48AF /* [CP] Embed Pods Frameworks */,
 				26628C995989982DD324AE62 /* [CP] Copy Pods Resources */,
+				01B843EB1DB6567A002624F4 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -288,6 +317,7 @@
 				01D6EC231DB33972000BDCDD /* LaunchScreen.storyboard in Resources */,
 				01B843DF1DB362A3002624F4 /* Default-568h@2x.png in Resources */,
 				01D6EC201DB33972000BDCDD /* Assets.xcassets in Resources */,
+				01B843E81DB3686B002624F4 /* ResultViewController.storyboard in Resources */,
 				01D6EC1E1DB33972000BDCDD /* TopViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +339,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		01B843EB1DB6567A002624F4 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		1136063F0F086D76CDFB2F31 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -361,9 +407,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01B843E21DB36603002624F4 /* Storyboardable.swift in Sources */,
 				01D6EC481DB33EF3000BDCDD /* TopViewController.swift in Sources */,
 				01D6EC191DB33972000BDCDD /* AppDelegate.swift in Sources */,
 				01D6EC4E1DB340F1000BDCDD /* Const.swift in Sources */,
+				01B843E41DB36656002624F4 /* Xibable.swift in Sources */,
+				01B843E61DB36842002624F4 /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +568,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = V4UFTM6U9H;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = WhatIsThat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -535,6 +588,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = V4UFTM6U9H;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = WhatIsThat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

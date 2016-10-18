@@ -19,6 +19,9 @@ DerivedData
 # CocoaPod
 WhatIsThat/Pods/*
 
+# Carthage
+WhatIsThat/Carthage/
+
 # others
 *.swp
 !.gitkeep
