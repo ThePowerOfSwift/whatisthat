@@ -10,19 +10,25 @@ import UIKit
 import GLKit
 import AVFoundation
 
-class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate
-{
+class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     var videoDisplayView: GLKView!
     var videoDisplayViewRect: CGRect!
     var renderContext: CIContext!
     var cpsSession: AVCaptureSession!
+    var isCaptured: Bool = false
+    var touchPos = CGPoint(x: 0, y: 0)
     
     override func viewWillAppear(_ animated: Bool) {
         //画面の生成
-        self.initDisplay()
+        initDisplay()
         
         // カメラの使用準備.
-        self.initCamera()
+        initCamera()
+        
+        // ジェスチャーの生成
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture(touch:)))
+        tap.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tap)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -45,7 +51,6 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         view.addSubview(videoDisplayView)
         
         displayCorporateLogo()
-        displayHelpButton()
         
         renderContext = CIContext(eaglContext: videoDisplayView.context)
         videoDisplayView.bindDrawable()
@@ -124,6 +129,18 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         }
         renderContext.draw(outputImage, in: videoDisplayViewRect, from: drawFrame)
         videoDisplayView.display()
+        
+        // 結果画面
+        if isCaptured {
+            isCaptured = false
+            let view = fromStoryboard(clazz: ResultViewController.self)
+            let rect = CGRect(x: CGFloat(touchPos.x - 50), y: CGFloat(touchPos.y - 50), width: CGFloat(Const.Capture.Width), height: CGFloat(Const.Capture.Height))
+            view?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            view?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            view?.tappedImage = trimmedImage(sourceImage: imageFromSampleBuffer(sampleBuffer: sampleBuffer), rect: rect)
+            //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+            self.present(view!, animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -138,19 +155,31 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         view.addSubview(label)
     }
     
-    private func displayHelpButton() {
-        let button = UIButton()
-        button.frame = CGRect(x: Const.Screen.Size.width - 50, y: Const.Screen.Size.height - 50, width: 30, height: 30)
-        button.backgroundColor = Const.Color.HelpButtonBackground
-        button.addTarget(self, action: #selector(TopViewController.tappedHelpButton(sender:)), for: .touchUpInside)
-        view.addSubview(button)
+    func tapGesture(touch: UITapGestureRecognizer) {
+        print("touchPoint = \(touchPos)")
+        touchPos = touch.location(in: self.view)
+        isCaptured = true
     }
     
-    func tappedHelpButton(sender: UIButton) {
-        let view = fromStoryboard(clazz: ResultViewController.self)
-        view?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        view?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
-        self.present(view!, animated: true, completion: nil)
+    private func trimmedImage(sourceImage: UIImage, rect: CGRect) -> UIImage? {
+        guard let sourceImage = sourceImage.cgImage else { return nil }
+        guard let trimmedImageRef = sourceImage.cropping(to: rect) else { return nil }
+        return UIImage(cgImage: trimmedImageRef)
+    }
+    
+    private func imageFromSampleBuffer(sampleBuffer :CMSampleBuffer) -> UIImage {
+        let imageBuffer: CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
+        CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
+        let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddressOfPlane(imageBuffer, 0)!
+        let bytesPerRow: UInt = UInt(CVPixelBufferGetBytesPerRow(imageBuffer))
+        let width  = Int(CVPixelBufferGetWidth(imageBuffer))
+        let height = Int(CVPixelBufferGetHeight(imageBuffer))
+        let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitsPerCompornent: UInt = 8
+        let bitmapInfo = CGBitmapInfo(rawValue: (CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue) as UInt32)
+        let newContext: CGContext = CGContext(data: baseAddress, width: width, height: height, bitsPerComponent: Int(bitsPerCompornent), bytesPerRow: Int(bytesPerRow), space: colorSpace, bitmapInfo: bitmapInfo.rawValue)! as CGContext
+        let imageRef: CGImage = newContext.makeImage()!
+        let resultImage = UIImage(cgImage: imageRef, scale: 1.0, orientation: UIImageOrientation.right)
+        return resultImage
     }
 }

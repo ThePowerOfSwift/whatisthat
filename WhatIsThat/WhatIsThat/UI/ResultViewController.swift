@@ -7,20 +7,25 @@
 //
 
 import UIKit
+import MapKit
 
 class ResultViewController: UIViewController {
+    var tappedImage: UIImage? = nil
+    
+    @IBOutlet weak var tappedImageView: UIImageView!
     @IBOutlet weak var result1: UILabel!
     @IBOutlet weak var result2: UILabel!
     @IBOutlet weak var result3: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let image = self.tappedImage {
+            tappedImageView.image = image
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,14 +36,4 @@ class ResultViewController: UIViewController {
     @IBAction func tappedBackgroundView(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

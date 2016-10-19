@@ -160,10 +160,10 @@
 		01D6EC461DB33EF3000BDCDD /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				01D6EC471DB33EF3000BDCDD /* TopViewController.swift */,
-				01D6EC1C1DB33972000BDCDD /* TopViewController.storyboard */,
 				01B843E51DB36842002624F4 /* ResultViewController.swift */,
 				01B843E71DB3686B002624F4 /* ResultViewController.storyboard */,
+				01D6EC471DB33EF3000BDCDD /* TopViewController.swift */,
+				01D6EC1C1DB33972000BDCDD /* TopViewController.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
