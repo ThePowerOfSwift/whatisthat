@@ -9,13 +9,16 @@
 import UIKit
 
 class ResultViewController: UIViewController {
+    @IBOutlet weak var tappedImageView: UIImageView!
     @IBOutlet weak var result1: UILabel!
     @IBOutlet weak var result2: UILabel!
     @IBOutlet weak var result3: UILabel!
     
+    var tappedImage: UIImage? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tappedImageView.image = tappedImage
         // Do any additional setup after loading the view.
     }
     

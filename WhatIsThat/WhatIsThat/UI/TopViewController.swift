@@ -16,6 +16,8 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
     var videoDisplayViewRect: CGRect!
     var renderContext: CIContext!
     var cpsSession: AVCaptureSession!
+    var isCaptured = false
+    var touchPos = CGPoint(x: 0, y: 0)
     
     override func viewWillAppear(_ animated: Bool) {
         //画面の生成
@@ -45,11 +47,15 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         view.addSubview(videoDisplayView)
         
         displayCorporateLogo()
-        displayHelpButton()
         
         renderContext = CIContext(eaglContext: videoDisplayView.context)
         videoDisplayView.bindDrawable()
         videoDisplayViewRect = CGRect(x: 0, y: 0, width: videoDisplayView.drawableWidth, height: videoDisplayView.drawableHeight)
+        
+        // ジェスチャーの生成
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture(touch:)))
+        tap.numberOfTapsRequired = 1
+        videoDisplayView.addGestureRecognizer(tap)
     }
     
     func initCamera() {
@@ -90,7 +96,7 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
                 self.cpsSession.addOutput(videoDataOutput)
             }
             //解像度の指定
-            self.cpsSession.sessionPreset = AVCaptureSessionPresetMedium
+            self.cpsSession.sessionPreset = AVCaptureSessionPresetHigh
             
             self.cpsSession.startRunning()
         } catch (let error) {
@@ -124,6 +130,26 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         }
         renderContext.draw(outputImage, in: videoDisplayViewRect, from: drawFrame)
         videoDisplayView.display()
+        
+        // 結果画面
+        if isCaptured {
+            isCaptured = false
+            let view = fromStoryboard(clazz: ResultViewController.self)
+            print("screenSize=\(Const.Screen.Size)")
+            print("drawFrame=\(drawFrame)")
+            view?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            view?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
+            guard let previewImage = UIImage.imageFromSampleBuffer(sampleBuffer: sampleBuffer)?.croppIngimage(toRect:drawFrame) else { return }
+            let rect = getRect(withImage: previewImage)
+            print("rect=\(rect)")
+            view?.tappedImage = previewImage.croppIngimage(toRect: rect)
+            //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+            self.present(view!, animated: true, completion: nil)
+        }
+    }
+    
+    private func getDocumentsDirectory() -> URL? {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     }
     
     override func didReceiveMemoryWarning() {
@@ -138,19 +164,21 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         view.addSubview(label)
     }
     
-    private func displayHelpButton() {
-        let button = UIButton()
-        button.frame = CGRect(x: Const.Screen.Size.width - 50, y: Const.Screen.Size.height - 50, width: 30, height: 30)
-        button.backgroundColor = Const.Color.HelpButtonBackground
-        button.addTarget(self, action: #selector(TopViewController.tappedHelpButton(sender:)), for: .touchUpInside)
-        view.addSubview(button)
+    func tapGesture(touch: UITapGestureRecognizer) {
+        touchPos = touch.location(in: self.view)
+        print("touchPoint = \(touchPos)")
+        isCaptured = true
     }
     
-    func tappedHelpButton(sender: UIButton) {
-        let view = fromStoryboard(clazz: ResultViewController.self)
-        view?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        view?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
-        self.present(view!, animated: true, completion: nil)
+    private func getRect(withImage image: UIImage) -> CGRect {
+        let widthImage = UIImageView(image: image).frame.width
+        let widthHalf  = CGFloat(Const.Capture.Width / 2)
+        let heightHalf = CGFloat(Const.Capture.Height / 2)
+        let scale  = widthImage / Const.Screen.Size.width
+        let posX   = touchPos.x - widthHalf < 0 ? 0 : touchPos.x - widthHalf
+        let posY   = touchPos.y - heightHalf < 0 ? 0 : touchPos.y - heightHalf
+        let width  = touchPos.x + widthHalf - posX
+        let height = touchPos.y + heightHalf - posY
+        return CGRect(x:posY * scale, y: (CGFloat(Const.Screen.Size.width) - posX - CGFloat(Const.Capture.Width)) * scale, width: width * scale, height: height * scale)
     }
 }

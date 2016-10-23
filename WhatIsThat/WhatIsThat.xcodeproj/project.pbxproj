@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0170FFD61DBB905000B9C12F /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170FFD51DBB905000B9C12F /* UIImage+Extension.swift */; };
 		01B843DF1DB362A3002624F4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B843DE1DB362A3002624F4 /* Default-568h@2x.png */; };
 		01B843E21DB36603002624F4 /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B843E11DB36603002624F4 /* Storyboardable.swift */; };
 		01B843E41DB36656002624F4 /* Xibable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B843E31DB36656002624F4 /* Xibable.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0170FFD51DBB905000B9C12F /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		01B843DE1DB362A3002624F4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		01B843E11DB36603002624F4 /* Storyboardable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
 		01B843E31DB36656002624F4 /* Xibable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Xibable.swift; sourceTree = "<group>"; };
@@ -96,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0170FFD41DBB903900B9C12F /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				0170FFD51DBB905000B9C12F /* UIImage+Extension.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		01B843E01DB365B6002624F4 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				01D6EC181DB33972000BDCDD /* AppDelegate.swift */,
+				0170FFD41DBB903900B9C12F /* Extentions */,
 				01B843E01DB365B6002624F4 /* Utilities */,
 				01D6EC461DB33EF3000BDCDD /* UI */,
 				01D6EC491DB33F14000BDCDD /* Resources */,
@@ -413,6 +424,7 @@
 				01D6EC4E1DB340F1000BDCDD /* Const.swift in Sources */,
 				01B843E41DB36656002624F4 /* Xibable.swift in Sources */,
 				01B843E61DB36842002624F4 /* ResultViewController.swift in Sources */,
+				0170FFD61DBB905000B9C12F /* UIImage+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
