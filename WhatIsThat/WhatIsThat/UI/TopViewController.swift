@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TopViewController.swift
 //  WhatIsThat
 //
 //  Created by 渡邊浩二 on 2016/10/13.
@@ -10,7 +10,7 @@ import UIKit
 import GLKit
 import AVFoundation
 
-class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate
+class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate
 {
     var videoDisplayView: GLKView!
     var videoDisplayViewRect: CGRect!
@@ -43,6 +43,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         videoDisplayView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
         videoDisplayView.frame = view.bounds
         view.addSubview(videoDisplayView)
+        
+        displayCorporateLogo()
+        displayHelpButton()
         
         renderContext = CIContext(eaglContext: videoDisplayView.context)
         videoDisplayView.bindDrawable()
@@ -126,5 +129,28 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    fileprivate func displayCorporateLogo() {
+        let label = UILabel(frame: CGRect(x: 20, y: Const.Screen.Size.height - 50, width: 100, height: 30))
+        label.text = "IT-ai"
+        label.textColor = Const.Color.CorporateLogo
+        view.addSubview(label)
+    }
+    
+    private func displayHelpButton() {
+        let button = UIButton()
+        button.frame = CGRect(x: Const.Screen.Size.width - 50, y: Const.Screen.Size.height - 50, width: 30, height: 30)
+        button.backgroundColor = Const.Color.HelpButtonBackground
+        button.addTarget(self, action: #selector(TopViewController.tappedHelpButton(sender:)), for: .touchUpInside)
+        view.addSubview(button)
+    }
+    
+    func tappedHelpButton(sender: UIButton) {
+        let view = fromStoryboard(clazz: ResultViewController.self)
+        view?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        view?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+        self.present(view!, animated: true, completion: nil)
     }
 }
