@@ -10,9 +10,7 @@ import UIKit
 
 class ResultViewController: UIViewController {
     @IBOutlet weak var tappedImageView: UIImageView!
-    @IBOutlet weak var result1: UILabel!
-    @IBOutlet weak var result2: UILabel!
-    @IBOutlet weak var result3: UILabel!
+    @IBOutlet weak var result: UILabel!
     
     var tappedImage: UIImage? = nil
     
