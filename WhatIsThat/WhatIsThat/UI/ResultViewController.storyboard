@@ -18,6 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RS1-SK-RZs">
+                                <frame key="frameInset" minX="95" minY="120" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="テスト結果その２" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJQ-p1-K6J">
                                 <frame key="frameInset" minX="16" minY="497" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -61,6 +65,7 @@
                         <outlet property="result1" destination="MVR-5c-tjd" id="YOR-40-QOa"/>
                         <outlet property="result2" destination="KJQ-p1-K6J" id="Wtp-No-ypn"/>
                         <outlet property="result3" destination="i8d-m7-3QV" id="BtA-g0-PAd"/>
+                        <outlet property="tappedImageView" destination="RS1-SK-RZs" id="FvJ-Cn-5Wv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A97-bE-if6" userLabel="First Responder" sceneMemberID="firstResponder"/>

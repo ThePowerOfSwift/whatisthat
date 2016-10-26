@@ -17,4 +17,8 @@ struct Const {
     struct Screen {
         static let Size = UIScreen.main.bounds.size
     }
+    struct Capture {
+        static let Width: Int  = 100
+        static let Height: Int = 100
+    }
 }
