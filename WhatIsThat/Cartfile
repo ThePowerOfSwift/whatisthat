@@ -1,2 +1,4 @@
 github "Alamofire/Alamofire" ~> 4.0
 github "Hearst-DD/ObjectMapper" ~> 2.1
+github "realm/realm-cocoa"
+github "andreamazz/BubbleTransition"

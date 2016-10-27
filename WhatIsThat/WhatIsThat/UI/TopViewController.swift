@@ -9,6 +9,7 @@
 import UIKit
 import GLKit
 import AVFoundation
+import LTMorphingLabel
 
 class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     var videoDisplayView: GLKView!
@@ -18,6 +19,15 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
     var isCaptured: Bool = false
     var touchPos = CGPoint(x: 0, y: 0)
     
+    @IBOutlet weak var corporateLabel: LTMorphingLabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 企業ロゴのアニメーション
+        corporateLabel.morphingEffect = LTMorphingEffect.evaporate
+        corporateLabel.text = "IT-ai"
+    }
     override func viewWillAppear(_ animated: Bool) {
         //画面の生成
         initDisplay()
