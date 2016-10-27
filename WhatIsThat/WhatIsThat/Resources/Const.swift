@@ -18,8 +18,7 @@ struct Const {
         static let Size = UIScreen.main.bounds.size
     }
     struct Capture {
-        static let Width: Int  = 200
-        static let Height: Int = 200
-        static let Filename = "temp.jpg"
+        static let Width: Int  = 100
+        static let Height: Int = 100
     }
 }

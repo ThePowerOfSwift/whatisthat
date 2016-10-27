@@ -10,21 +10,25 @@ import UIKit
 import GLKit
 import AVFoundation
 
-class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate
-{
+class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     var videoDisplayView: GLKView!
     var videoDisplayViewRect: CGRect!
     var renderContext: CIContext!
     var cpsSession: AVCaptureSession!
-    var isCaptured = false
+    var isCaptured: Bool = false
     var touchPos = CGPoint(x: 0, y: 0)
     
     override func viewWillAppear(_ animated: Bool) {
         //画面の生成
-        self.initDisplay()
+        initDisplay()
         
         // カメラの使用準備.
-        self.initCamera()
+        initCamera()
+        
+        // ジェスチャーの生成
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture(touch:)))
+        tap.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tap)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
