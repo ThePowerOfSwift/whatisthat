@@ -49,12 +49,16 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         videoDisplayView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
         videoDisplayView.frame = view.bounds
         view.addSubview(videoDisplayView)
-        
-        displayCorporateLogo()
+        view.sendSubview(toBack: videoDisplayView)
         
         renderContext = CIContext(eaglContext: videoDisplayView.context)
         videoDisplayView.bindDrawable()
         videoDisplayViewRect = CGRect(x: 0, y: 0, width: videoDisplayView.drawableWidth, height: videoDisplayView.drawableHeight)
+        
+        // ジェスチャーの生成
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture(touch:)))
+        tap.numberOfTapsRequired = 1
+        videoDisplayView.addGestureRecognizer(tap)
     }
     
     func initCamera() {
@@ -95,7 +99,7 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
                 self.cpsSession.addOutput(videoDataOutput)
             }
             //解像度の指定
-            self.cpsSession.sessionPreset = AVCaptureSessionPresetMedium
+            self.cpsSession.sessionPreset = AVCaptureSessionPresetHigh
             
             self.cpsSession.startRunning()
         } catch (let error) {
@@ -134,13 +138,21 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         if isCaptured {
             isCaptured = false
             let view = fromStoryboard(clazz: ResultViewController.self)
-            let rect = CGRect(x: CGFloat(touchPos.x - 50), y: CGFloat(touchPos.y - 50), width: CGFloat(Const.Capture.Width), height: CGFloat(Const.Capture.Height))
+            print("screenSize=\(Const.Screen.Size)")
+            print("drawFrame=\(drawFrame)")
             view?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            view?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            view?.tappedImage = trimmedImage(sourceImage: imageFromSampleBuffer(sampleBuffer: sampleBuffer), rect: rect)
+            view?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
+            guard let previewImage = UIImage.imageFromSampleBuffer(sampleBuffer: sampleBuffer)?.croppIngimage(toRect:drawFrame) else { return }
+            let rect = getRect(withImage: previewImage)
+            print("rect=\(rect)")
+            view?.tappedImage = previewImage.croppIngimage(toRect: rect)
             //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
             self.present(view!, animated: true, completion: nil)
         }
+    }
+    
+    private func getDocumentsDirectory() -> URL? {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     }
     
     override func didReceiveMemoryWarning() {
@@ -148,38 +160,21 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         // Dispose of any resources that can be recreated.
     }
     
-    fileprivate func displayCorporateLogo() {
-        let label = UILabel(frame: CGRect(x: 20, y: Const.Screen.Size.height - 50, width: 100, height: 30))
-        label.text = "IT-ai"
-        label.textColor = Const.Color.CorporateLogo
-        view.addSubview(label)
-    }
-    
     func tapGesture(touch: UITapGestureRecognizer) {
-        print("touchPoint = \(touchPos)")
         touchPos = touch.location(in: self.view)
+        print("touchPoint = \(touchPos)")
         isCaptured = true
     }
     
-    private func trimmedImage(sourceImage: UIImage, rect: CGRect) -> UIImage? {
-        guard let sourceImage = sourceImage.cgImage else { return nil }
-        guard let trimmedImageRef = sourceImage.cropping(to: rect) else { return nil }
-        return UIImage(cgImage: trimmedImageRef)
-    }
-    
-    private func imageFromSampleBuffer(sampleBuffer :CMSampleBuffer) -> UIImage {
-        let imageBuffer: CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
-        CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
-        let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddressOfPlane(imageBuffer, 0)!
-        let bytesPerRow: UInt = UInt(CVPixelBufferGetBytesPerRow(imageBuffer))
-        let width  = Int(CVPixelBufferGetWidth(imageBuffer))
-        let height = Int(CVPixelBufferGetHeight(imageBuffer))
-        let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitsPerCompornent: UInt = 8
-        let bitmapInfo = CGBitmapInfo(rawValue: (CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue) as UInt32)
-        let newContext: CGContext = CGContext(data: baseAddress, width: width, height: height, bitsPerComponent: Int(bitsPerCompornent), bytesPerRow: Int(bytesPerRow), space: colorSpace, bitmapInfo: bitmapInfo.rawValue)! as CGContext
-        let imageRef: CGImage = newContext.makeImage()!
-        let resultImage = UIImage(cgImage: imageRef, scale: 1.0, orientation: UIImageOrientation.right)
-        return resultImage
+    private func getRect(withImage image: UIImage) -> CGRect {
+        let widthImage = UIImageView(image: image).frame.width
+        let widthHalf  = CGFloat(Const.Capture.Width / 2)
+        let heightHalf = CGFloat(Const.Capture.Height / 2)
+        let scale  = widthImage / Const.Screen.Size.width
+        let posX   = touchPos.x - widthHalf < 0 ? 0 : touchPos.x - widthHalf
+        let posY   = touchPos.y - heightHalf < 0 ? 0 : touchPos.y - heightHalf
+        let width  = touchPos.x + widthHalf - posX
+        let height = touchPos.y + heightHalf - posY
+        return CGRect(x:posY * scale, y: (CGFloat(Const.Screen.Size.width) - posX - CGFloat(Const.Capture.Width)) * scale, width: width * scale, height: height * scale)
     }
 }

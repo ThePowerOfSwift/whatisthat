@@ -10,15 +10,15 @@ import UIKit
 import MapKit
 
 class ResultViewController: UIViewController {
-    var tappedImage: UIImage? = nil
-    
     @IBOutlet weak var tappedImageView: UIImageView!
-    @IBOutlet weak var result1: UILabel!
-    @IBOutlet weak var result2: UILabel!
-    @IBOutlet weak var result3: UILabel!
+    @IBOutlet weak var result: UILabel!
+    
+    var tappedImage: UIImage? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tappedImageView.image = tappedImage
+        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {

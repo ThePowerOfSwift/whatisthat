@@ -18,20 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RS1-SK-RZs">
-                                <frame key="frameInset" minX="95" minY="120" width="200" height="200"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6SP-Ts-gW9">
+                                <frame key="frameInset" minX="90" minY="110" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="テスト結果その２" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJQ-p1-K6J">
-                                <frame key="frameInset" minX="16" minY="497" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="テスト結果その３" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8d-m7-3QV">
-                                <frame key="frameInset" minX="209" minY="497" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVR-5c-tjd">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="7di-nV-6Eu"/>
+                                    <constraint firstAttribute="width" constant="200" id="Ue7-Hy-OC0"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -41,15 +36,6 @@
                                     <action selector="tappedBackgroundView:" destination="8fJ-KD-lKh" eventType="touchUpInside" id="n7S-3v-F7p"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="テスト結果その1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVR-5c-tjd">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="7di-nV-6Eu"/>
-                                    <constraint firstAttribute="width" constant="200" id="Ue7-Hy-OC0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -58,14 +44,12 @@
                             <constraint firstItem="ibO-6j-QK6" firstAttribute="leading" secondItem="Y0U-xi-ymf" secondAttribute="leadingMargin" id="39x-Y0-4SO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ibO-6j-QK6" secondAttribute="trailing" id="Bsx-q9-Uhq"/>
                             <constraint firstItem="zaz-hI-SYd" firstAttribute="top" secondItem="ibO-6j-QK6" secondAttribute="bottom" id="Qj0-E1-k2E"/>
-                            <constraint firstItem="MVR-5c-tjd" firstAttribute="top" secondItem="lUa-df-b7c" secondAttribute="bottom" constant="280" id="c5u-b2-tM5"/>
+                            <constraint firstItem="MVR-5c-tjd" firstAttribute="top" secondItem="lUa-df-b7c" secondAttribute="bottom" constant="320" id="c5u-b2-tM5"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="result1" destination="MVR-5c-tjd" id="YOR-40-QOa"/>
-                        <outlet property="result2" destination="KJQ-p1-K6J" id="Wtp-No-ypn"/>
-                        <outlet property="result3" destination="i8d-m7-3QV" id="BtA-g0-PAd"/>
-                        <outlet property="tappedImageView" destination="RS1-SK-RZs" id="FvJ-Cn-5Wv"/>
+                        <outlet property="result" destination="MVR-5c-tjd" id="bZc-d3-WIw"/>
+                        <outlet property="tappedImageView" destination="6SP-Ts-gW9" id="dbJ-wJ-ch0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A97-bE-if6" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0170FFDA1DBFA5E400B9C12F /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170FFD81DBFA5E400B9C12F /* Storyboardable.swift */; };
+		0170FFDB1DBFA5E400B9C12F /* Xibable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170FFD91DBFA5E400B9C12F /* Xibable.swift */; };
+		0170FFDE1DBFA60C00B9C12F /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170FFDD1DBFA60C00B9C12F /* UIImage+Extension.swift */; };
 		01B843DF1DB362A3002624F4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B843DE1DB362A3002624F4 /* Default-568h@2x.png */; };
-		01B843E21DB36603002624F4 /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B843E11DB36603002624F4 /* Storyboardable.swift */; };
-		01B843E41DB36656002624F4 /* Xibable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B843E31DB36656002624F4 /* Xibable.swift */; };
 		01B843E61DB36842002624F4 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B843E51DB36842002624F4 /* ResultViewController.swift */; };
 		01B843E81DB3686B002624F4 /* ResultViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B843E71DB3686B002624F4 /* ResultViewController.storyboard */; };
 		01B843EA1DB65667002624F4 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B843E91DB65667002624F4 /* Alamofire.framework */; };
@@ -43,9 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0170FFD81DBFA5E400B9C12F /* Storyboardable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
+		0170FFD91DBFA5E400B9C12F /* Xibable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Xibable.swift; sourceTree = "<group>"; };
+		0170FFDD1DBFA60C00B9C12F /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		01B843DE1DB362A3002624F4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		01B843E11DB36603002624F4 /* Storyboardable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
-		01B843E31DB36656002624F4 /* Xibable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Xibable.swift; sourceTree = "<group>"; };
 		01B843E51DB36842002624F4 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		01B843E71DB3686B002624F4 /* ResultViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ResultViewController.storyboard; sourceTree = "<group>"; };
 		01B843E91DB65667002624F4 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -96,13 +98,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01B843E01DB365B6002624F4 /* Utilities */ = {
+		0170FFD71DBFA5E400B9C12F /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				01B843E11DB36603002624F4 /* Storyboardable.swift */,
-				01B843E31DB36656002624F4 /* Xibable.swift */,
+				0170FFD81DBFA5E400B9C12F /* Storyboardable.swift */,
+				0170FFD91DBFA5E400B9C12F /* Xibable.swift */,
 			);
-			path = Utilities;
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		0170FFDC1DBFA60C00B9C12F /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				0170FFDD1DBFA60C00B9C12F /* UIImage+Extension.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
+		0170FFDF1DBFA62100B9C12F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				0170FFE01DBFA62100B9C12F /* Entity */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		0170FFE01DBFA62100B9C12F /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		01D6EC0C1DB33972000BDCDD = {
@@ -132,9 +157,11 @@
 			isa = PBXGroup;
 			children = (
 				01D6EC181DB33972000BDCDD /* AppDelegate.swift */,
-				01B843E01DB365B6002624F4 /* Utilities */,
-				01D6EC461DB33EF3000BDCDD /* UI */,
+				0170FFDF1DBFA62100B9C12F /* API */,
+				0170FFDC1DBFA60C00B9C12F /* Extention */,
 				01D6EC491DB33F14000BDCDD /* Resources */,
+				0170FFD71DBFA5E400B9C12F /* Utility */,
+				01D6EC461DB33EF3000BDCDD /* UI */,
 			);
 			path = WhatIsThat;
 			sourceTree = "<group>";
@@ -407,12 +434,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01B843E21DB36603002624F4 /* Storyboardable.swift in Sources */,
 				01D6EC481DB33EF3000BDCDD /* TopViewController.swift in Sources */,
+				0170FFDE1DBFA60C00B9C12F /* UIImage+Extension.swift in Sources */,
+				0170FFDB1DBFA5E400B9C12F /* Xibable.swift in Sources */,
 				01D6EC191DB33972000BDCDD /* AppDelegate.swift in Sources */,
 				01D6EC4E1DB340F1000BDCDD /* Const.swift in Sources */,
-				01B843E41DB36656002624F4 /* Xibable.swift in Sources */,
 				01B843E61DB36842002624F4 /* ResultViewController.swift in Sources */,
+				0170FFDA1DBFA5E400B9C12F /* Storyboardable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
