@@ -49,8 +49,7 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         videoDisplayView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
         videoDisplayView.frame = view.bounds
         view.addSubview(videoDisplayView)
-        
-        displayCorporateLogo()
+        view.sendSubview(toBack: videoDisplayView)
         
         renderContext = CIContext(eaglContext: videoDisplayView.context)
         videoDisplayView.bindDrawable()
@@ -159,13 +158,6 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    fileprivate func displayCorporateLogo() {
-        let label = UILabel(frame: CGRect(x: 20, y: Const.Screen.Size.height - 50, width: 100, height: 30))
-        label.text = "IT-ai"
-        label.textColor = Const.Color.CorporateLogo
-        view.addSubview(label)
     }
     
     func tapGesture(touch: UITapGestureRecognizer) {
