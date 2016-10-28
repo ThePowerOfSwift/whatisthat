@@ -10,16 +10,19 @@ import UIKit
 import GLKit
 import AVFoundation
 import LTMorphingLabel
+import BubbleTransition
 
 class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+    @IBOutlet weak var corporateLabel: LTMorphingLabel!
+    @IBOutlet weak var transitionButton: UIButton!
+    
+    let transition = BubbleTransition()
     var videoDisplayView: GLKView!
     var videoDisplayViewRect: CGRect!
     var renderContext: CIContext!
     var cpsSession: AVCaptureSession!
     var isCaptured: Bool = false
     var touchPos = CGPoint(x: 0, y: 0)
-    
-    @IBOutlet weak var corporateLabel: LTMorphingLabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -186,5 +189,27 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         let width  = touchPos.x + widthHalf - posX
         let height = touchPos.y + heightHalf - posY
         return CGRect(x:posY * scale, y: (CGFloat(Const.Screen.Size.width) - posX - CGFloat(Const.Capture.Width)) * scale, width: width * scale, height: height * scale)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let controller = segue.destination
+        controller.transitioningDelegate = self
+        controller.modalPresentationStyle = .custom
+    }
+}
+
+extension TopViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        transition.startingPoint = transitionButton.center
+        transition.bubbleColor = transitionButton.backgroundColor!
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        transition.startingPoint = transitionButton.center
+        transition.bubbleColor = transitionButton.backgroundColor!
+        return transition
     }
 }
