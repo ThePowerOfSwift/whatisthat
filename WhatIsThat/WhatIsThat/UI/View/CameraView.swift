@@ -1,51 +1,45 @@
 //
-//  TopViewController.swift
+//  CameraView.swift
 //  WhatIsThat
 //
-//  Created by 渡邊浩二 on 2016/10/13.
+//  Created by 渡邊浩二 on 2016/10/30.
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
 import UIKit
 import GLKit
 import AVFoundation
-import LTMorphingLabel
-import BubbleTransition
 
-class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
-    @IBOutlet weak var corporateLabel: LTMorphingLabel!
-    @IBOutlet weak var transitionButton: UIButton!
-    
-    let transition = BubbleTransition()
+class CameraView: UIView {
+    var delegate: UIViewController? = nil
     var videoDisplayView: GLKView!
     var videoDisplayViewRect: CGRect!
     var renderContext: CIContext!
     var cpsSession: AVCaptureSession!
     var isCaptured: Bool = false
     var touchPos = CGPoint(x: 0, y: 0)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // 企業ロゴのアニメーション
-        corporateLabel.morphingEffect = LTMorphingEffect.evaporate
-        corporateLabel.text = "IT-ai"
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        setUp()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        //画面の生成
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUp()
+    }
+    
+    private func setUp() {
+        self.frame = CGRect(x: 0, y: 0, width: Const.Screen.Size.width, height: Const.Screen.Size.height)
         initDisplay()
-        
-        // カメラの使用準備.
         initCamera()
-        
-        // ジェスチャーの生成
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture(touch:)))
         tap.numberOfTapsRequired = 1
-        view.addGestureRecognizer(tap)
+        self.addGestureRecognizer(tap)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        // カメラの停止とメモリ解放.
+    override func willRemoveSubview(_ subview: UIView) {
+        // カメラの停止とメモリ解放
         self.cpsSession.stopRunning()
         for output in self.cpsSession.outputs {
             self.cpsSession.removeOutput(output as! AVCaptureOutput)
@@ -57,12 +51,12 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         self.cpsSession = nil
     }
     
-    func initDisplay() {
-        videoDisplayView = GLKView(frame: view.bounds, context: EAGLContext(api: .openGLES2))
+    // 画面の生成
+    private func initDisplay() {
+        videoDisplayView = GLKView(frame: self.bounds, context: EAGLContext(api: .openGLES2))
         videoDisplayView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
-        videoDisplayView.frame = view.bounds
-        view.addSubview(videoDisplayView)
-        view.sendSubview(toBack: videoDisplayView)
+        videoDisplayView.frame = self.bounds
+        self.addSubview(videoDisplayView)
         
         renderContext = CIContext(eaglContext: videoDisplayView.context)
         videoDisplayView.bindDrawable()
@@ -74,7 +68,8 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         videoDisplayView.addGestureRecognizer(tap)
     }
     
-    func initCamera() {
+    // カメラの使用準備
+    private func initCamera() {
         // カメラからの入力を作成
         var device: AVCaptureDevice!
         
@@ -120,6 +115,18 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         }
     }
     
+    private func getDocumentsDirectory() -> URL? {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+    }
+    
+    func tapGesture(touch: UITapGestureRecognizer) {
+        touchPos = touch.location(in: self)
+        print("touchPoint = \(touchPos)")
+        isCaptured = true
+    }
+}
+
+extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         //SampleBufferから画像を取得
         let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
@@ -160,26 +167,11 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
             print("rect=\(rect)")
             vc?.tappedImage = previewImage.croppIngimage(toRect: rect)
             //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
-            self.present(vc!, animated: true, completion: nil)
+            delegate?.present(vc!, animated: true, completion: nil)
         }
     }
     
-    private func getDocumentsDirectory() -> URL? {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func tapGesture(touch: UITapGestureRecognizer) {
-        touchPos = touch.location(in: self.view)
-        print("touchPoint = \(touchPos)")
-        isCaptured = true
-    }
-    
-    private func getRect(withImage image: UIImage) -> CGRect {
+    func getRect(withImage image: UIImage) -> CGRect {
         let widthImage = UIImageView(image: image).frame.width
         let widthHalf  = CGFloat(Const.Capture.Width / 2)
         let heightHalf = CGFloat(Const.Capture.Height / 2)
@@ -189,27 +181,5 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         let width  = touchPos.x + widthHalf - posX
         let height = touchPos.y + heightHalf - posY
         return CGRect(x:posY * scale, y: (CGFloat(Const.Screen.Size.width) - posX - CGFloat(Const.Capture.Width)) * scale, width: width * scale, height: height * scale)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let controller = segue.destination
-        controller.transitioningDelegate = self
-        controller.modalPresentationStyle = .custom
-    }
-}
-
-extension TopViewController: UIViewControllerTransitioningDelegate {
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .present
-        transition.startingPoint = transitionButton.center
-        transition.bubbleColor = transitionButton.backgroundColor!
-        return transition
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .dismiss
-        transition.startingPoint = transitionButton.center
-        transition.bubbleColor = transitionButton.backgroundColor!
-        return transition
     }
 }
