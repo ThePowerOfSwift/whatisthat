@@ -27,6 +27,8 @@
 		01D6EC391DB33972000BDCDD /* WhatIsThatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D6EC381DB33972000BDCDD /* WhatIsThatUITests.swift */; };
 		01D6EC481DB33EF3000BDCDD /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D6EC471DB33EF3000BDCDD /* TopViewController.swift */; };
 		01D6EC4E1DB340F1000BDCDD /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D6EC4C1DB340F1000BDCDD /* Const.swift */; };
+		01FF76B91DC3AE24000FDA96 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF76B81DC3AE24000FDA96 /* WebViewController.swift */; };
+		01FF76BB1DC3AE48000FDA96 /* WebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01FF76BA1DC3AE48000FDA96 /* WebViewController.storyboard */; };
 		F32ADDF48C0BE82D950E1B20 /* Pods_WhatIsThat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 448C8B4C0EE396AEFB316CC8 /* Pods_WhatIsThat.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +77,8 @@
 		01D6EC3A1DB33972000BDCDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01D6EC471DB33EF3000BDCDD /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		01D6EC4C1DB340F1000BDCDD /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Const.swift; path = Resources/Const.swift; sourceTree = "<group>"; };
+		01FF76B81DC3AE24000FDA96 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		01FF76BA1DC3AE48000FDA96 /* WebViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
 		0D693EE20B7442C33718ACDD /* Pods-WhatIsThat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatIsThat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatIsThat/Pods-WhatIsThat.release.xcconfig"; sourceTree = "<group>"; };
 		448C8B4C0EE396AEFB316CC8 /* Pods_WhatIsThat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatIsThat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86224A45011F8B7FC69E3A48 /* Pods-WhatIsThat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatIsThat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhatIsThat/Pods-WhatIsThat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 				01B843E71DB3686B002624F4 /* ResultViewController.storyboard */,
 				01D6EC471DB33EF3000BDCDD /* TopViewController.swift */,
 				01D6EC1C1DB33972000BDCDD /* TopViewController.storyboard */,
+				01FF76B81DC3AE24000FDA96 /* WebViewController.swift */,
+				01FF76BA1DC3AE48000FDA96 /* WebViewController.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -212,8 +218,8 @@
 		01D6EC491DB33F14000BDCDD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				01D6EC211DB33972000BDCDD /* LaunchScreen.storyboard */,
 				01D6EC1F1DB33972000BDCDD /* Assets.xcassets */,
+				01D6EC211DB33972000BDCDD /* LaunchScreen.storyboard */,
 				01D6EC4C1DB340F1000BDCDD /* Const.swift */,
 			);
 			name = Resources;
@@ -365,6 +371,7 @@
 				01D6EC201DB33972000BDCDD /* Assets.xcassets in Resources */,
 				01B843E81DB3686B002624F4 /* ResultViewController.storyboard in Resources */,
 				01D6EC1E1DB33972000BDCDD /* TopViewController.storyboard in Resources */,
+				01FF76BB1DC3AE48000FDA96 /* WebViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01D6EC481DB33EF3000BDCDD /* TopViewController.swift in Sources */,
+				01FF76B91DC3AE24000FDA96 /* WebViewController.swift in Sources */,
 				0170FFDE1DBFA60C00B9C12F /* UIImage+Extension.swift in Sources */,
 				0170FFDB1DBFA5E400B9C12F /* Xibable.swift in Sources */,
 				01D6EC191DB33972000BDCDD /* AppDelegate.swift in Sources */,
