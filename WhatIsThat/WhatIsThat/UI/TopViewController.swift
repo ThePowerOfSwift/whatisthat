@@ -150,17 +150,17 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         // 結果画面
         if isCaptured {
             isCaptured = false
-            let view = fromStoryboard(clazz: ResultViewController.self)
+            let vc = fromStoryboard(clazz: ResultViewController.self)
             print("screenSize=\(Const.Screen.Size)")
             print("drawFrame=\(drawFrame)")
-            view?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            view?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
+            vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            vc?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
             guard let previewImage = UIImage.imageFromSampleBuffer(sampleBuffer: sampleBuffer)?.croppIngimage(toRect:drawFrame) else { return }
             let rect = getRect(withImage: previewImage)
             print("rect=\(rect)")
-            view?.tappedImage = previewImage.croppIngimage(toRect: rect)
+            vc?.tappedImage = previewImage.croppIngimage(toRect: rect)
             //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
-            self.present(view!, animated: true, completion: nil)
+            self.present(vc!, animated: true, completion: nil)
         }
     }
     

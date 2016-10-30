@@ -76,11 +76,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dd4-C0-A4J">
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="50"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メニュー" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyo-xO-5Ns">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ULS-Cq-h6G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kaO-2D-Xmp">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="fmG-6W-sKu" id="s4N-bp-rA6"/>
+                                    <outlet property="delegate" destination="fmG-6W-sKu" id="Ybp-8a-WDg"/>
+                                </connections>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fl2-b3-mwv">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -104,19 +114,25 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dd4-C0-A4J" firstAttribute="top" secondItem="Z5Z-cK-lle" secondAttribute="bottom" constant="80" id="0Ph-cd-j4U"/>
+                            <constraint firstItem="kaO-2D-Xmp" firstAttribute="top" secondItem="Tyo-xO-5Ns" secondAttribute="bottom" constant="8" id="2N1-pF-Hgi"/>
                             <constraint firstItem="QMD-lG-exx" firstAttribute="top" secondItem="fl2-b3-mwv" secondAttribute="bottom" constant="20" id="6OB-uK-edv"/>
-                            <constraint firstAttribute="centerX" secondItem="dd4-C0-A4J" secondAttribute="centerX" id="nAr-EN-hEp"/>
+                            <constraint firstAttribute="trailing" secondItem="kaO-2D-Xmp" secondAttribute="trailing" constant="20" id="6tB-1C-dKp"/>
+                            <constraint firstAttribute="trailing" secondItem="Tyo-xO-5Ns" secondAttribute="trailing" constant="20" id="8pm-Gd-oSj"/>
+                            <constraint firstItem="Tyo-xO-5Ns" firstAttribute="top" secondItem="Z5Z-cK-lle" secondAttribute="bottom" id="Bw1-bW-4Sj"/>
+                            <constraint firstItem="fl2-b3-mwv" firstAttribute="top" secondItem="kaO-2D-Xmp" secondAttribute="bottom" constant="8" id="EnG-WH-2Gb"/>
+                            <constraint firstItem="Tyo-xO-5Ns" firstAttribute="leading" secondItem="pdu-fi-J04" secondAttribute="leading" constant="20" id="bmX-2Z-brP"/>
                             <constraint firstAttribute="trailing" secondItem="fl2-b3-mwv" secondAttribute="trailing" constant="20" id="tld-4q-1ei"/>
+                            <constraint firstItem="kaO-2D-Xmp" firstAttribute="leading" secondItem="pdu-fi-J04" secondAttribute="leading" constant="20" id="w3D-Lo-pcU"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="fl2-b3-mwv" id="ogi-7e-aZI"/>
+                        <outlet property="tableView" destination="kaO-2D-Xmp" id="QcH-Zf-AVO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CfC-q9-vUD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="842" y="36"/>
+            <point key="canvasLocation" x="861.60000000000002" y="35.532233883058474"/>
         </scene>
     </scenes>
 </document>
