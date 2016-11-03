@@ -1,33 +1,30 @@
 //
-//  UserEntity.swift
+//  LabelAnnotationEntity.swift
 //  WhatIsThat
 //
 //  Created by 渡邊浩二 on 2016/10/30.
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
-import Realm
+import RealmSwift
 import ObjectMapper
 
-class UserEntity : RLMObject {
+class LabelAnnotationEntity: Object {
+    dynamic var mid    = ""
+    dynamic var detail = ""
+    dynamic var score  = ""
     
-    dynamic var id = ""
-    dynamic var name = ""
-    
-    // initializer で mapping(map: Map) を呼び出す
     required convenience init?(map: Map) {
         self.init()
         mapping(map: map)
     }
-    
 }
 
 // MARK: - ObjectMapper
-extension UserEntity : Mappable {
-    
+extension LabelAnnotationEntity: Mappable {
     func mapping(map: Map) {
-        id   <- map["Result.user.id"]
-        name <- map["Result.user.name"]
+        mid    <- map["mid"]
+        detail <- map["description"]
+        score  <- map["score"]
     }
-    
 }

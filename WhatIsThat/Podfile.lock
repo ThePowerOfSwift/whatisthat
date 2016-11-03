@@ -1,25 +1,12 @@
 PODS:
-  - LTMorphingLabel (0.3.0)
   - MMPopLabel (0.1.3)
 
 DEPENDENCIES:
-  - LTMorphingLabel (from `https://github.com/lexrus/LTMorphingLabel`, branch `swift3`)
   - MMPopLabel
 
-EXTERNAL SOURCES:
-  LTMorphingLabel:
-    :branch: swift3
-    :git: https://github.com/lexrus/LTMorphingLabel
-
-CHECKOUT OPTIONS:
-  LTMorphingLabel:
-    :commit: 93c60bb1626aa96dbd5e899c82e280d7a785315d
-    :git: https://github.com/lexrus/LTMorphingLabel
-
 SPEC CHECKSUMS:
-  LTMorphingLabel: 2777d8d9cb699125f48dfcd95d78bd3d77c87ade
   MMPopLabel: d9909f18cacd5200f005ef3f0790c9490357b57a
 
-PODFILE CHECKSUM: b9ddf128795bd7fddb367559fc0e0dc656b61bdb
+PODFILE CHECKSUM: c19f3fcda217b4c293465bd62af9f9e3043d0b29
 
 COCOAPODS: 1.0.1

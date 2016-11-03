@@ -18,7 +18,15 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tappedImageView.image = tappedImage
-        // Do any additional setup after loading the view.
+
+        CloudVisionManager().getData(image: tappedImage!) { (response) in
+            switch response {
+            case .success:
+                print("API request is succeeded.")
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

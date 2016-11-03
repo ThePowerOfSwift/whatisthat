@@ -21,4 +21,9 @@ struct Const {
         static let Width: Int  = 100
         static let Height: Int = 100
     }
+    struct API {
+        struct CloudVision {
+            static let ApiKey = "AIzaSyA04hrp5OA2WcgmXfs6PE6smno018Cmg6A"
+        }
+    }
 }

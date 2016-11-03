@@ -6,23 +6,22 @@
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
-import UIKit
-import LTMorphingLabel
 import BubbleTransition
+import UIKit
+import ObjectMapper
+import Realm
 
 class TopViewController: UIViewController {
-    @IBOutlet weak var corporateLabel: LTMorphingLabel!
     @IBOutlet weak var transitionButton: UIButton!
+    @IBOutlet weak var corporateLogoView: UIView!
     
     let transition = BubbleTransition()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 企業ロゴ設定
-        corporateLabel.morphingEffect = LTMorphingEffect.evaporate
-        corporateLabel.text = "IT-ai"
-        corporateLabel.layer.shadowColor = UIColor.white.cgColor
+        // 企業ロゴ
+        corporateLogoView.layer.shadowColor = UIColor.white.cgColor
         
         // カメラビュー
         if let cameraView = fromXib(clazz: CameraView.self) {
