@@ -1,5 +1,5 @@
 //
-//  LandmarkAnnotationEntity.swift
+//  LogoAnnotation.swift
 //  WhatIsThat
 //
 //  Created by 渡邊浩二 on 2016/10/30.
@@ -9,10 +9,10 @@
 import RealmSwift
 import ObjectMapper
 
-class LandmarkAnnotationEntity: Object {
-    dynamic var mid    = ""
-    dynamic var detail = ""
-    dynamic var score  = ""
+class LogoAnnotation: Object {
+    dynamic var mid   = ""
+    dynamic var note  = ""
+    dynamic var score = 0.0
     
     required convenience init?(map: Map) {
         self.init()
@@ -21,10 +21,10 @@ class LandmarkAnnotationEntity: Object {
 }
 
 // MARK: - ObjectMapper
-extension LandmarkAnnotationEntity: Mappable {
+extension LogoAnnotation: Mappable {
     func mapping(map: Map) {
-        mid    <- map["mid"]
-        detail <- map["description"]
-        score  <- map["score"]
+        mid   <- map["mid"]
+        note  <- map["description"]
+        score <- map["score"]
     }
 }

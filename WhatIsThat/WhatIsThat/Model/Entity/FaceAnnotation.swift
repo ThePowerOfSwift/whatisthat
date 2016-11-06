@@ -1,5 +1,5 @@
 //
-//  FaceAnnotationEntity.swift
+//  FaceAnnotation.swift
 //  WhatIsThat
 //
 //  Created by 渡邊浩二 on 2016/11/01.
@@ -9,7 +9,7 @@
 import RealmSwift
 import ObjectMapper
 
-class FaceAnnotationEntity: Object {
+class FaceAnnotation: Object {
     dynamic var detectionConfidence    = 0.0
     dynamic var landmarkingConfidence  = 0.0
     dynamic var joyLikelihood          = 0.0
@@ -27,7 +27,7 @@ class FaceAnnotationEntity: Object {
 }
 
 // MARK: - ObjectMapper
-extension FaceAnnotationEntity: Mappable {
+extension FaceAnnotation: Mappable {
     func mapping(map: Map) {
         detectionConfidence    <- map["detectionConfidence"]
         landmarkingConfidence  <- map["landmarkingConfidence"]

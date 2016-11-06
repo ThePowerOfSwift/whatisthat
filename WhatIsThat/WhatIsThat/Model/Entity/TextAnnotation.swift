@@ -1,5 +1,5 @@
 //
-//  LabelAnnotationEntity.swift
+//  TextAnnotation.swift
 //  WhatIsThat
 //
 //  Created by 渡邊浩二 on 2016/10/30.
@@ -9,10 +9,9 @@
 import RealmSwift
 import ObjectMapper
 
-class LabelAnnotationEntity: Object {
-    dynamic var mid    = ""
-    dynamic var detail = ""
-    dynamic var score  = ""
+class TextAnnotation: Object {
+    dynamic var locale = ""
+    dynamic var note   = ""
     
     required convenience init?(map: Map) {
         self.init()
@@ -21,10 +20,9 @@ class LabelAnnotationEntity: Object {
 }
 
 // MARK: - ObjectMapper
-extension LabelAnnotationEntity: Mappable {
+extension TextAnnotation: Mappable {
     func mapping(map: Map) {
-        mid    <- map["mid"]
-        detail <- map["description"]
-        score  <- map["score"]
+        locale <- map["locale"]
+        note   <- map["description"]
     }
 }

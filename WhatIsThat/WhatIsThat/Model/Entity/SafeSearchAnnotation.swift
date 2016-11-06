@@ -1,18 +1,18 @@
 //
-//  TextAnnotationEntity.swift
+//  SafeSearchAnnotation.swift
 //  WhatIsThat
 //
-//  Created by 渡邊浩二 on 2016/10/30.
+//  Created by 渡邊浩二 on 2016/11/01.
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
 import RealmSwift
 import ObjectMapper
 
-class TextAnnotationEntity: Object {
+class SafeSearchAnnotation: Object {
     dynamic var adult    = ""
-    dynamic var spoof    = ""
     dynamic var medical  = ""
+    dynamic var spoof    = ""
     dynamic var violence = ""
     
     required convenience init?(map: Map) {
@@ -22,11 +22,11 @@ class TextAnnotationEntity: Object {
 }
 
 // MARK: - ObjectMapper
-extension TextAnnotationEntity: Mappable {
+extension SafeSearchAnnotation: Mappable {
     func mapping(map: Map) {
         adult    <- map["adult"]
-        spoof    <- map["spoof"]
         medical  <- map["medical"]
+        spoof    <- map["spoof"]
         violence <- map["violence"]
     }
 }

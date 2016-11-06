@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="LoadingView" id="1iJ-aN-DCk" customClass="LoadingView" customModule="WhatIsThat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="DUt-dT-Ded">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="hDK-yM-lX8"/>
+                        <constraint firstAttribute="width" constant="37" id="tHA-HZ-bAC"/>
+                    </constraints>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="DUt-dT-Ded" firstAttribute="centerY" secondItem="1iJ-aN-DCk" secondAttribute="centerY" id="LeQ-ug-a4d"/>
+                <constraint firstItem="DUt-dT-Ded" firstAttribute="centerX" secondItem="1iJ-aN-DCk" secondAttribute="centerX" id="QfZ-gJ-syW"/>
+            </constraints>
+            <point key="canvasLocation" x="25" y="102"/>
+        </view>
+    </objects>
+</document>

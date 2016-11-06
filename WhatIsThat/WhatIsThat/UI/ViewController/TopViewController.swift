@@ -41,6 +41,8 @@ class TopViewController: UIViewController {
         controller.transitioningDelegate = self
         controller.modalPresentationStyle = .custom
     }
+    @IBAction func tappedSnapShotButton(_ sender: UIButton) {
+    }
 }
 
 extension TopViewController: UIViewControllerTransitioningDelegate {

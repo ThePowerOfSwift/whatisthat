@@ -12,6 +12,24 @@ import RealmSwift
 import UIKit
 
 class CloudVisionManager: NSObject {
+    enum Likelihood: String {
+        case Unknown      = "UNKNOWN"
+        case VeryUnlikely = "VERY_UNLIKELY"
+        case Unlikely     = "UNLIKELY"
+        case Possible     = "POSSIBLE"
+        case Likely       = "LIKELY"
+        case VeryLikely   = "VERY_LIKELY"
+        
+        func isValidContent() -> Bool {
+            switch self {
+            case .Unknown, .VeryUnlikely, .Unlikely:
+                return true
+            default:
+                return false
+            }
+        }
+    }
+    
     func getData(image: UIImage, completion: @escaping (ApiResult) -> Void) {
         let imageString = image.base64EncodeImage()
         let params: [String: Any] = [
@@ -20,10 +38,10 @@ class CloudVisionManager: NSObject {
                     "content": imageString!
                 ],
                 "features": [
-//                    [
-//                        "type": "SAFE_SEARCH_DETECTION",
-//                        "maxResults": 1
-//                    ],
+                    [
+                        "type": "SAFE_SEARCH_DETECTION",
+                        "maxResults": 1
+                    ],
                     [
                         "type": "FACE_DETECTION",
                         "maxResults": 1
@@ -48,20 +66,13 @@ class CloudVisionManager: NSObject {
             ]
         ]
         let router = ApiRouter.cloudVision(params)
-        ApiManager.sharedInstance.request(router, mapping: CloudVisionEntity()) { (response) in
-            print("response=\(response)")
+        ApiManager.sharedInstance.request(router, mapping: CloudVisions()) { (response) in
             switch response {
             case .success(let value):
-                let realm = try! Realm()
-                try! realm.write {
-                    realm.add(value)
-                }
+                RealmManager.save(value)
                 completion(ApiResult.success)
             case.failure(let error):
-                let realm = try! Realm()
-                try! realm.write {
-                    realm.delete(realm.objects(CloudVisionEntity.self))
-                }
+                RealmManager.deleteAll(CloudVisions.self)
                 completion(ApiResult.failure(error))
             }
         }

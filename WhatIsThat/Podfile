@@ -14,3 +14,7 @@ target 'WhatIsThat' do
 #    pod "LTMorphingLabel", :git => "https://github.com/lexrus/LTMorphingLabel", :branch => "swift3"
 	pod "MMPopLabel"
 end
+
+target 'WhatIsThatTests' do
+#	pod 'Mockingjay', :git => "https://github.com/kylef/Mockingjay", :branch => "kylef/swift-3.0"
+end

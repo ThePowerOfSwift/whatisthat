@@ -40,21 +40,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEr-ae-ugk">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kt6-j8-QP0">
-                                        <frame key="frameInset" minX="3" minY="-3" width="57" height="40"/>
+                                        <frame key="frameInset" minX="5" minY="-3" width="57" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="i" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfU-iS-wb9">
-                                        <frame key="frameInset" minX="21" minY="24" width="40" height="40"/>
+                                        <frame key="frameInset" minX="22" minY="24" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="a" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IY7-3v-M9X">
-                                        <frame key="frameInset" minX="-3" minY="20" width="40" height="43"/>
+                                        <frame key="frameInset" minX="-2" minY="20" width="40" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                         <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,13 +81,30 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0R-ly-oDp" userLabel="Snap Shot Button">
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="goX-8p-fmv"/>
+                                    <constraint firstAttribute="height" constant="50" id="k8h-bY-7kX"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="tappedSnapShotButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YZ0-Fe-Vnw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iEr-ae-ugk" secondAttribute="bottom" constant="20" id="NB7-sm-khp"/>
+                            <constraint firstItem="k0R-ly-oDp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P5F-6f-ht3"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WOA-Fa-byu" secondAttribute="bottom" constant="20" id="ehE-hA-Otr"/>
                             <constraint firstItem="iEr-ae-ugk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="kPg-fe-YhS"/>
                             <constraint firstAttribute="trailing" secondItem="WOA-Fa-byu" secondAttribute="trailing" constant="20" id="li4-EP-DSv"/>
+                            <constraint firstItem="k0R-ly-oDp" firstAttribute="centerY" secondItem="WOA-Fa-byu" secondAttribute="centerY" id="vHY-WK-AXa"/>
                         </constraints>
                     </view>
                     <connections>
