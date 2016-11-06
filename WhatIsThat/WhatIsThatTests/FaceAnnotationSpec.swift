@@ -17,7 +17,7 @@ class FaceAnnotationSpec: QuickSpec {
     override func spec() {
         describe("FaceAnnotation") {
             context("json mapping") {
-                var jsonDictionary: [String: AnyObject]? = nil
+                var jsonDictionary: [String: Any]? = nil
                 
                 beforeEach() {
                     jsonDictionary = self.readJsonFileToDictionary(filename: "FaceAnnotation")
@@ -28,6 +28,7 @@ class FaceAnnotationSpec: QuickSpec {
                         //expect(value.rollAngle).to(equal(16.066454))
                         //expect(value.panAngle).to(equal(-29.752207))
                         //expect(value.tiltAngle).to(equal(3.7352962))
+                        expect(value).to(beAKindOf(FaceAnnotation.self))
                         expect(value.detectionConfidence).to(equal(0.98736823))
                         expect(value.landmarkingConfidence).to(equal(0.57041687))
                         expect(value.joyLikelihood).to(equal(0.90647823))

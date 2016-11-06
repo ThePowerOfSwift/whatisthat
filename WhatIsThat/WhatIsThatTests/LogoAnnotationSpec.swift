@@ -17,7 +17,7 @@ class LogoAnnotationSpec: QuickSpec {
     override func spec() {
         describe("LogoAnnotation") {
             context("json mapping") {
-                var jsonDictionary: [String: AnyObject]? = nil
+                var jsonDictionary: [String: Any]? = nil
                 
                 beforeEach() {
                     jsonDictionary = self.readJsonFileToDictionary(filename: "LogoAnnotation")
@@ -25,6 +25,7 @@ class LogoAnnotationSpec: QuickSpec {
                 
                 it("returns json") {
                     if let value = Mapper<LogoAnnotation>().map(JSONObject: jsonDictionary) {
+                        expect(value).to(beAKindOf(LogoAnnotation.self))
                         expect(value.mid)  == "/m/045c7b"
                         expect(value.note) == "Google"
                         expect(value.score).to(equal(0.35000956))

@@ -12,11 +12,11 @@ import Quick
 import Nimble
 
 extension QuickSpec {
-    func readJsonFileToDictionary(filename: String) -> [String: AnyObject]? {
+    func readJsonFileToDictionary(filename: String) -> [String: Any]? {
         if let path = Bundle(for: type(of: self)).path(forResource: filename, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-                if let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] {
+                if let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
                     return json
                 } else {
                     print("Could not get json from file, make sure that file contains valid json.")

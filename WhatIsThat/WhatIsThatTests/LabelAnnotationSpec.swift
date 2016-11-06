@@ -17,7 +17,7 @@ class LabelAnnotationSpec: QuickSpec {
     override func spec() {
         describe("LabelAnnotation") {
             context("json mapping") {
-                var jsonDictionary: [String: AnyObject]? = nil
+                var jsonDictionary: [String: Any]? = nil
                 
                 beforeEach() {
                     jsonDictionary = self.readJsonFileToDictionary(filename: "LabelAnnotation")
@@ -25,6 +25,7 @@ class LabelAnnotationSpec: QuickSpec {
                 
                 it("returns json") {
                     if let value = Mapper<LabelAnnotation>().map(JSONObject: jsonDictionary) {
+                        expect(value).to(beAKindOf(LabelAnnotation.self))
                         expect(value.mid)  == "/m/021sdg"
                         expect(value.note) == "graphics"
                         expect(value.score).to(equal(0.67143095))

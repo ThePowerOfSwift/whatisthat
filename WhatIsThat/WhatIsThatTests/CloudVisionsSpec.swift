@@ -18,16 +18,16 @@ class CloudVisionsSpec: QuickSpec {
     override func spec() {
         describe("CloudVisions") {
             context("json mapping") {
-                var jsonDictionary: [String: AnyObject]? = nil
+                var jsonDictionary: [String: Any]? = nil
                 
                 beforeEach() {
                     jsonDictionary = self.readJsonFileToDictionary(filename: "CloudVisions")
                 }
                 
                 it("returns json") {
-//                    if let value = Mapper<CloudVisions>().map(JSONObject: jsonDictionary!) {
-//                        expect(value).to(beAnInstanceOf(CloudVisions.self))
-//                    }
+                    if let value = Mapper<CloudVisions>().map(JSONObject: jsonDictionary!) {
+                        expect(value).to(beAKindOf(CloudVisions.self))
+                    }
                 }
             }
         }

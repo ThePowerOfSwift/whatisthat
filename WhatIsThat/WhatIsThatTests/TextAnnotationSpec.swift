@@ -17,7 +17,7 @@ class TextAnnotationSpec: QuickSpec {
     override func spec() {
         describe("TextAnnotation") {
             context("json mapping") {
-                var jsonDictionary: [String: AnyObject]? = nil
+                var jsonDictionary: [String: Any]? = nil
                 
                 beforeEach() {
                     jsonDictionary = self.readJsonFileToDictionary(filename: "TextAnnotation")
@@ -25,6 +25,7 @@ class TextAnnotationSpec: QuickSpec {
                 
                 it("returns json") {
                     if let value = Mapper<TextAnnotation>().map(JSONObject: jsonDictionary) {
+                        expect(value).to(beAKindOf(TextAnnotation.self))
                         expect(value.locale) == "en"
                         expect(value.note)   == "Google\n"
                     }

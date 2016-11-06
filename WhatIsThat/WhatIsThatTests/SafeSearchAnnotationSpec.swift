@@ -17,7 +17,7 @@ class SafeSearchAnnotationSpec: QuickSpec {
     override func spec() {
         describe("SafeSearchAnnotation") {
             context("json mapping") {
-                var jsonDictionary: [String: AnyObject]? = nil
+                var jsonDictionary: [String: Any]? = nil
                 
                 beforeEach() {
                     jsonDictionary = self.readJsonFileToDictionary(filename: "SafeSearchAnnotation")
@@ -25,6 +25,7 @@ class SafeSearchAnnotationSpec: QuickSpec {
                 
                 it("returns json") {
                     if let value = Mapper<SafeSearchAnnotation>().map(JSONObject: jsonDictionary) {
+                        expect(value).to(beAKindOf(SafeSearchAnnotation.self))
                         expect(value.adult)    == "UNLIKELY"
                         expect(value.medical)  == "VERY_UNLIKELY"
                         expect(value.spoof)    == "VERY_UNLIKELY"

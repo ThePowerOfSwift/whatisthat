@@ -17,7 +17,7 @@ class LandmarkAnnotationSpec: QuickSpec {
     override func spec() {
         describe("LandmarkAnnotation") {
             context("json mapping") {
-                var jsonDictionary: [String: AnyObject]? = nil
+                var jsonDictionary: [String: Any]? = nil
                 
                 beforeEach() {
                     jsonDictionary = self.readJsonFileToDictionary(filename: "LandmarkAnnotation")
@@ -25,6 +25,7 @@ class LandmarkAnnotationSpec: QuickSpec {
                 
                 it("returns json") {
                     if let value = Mapper<LandmarkAnnotation>().map(JSONObject: jsonDictionary) {
+                        expect(value).to(beAKindOf(LandmarkAnnotation.self))
                         expect(value.mid)           == "/m/021sdg"
                         expect(value.note)          == "graphics"
                         expect(String(value.score)) == "0.67143095"
