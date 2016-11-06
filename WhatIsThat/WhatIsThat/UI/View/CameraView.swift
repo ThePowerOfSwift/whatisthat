@@ -1,8 +1,8 @@
 //
-//  TopViewController.swift
+//  CameraView.swift
 //  WhatIsThat
 //
-//  Created by 渡邊浩二 on 2016/10/13.
+//  Created by 渡邊浩二 on 2016/10/30.
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
@@ -10,23 +10,36 @@ import UIKit
 import GLKit
 import AVFoundation
 
-class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate
-{
+class CameraView: UIView {
+    var delegate: UIViewController? = nil
     var videoDisplayView: GLKView!
     var videoDisplayViewRect: CGRect!
     var renderContext: CIContext!
     var cpsSession: AVCaptureSession!
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //画面の生成
-        self.initDisplay()
-        
-        // カメラの使用準備.
-        self.initCamera()
+    var isCaptured: Bool = false
+    var touchPos = CGPoint(x: 0, y: 0)
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        setUp()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        // カメラの停止とメモリ解放.
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUp()
+    }
+    
+    private func setUp() {
+        self.frame = CGRect(x: 0, y: 0, width: Const.Screen.Size.width, height: Const.Screen.Size.height)
+        initDisplay()
+        initCamera()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture(touch:)))
+        tap.numberOfTapsRequired = 1
+        self.addGestureRecognizer(tap)
+    }
+    
+    override func willRemoveSubview(_ subview: UIView) {
+        // カメラの停止とメモリ解放
         self.cpsSession.stopRunning()
         for output in self.cpsSession.outputs {
             self.cpsSession.removeOutput(output as! AVCaptureOutput)
@@ -38,21 +51,25 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         self.cpsSession = nil
     }
     
-    func initDisplay() {
-        videoDisplayView = GLKView(frame: view.bounds, context: EAGLContext(api: .openGLES2))
+    // 画面の生成
+    private func initDisplay() {
+        videoDisplayView = GLKView(frame: self.bounds, context: EAGLContext(api: .openGLES2))
         videoDisplayView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
-        videoDisplayView.frame = view.bounds
-        view.addSubview(videoDisplayView)
-        
-        displayCorporateLogo()
-        displayHelpButton()
+        videoDisplayView.frame = self.bounds
+        self.addSubview(videoDisplayView)
         
         renderContext = CIContext(eaglContext: videoDisplayView.context)
         videoDisplayView.bindDrawable()
         videoDisplayViewRect = CGRect(x: 0, y: 0, width: videoDisplayView.drawableWidth, height: videoDisplayView.drawableHeight)
+        
+        // ジェスチャーの生成
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture(touch:)))
+        tap.numberOfTapsRequired = 1
+        videoDisplayView.addGestureRecognizer(tap)
     }
     
-    func initCamera() {
+    // カメラの使用準備
+    private func initCamera() {
         // カメラからの入力を作成
         var device: AVCaptureDevice!
         
@@ -90,14 +107,26 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
                 self.cpsSession.addOutput(videoDataOutput)
             }
             //解像度の指定
-            self.cpsSession.sessionPreset = AVCaptureSessionPresetMedium
+            self.cpsSession.sessionPreset = AVCaptureSessionPresetHigh
             
             self.cpsSession.startRunning()
         } catch (let error) {
-            print(error)
+            debugPrint(error)
         }
     }
     
+    private func getDocumentsDirectory() -> URL? {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+    }
+    
+    func tapGesture(touch: UITapGestureRecognizer) {
+        touchPos = touch.location(in: self)
+        debugPrint("touchPoint = \(touchPos)")
+        isCaptured = true
+    }
+}
+
+extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         //SampleBufferから画像を取得
         let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
@@ -124,33 +153,33 @@ class TopViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         }
         renderContext.draw(outputImage, in: videoDisplayViewRect, from: drawFrame)
         videoDisplayView.display()
+        
+        // 結果画面
+        if isCaptured {
+            isCaptured = false
+            let vc = fromStoryboard(clazz: ResultViewController.self)
+            debugPrint("screenSize=\(Const.Screen.Size)")
+            debugPrint("drawFrame=\(drawFrame)")
+            vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            vc?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
+            guard let previewImage = UIImage.imageFromSampleBuffer(sampleBuffer: sampleBuffer)?.croppIngimage(toRect:drawFrame) else { return }
+            let rect = getRect(withImage: previewImage)
+            debugPrint("rect=\(rect)")
+            vc?.tappedImage = previewImage.croppIngimage(toRect: rect)
+            //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+            delegate?.present(vc!, animated: true, completion: nil)
+        }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    fileprivate func displayCorporateLogo() {
-        let label = UILabel(frame: CGRect(x: 20, y: Const.Screen.Size.height - 50, width: 100, height: 30))
-        label.text = "IT-ai"
-        label.textColor = Const.Color.CorporateLogo
-        view.addSubview(label)
-    }
-    
-    private func displayHelpButton() {
-        let button = UIButton()
-        button.frame = CGRect(x: Const.Screen.Size.width - 50, y: Const.Screen.Size.height - 50, width: 30, height: 30)
-        button.backgroundColor = Const.Color.HelpButtonBackground
-        button.addTarget(self, action: #selector(TopViewController.tappedHelpButton(sender:)), for: .touchUpInside)
-        view.addSubview(button)
-    }
-    
-    func tappedHelpButton(sender: UIButton) {
-        let view = fromStoryboard(clazz: ResultViewController.self)
-        view?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        view?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
-        self.present(view!, animated: true, completion: nil)
+    func getRect(withImage image: UIImage) -> CGRect {
+        let widthImage = UIImageView(image: image).frame.width
+        let widthHalf  = CGFloat(Const.Capture.Width / 2)
+        let heightHalf = CGFloat(Const.Capture.Height / 2)
+        let scale  = widthImage / Const.Screen.Size.width
+        let posX   = touchPos.x - widthHalf < 0 ? 0 : touchPos.x - widthHalf
+        let posY   = touchPos.y - heightHalf < 0 ? 0 : touchPos.y - heightHalf
+        let width  = touchPos.x + widthHalf - posX
+        let height = touchPos.y + heightHalf - posY
+        return CGRect(x:posY * scale, y: (CGFloat(Const.Screen.Size.width) - posX - CGFloat(Const.Capture.Width)) * scale, width: width * scale, height: height * scale)
     }
 }

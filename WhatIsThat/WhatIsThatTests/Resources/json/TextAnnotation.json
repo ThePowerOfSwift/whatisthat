@@ -1,0 +1,19 @@
+{
+    "locale": "en",
+    "description": "Google\n",
+    "boundingPoly": {
+        "vertices": [{
+                     "x": 61,
+                     "y": 26
+                     }, {
+                     "x": 598,
+                     "y": 26
+                     }, {
+                     "x": 598,
+                     "y": 227
+                     }, {
+                     "x": 61,
+                     "y": 227
+                     }]
+    }
+}

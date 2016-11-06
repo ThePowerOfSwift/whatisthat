@@ -2,5 +2,19 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
+post_install do |installer|
+	installer.pods_project.targets.each do |target|
+		target.build_configurations.each do |config|
+			config.build_settings['SWIFT_VERSION'] = "3.0"
+		end
+	end
+end
+
 target 'WhatIsThat' do
+#    pod "LTMorphingLabel", :git => "https://github.com/lexrus/LTMorphingLabel", :branch => "swift3"
+	pod "MMPopLabel"
+end
+
+target 'WhatIsThatTests' do
+#	pod 'Mockingjay', :git => "https://github.com/kylef/Mockingjay", :branch => "kylef/swift-3.0"
 end
