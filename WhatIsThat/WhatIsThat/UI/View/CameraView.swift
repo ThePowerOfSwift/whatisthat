@@ -111,7 +111,7 @@ class CameraView: UIView {
             
             self.cpsSession.startRunning()
         } catch (let error) {
-            print(error)
+            debugPrint(error)
         }
     }
     
@@ -121,7 +121,7 @@ class CameraView: UIView {
     
     func tapGesture(touch: UITapGestureRecognizer) {
         touchPos = touch.location(in: self)
-        print("touchPoint = \(touchPos)")
+        debugPrint("touchPoint = \(touchPos)")
         isCaptured = true
     }
 }
@@ -158,13 +158,13 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
         if isCaptured {
             isCaptured = false
             let vc = fromStoryboard(clazz: ResultViewController.self)
-            print("screenSize=\(Const.Screen.Size)")
-            print("drawFrame=\(drawFrame)")
+            debugPrint("screenSize=\(Const.Screen.Size)")
+            debugPrint("drawFrame=\(drawFrame)")
             vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             vc?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
             guard let previewImage = UIImage.imageFromSampleBuffer(sampleBuffer: sampleBuffer)?.croppIngimage(toRect:drawFrame) else { return }
             let rect = getRect(withImage: previewImage)
-            print("rect=\(rect)")
+            debugPrint("rect=\(rect)")
             vc?.tappedImage = previewImage.croppIngimage(toRect: rect)
             //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
             delegate?.present(vc!, animated: true, completion: nil)

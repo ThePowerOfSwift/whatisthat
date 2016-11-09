@@ -32,12 +32,12 @@ extension WebViewController: SFSafariViewControllerDelegate {
     }
     
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-        print("safariViewControllerDidFinish:")
+        debugPrint("safariViewControllerDidFinish:")
         dismiss(animated: false, completion: nil)
     }
     
     func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
         isShowed = true
-        print("safariViewController:didCompleteInitialLoad:")
+        debugPrint("safariViewController:didCompleteInitialLoad:")
     }
 }
