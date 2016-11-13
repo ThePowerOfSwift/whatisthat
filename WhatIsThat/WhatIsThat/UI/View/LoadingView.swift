@@ -16,7 +16,7 @@ class LoadingView: UIView {
     }
     
     func show() {
-        if let window :UIWindow = UIApplication.shared.keyWindow {
+        if let window: UIWindow = UIApplication.shared.keyWindow {
             window.addSubview(self)
         }
     }

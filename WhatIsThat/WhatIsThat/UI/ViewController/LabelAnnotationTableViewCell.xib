@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="7cf-qX-Ioo" customClass="LabelAnnotationTableViewCell" customModule="WhatIsThat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7cf-qX-Ioo" id="JaI-58-nqc">
+                <frame key="frameInset" width="375" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-Fv-liR">
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="OpD-Hb-b3h"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lh-nl-fUT">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="zpX-hE-y2W"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                        <state key="normal" title="Google"/>
+                        <connections>
+                            <action selector="tappedSearchKeywordButton:" destination="7cf-qX-Ioo" eventType="touchUpInside" id="WDZ-kb-agI"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pwe-T7-V5R">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="aPw-cD-HTf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                        <state key="normal" title="Image"/>
+                        <connections>
+                            <action selector="tappedSearchImageButton:" destination="7cf-qX-Ioo" eventType="touchUpInside" id="nK2-tR-M5Q"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyX-I0-UBU">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="38" id="8ec-Lf-Lcd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                        <state key="normal" title="Copy"/>
+                        <connections>
+                            <action selector="tappedCopyButton:" destination="7cf-qX-Ioo" eventType="touchUpInside" id="Kyn-t4-bgc"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="3Lh-nl-fUT" firstAttribute="leading" secondItem="hTN-Fv-liR" secondAttribute="trailing" id="3ib-J6-omm"/>
+                    <constraint firstAttribute="trailing" secondItem="dyX-I0-UBU" secondAttribute="trailing" id="4Rg-f5-pn7"/>
+                    <constraint firstAttribute="bottom" secondItem="3Lh-nl-fUT" secondAttribute="bottom" id="A1D-4a-OYd"/>
+                    <constraint firstAttribute="bottom" secondItem="dyX-I0-UBU" secondAttribute="bottom" id="Fdw-ys-Evn"/>
+                    <constraint firstItem="3Lh-nl-fUT" firstAttribute="top" secondItem="JaI-58-nqc" secondAttribute="top" id="III-n8-CMG"/>
+                    <constraint firstItem="dyX-I0-UBU" firstAttribute="top" secondItem="JaI-58-nqc" secondAttribute="top" id="PdR-qg-Lmq"/>
+                    <constraint firstItem="hTN-Fv-liR" firstAttribute="top" secondItem="JaI-58-nqc" secondAttribute="top" id="Uxc-r2-Eey"/>
+                    <constraint firstAttribute="bottom" secondItem="hTN-Fv-liR" secondAttribute="bottom" id="VhG-NG-Dwr"/>
+                    <constraint firstItem="hTN-Fv-liR" firstAttribute="leading" secondItem="JaI-58-nqc" secondAttribute="leading" constant="10" id="Zhr-f0-YyE"/>
+                    <constraint firstItem="Pwe-T7-V5R" firstAttribute="top" secondItem="JaI-58-nqc" secondAttribute="top" id="iEv-cB-PNc"/>
+                    <constraint firstItem="Pwe-T7-V5R" firstAttribute="leading" secondItem="3Lh-nl-fUT" secondAttribute="trailing" id="tI9-2j-eTu"/>
+                    <constraint firstItem="dyX-I0-UBU" firstAttribute="leading" secondItem="Pwe-T7-V5R" secondAttribute="trailing" id="uZi-9X-0pZ"/>
+                    <constraint firstAttribute="bottom" secondItem="Pwe-T7-V5R" secondAttribute="bottom" id="zCD-Ay-JEU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="noteLabel" destination="hTN-Fv-liR" id="erp-UE-BtW"/>
+            </connections>
+            <point key="canvasLocation" x="-121.5" y="-12"/>
+        </tableViewCell>
+    </objects>
+</document>

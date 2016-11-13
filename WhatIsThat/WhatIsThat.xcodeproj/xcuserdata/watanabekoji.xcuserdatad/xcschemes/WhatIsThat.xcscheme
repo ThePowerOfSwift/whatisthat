@@ -20,6 +20,20 @@
                ReferencedContainer = "container:WhatIsThat.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "01D6EC331DB33972000BDCDD"
+               BuildableName = "WhatIsThatUITests.xctest"
+               BlueprintName = "WhatIsThatUITests"
+               ReferencedContainer = "container:WhatIsThat.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -36,16 +50,6 @@
                BlueprintIdentifier = "01D6EC281DB33972000BDCDD"
                BuildableName = "WhatIsThatTests.xctest"
                BlueprintName = "WhatIsThatTests"
-               ReferencedContainer = "container:WhatIsThat.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "01D6EC331DB33972000BDCDD"
-               BuildableName = "WhatIsThatUITests.xctest"
-               BlueprintName = "WhatIsThatUITests"
                ReferencedContainer = "container:WhatIsThat.xcodeproj">
             </BuildableReference>
          </TestableReference>

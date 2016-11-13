@@ -10,46 +10,39 @@ import ObjectMapper
 import RealmSwift
 import UIKit
 
-class ResultViewController: UIViewController {
-    @IBOutlet weak var targetImageView:      UIImageView!
-    @IBOutlet weak var descriptionTableView: UITableView!
-    @IBOutlet weak var ocrTableView:         UITableView!
-    @IBOutlet weak var itemTableView:        UITableView!
-    @IBOutlet weak var faceTableView:        UITableView!
-    @IBOutlet weak var shopTableView:        UITableView!
-    
-    enum ListNameOfTableView: Int {
-        case DescriptionList
-        case OcrList
-        case ItamList
-        case FaceList
-        case ShopList
-    }
-    
-    let loadingView = fromXib(clazz: LoadingView.self)
+class ResultViewController: BaseTableViewController {
+    @IBOutlet weak var loadingVIew: UIView!
+
+    let headerView  = fromXib(clazz: SimpleImageView.self)
     var tappedImage: UIImage? = nil
-    var faceAnnotations      = List<FaceAnnotation>()
-    var landmarkAnnotations  = List<LandmarkAnnotation>()
-    var labelAnnotations     = List<LabelAnnotation>()
-    var logoAnnotations      = List<LogoAnnotation>()
-    var safeSearchAnnotation: SafeSearchAnnotation? = nil
-    var textAnnotations      = List<TextAnnotation>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        targetImageView.image = tappedImage
         
-        loadingView?.show()
+        guard let tappedImage = tappedImage else { return }
         
-        CloudVisionManager().getData(image: tappedImage!) { (response) in
-            self.loadingView?.hide()
+        // Loading
+        view.bringSubview(toFront: loadingVIew)
+        loadingVIew.isHidden = false
+        
+        // Header
+        if let headerView = headerView {
+            headerView.mainImage = tappedImage
+            headerView.delegate = self
+            view.addSubview(headerView)
+        }
+        
+        // API Request
+        CloudVisionManager().getData(image: tappedImage) { (response) in
             switch response {
             case .success:
                 debugPrint("API request is succeeded.")
-                self.loadData()
+                self.addDataSource()
+                self.tableView?.reloadData()
             case .failure(let error):
                 debugPrint(error)
             }
+            self.loadingVIew.isHidden = true
         }
     }
 
@@ -58,58 +51,48 @@ class ResultViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func loadData() {
-        guard let result = RealmManager.get(CloudVisions.self, key: 0)?.responses.first else { return }
-        debugPrint("[Local DB] result=\(result)")
-        if result.faceAnnotations.count > 0 {
-            faceAnnotations = result.faceAnnotations
-            faceTableView.reloadData()
-        }
-        if result.landmarkAnnotations.count > 0 {
-            landmarkAnnotations = result.landmarkAnnotations
-            descriptionTableView.reloadData()
-        }
-        if result.labelAnnotations.count > 0 {
-            labelAnnotations = result.labelAnnotations
-            descriptionTableView.reloadData()
-        }
-        if result.logoAnnotations.count > 0 {
-            logoAnnotations = result.logoAnnotations
-            descriptionTableView.reloadData()
-        }
-        if result.safeSearchAnnotation != nil {
-            safeSearchAnnotation = result.safeSearchAnnotation
-        }
-        if result.textAnnotations.count > 0 {
-            textAnnotations = result.textAnnotations
-            ocrTableView.reloadData()
-        }
-    }
+    private func addDataSource() {
+        // Label
+        let label = LabelAnnotationTableViewDataSource()
+        label.delegate = self
+        self.addDataSource(dataSource: label)
+        
+        // Text
+        let text = TextAnnotationTableViewDataSource()
+        text.delegate = self
+        self.addDataSource(dataSource: text)
+        
+        // Logo
+        let logo = LogoAnnotationTableViewDataSource()
+        logo.delegate = self
+        self.addDataSource(dataSource: logo)
+        
+        // Landmark
+        let landmark = LandmarkAnnotationTableViewDataSource()
+        landmark.delegate = self
+        self.addDataSource(dataSource: landmark)
+        
+        // Face
+        let face = FaceAnnotationTableViewDataSource()
+        face.delegate = self
+        self.addDataSource(dataSource: face)
 
-    @IBAction func tappedBackgroundView(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension ResultViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView.tag == ListNameOfTableView.DescriptionList.rawValue {
-            return labelAnnotations.count
-        }
-        return 0
+        // Safe Search
+        let safeSearch = SafeSearchAnnotationTableViewDataSource()
+        self.addDataSource(dataSource: safeSearch)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
-        if tableView.tag == ListNameOfTableView.DescriptionList.rawValue {
-            cell.textLabel?.text = labelAnnotations[indexPath.row].note
-        }
-        return cell
+    override func createTable() -> UITableView {
+        let headerHeight = headerView?.frame.size.height ?? 0
+        let tableView = UITableView(frame: CGRect(x: 0, y: headerHeight, width: Const.Screen.Size.width, height: Const.Screen.Size.height - headerHeight), style: .plain)
+        tableView.backgroundColor = UIColor.clear
+        return tableView
     }
 }
 
-extension ResultViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 0.0
+extension ResultViewController: SimpleImageViewDelegate {
+    func tappedCancelButton() {
+        dismiss(animated: false, completion: nil)
     }
 }
+
