@@ -7,11 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelAnnotationTableViewCell" id="7cf-qX-Ioo" customClass="LabelAnnotationTableViewCell" customModule="WhatIsThat" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="7cf-qX-Ioo" customClass="LabelAnnotationTableViewCell" customModule="WhatIsThat" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7cf-qX-Ioo" id="JaI-58-nqc">
-                <frame key="frameInset" width="375" height="43"/>
+                <frame key="frameInset" width="375" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-Fv-liR">
@@ -27,7 +27,7 @@
                             <constraint firstAttribute="width" constant="45" id="zpX-hE-y2W"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                        <state key="normal" title="Search"/>
+                        <state key="normal" title="Google"/>
                         <connections>
                             <action selector="tappedSearchKeywordButton:" destination="7cf-qX-Ioo" eventType="touchUpInside" id="WDZ-kb-agI"/>
                         </connections>
@@ -53,7 +53,7 @@
                         </connections>
                     </button>
                 </subviews>
-                <color key="backgroundColor" red="1" green="0.97094896180000001" blue="0.71961956800000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="3Lh-nl-fUT" firstAttribute="leading" secondItem="hTN-Fv-liR" secondAttribute="trailing" id="3ib-J6-omm"/>
                     <constraint firstAttribute="trailing" secondItem="dyX-I0-UBU" secondAttribute="trailing" id="4Rg-f5-pn7"/>

@@ -173,13 +173,13 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func getRect(withImage image: UIImage) -> CGRect {
         let widthImage = UIImageView(image: image).frame.width
-        let widthHalf  = CGFloat(Const.Capture.Width / 2)
         let heightHalf = CGFloat(Const.Capture.Height / 2)
+        let widthHalf  = CGFloat(Const.Capture.Width / 2)
         let scale  = widthImage / Const.Screen.Size.width
-        let posX   = touchPos.x - widthHalf < 0 ? 0 : touchPos.x - widthHalf
-        let posY   = touchPos.y - heightHalf < 0 ? 0 : touchPos.y - heightHalf
-        let width  = touchPos.x + widthHalf - posX
-        let height = touchPos.y + heightHalf - posY
-        return CGRect(x:posY * scale, y: (CGFloat(Const.Screen.Size.width) - posX - CGFloat(Const.Capture.Width)) * scale, width: width * scale, height: height * scale)
+        let posX   = touchPos.x - heightHalf < 0 ? 0 : touchPos.x - heightHalf
+        let posY   = touchPos.y - widthHalf < 0 ? 0 : touchPos.y - widthHalf
+        let width  = touchPos.x + heightHalf - posX
+        let height = touchPos.y + widthHalf - posY
+        return CGRect(x:posY * scale, y: (CGFloat(Const.Screen.Size.width) - posX - CGFloat(Const.Capture.Height)) * scale, width: width * scale, height: height * scale)
     }
 }

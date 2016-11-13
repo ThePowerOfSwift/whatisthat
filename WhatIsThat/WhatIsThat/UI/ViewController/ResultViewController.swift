@@ -11,8 +11,9 @@ import RealmSwift
 import UIKit
 
 class ResultViewController: BaseTableViewController {
-    let headerView  = fromXib(clazz: SimpleImageView.self)
     @IBOutlet weak var loadingVIew: UIView!
+
+    let headerView  = fromXib(clazz: SimpleImageView.self)
     var tappedImage: UIImage? = nil
     
     override func viewDidLoad() {
@@ -55,6 +56,30 @@ class ResultViewController: BaseTableViewController {
         let label = LabelAnnotationTableViewDataSource()
         label.delegate = self
         self.addDataSource(dataSource: label)
+        
+        // Text
+        let text = TextAnnotationTableViewDataSource()
+        text.delegate = self
+        self.addDataSource(dataSource: text)
+        
+        // Logo
+        let logo = LogoAnnotationTableViewDataSource()
+        logo.delegate = self
+        self.addDataSource(dataSource: logo)
+        
+        // Landmark
+        let landmark = LandmarkAnnotationTableViewDataSource()
+        landmark.delegate = self
+        self.addDataSource(dataSource: landmark)
+        
+        // Face
+        let face = FaceAnnotationTableViewDataSource()
+        face.delegate = self
+        self.addDataSource(dataSource: face)
+
+        // Safe Search
+        let safeSearch = SafeSearchAnnotationTableViewDataSource()
+        self.addDataSource(dataSource: safeSearch)
     }
     
     override func createTable() -> UITableView {

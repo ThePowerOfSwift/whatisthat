@@ -48,7 +48,7 @@ class CloudVisionManager: NSObject {
                     ],
                     [
                         "type": "LABEL_DETECTION",
-                        "maxResults": 5
+                        "maxResults": 10
                     ],
                     [
                         "type": "LANDMARK_DETECTION",

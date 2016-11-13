@@ -27,6 +27,7 @@ class BaseTableViewController: UIViewController, BaseTableViewControllerProtocol
             view.addSubview(tableView)
             tableView.dataSource = self
             tableView.delegate   = self
+            tableView.rowHeight  = UITableViewAutomaticDimension
             tableView.tableFooterView = UIView()
         }
     }
@@ -70,5 +71,9 @@ class BaseTableViewController: UIViewController, BaseTableViewControllerProtocol
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return datasouces[section].tableView?(tableView, viewForHeaderInSection: section)
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }

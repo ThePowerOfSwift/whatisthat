@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="cI2-sg-AvN" userLabel="Lankmark Annotation Table View Cell" customClass="LandmarkAnnotationTableViewCell" customModule="WhatIsThat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cI2-sg-AvN" id="h5L-rP-ISD">
+                <frame key="frameInset" width="375" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aV-XU-g67">
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="4xX-tH-yIF"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CxT-D3-NTa">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="5w0-4u-bAQ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                        <state key="normal" title="Google"/>
+                        <connections>
+                            <action selector="tappedSearchKeywordButton:" destination="cI2-sg-AvN" eventType="touchUpInside" id="2vc-H7-Zjf"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Da1-aV-PLT">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="UzF-YY-icS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                        <state key="normal" title="Image"/>
+                        <connections>
+                            <action selector="tappedSearchImageButton:" destination="cI2-sg-AvN" eventType="touchUpInside" id="wEs-iC-653"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Uu-D2-UIV">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="38" id="ZQj-uU-5VO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                        <state key="normal" title="Copy"/>
+                        <connections>
+                            <action selector="tappedCopyButton:" destination="cI2-sg-AvN" eventType="touchUpInside" id="WQp-xB-QXR"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="7aV-XU-g67" firstAttribute="top" secondItem="h5L-rP-ISD" secondAttribute="top" id="2Ml-3f-tUf"/>
+                    <constraint firstAttribute="bottom" secondItem="Da1-aV-PLT" secondAttribute="bottom" id="2YB-Lz-cmd"/>
+                    <constraint firstAttribute="bottom" secondItem="7aV-XU-g67" secondAttribute="bottom" id="HuY-RH-gpQ"/>
+                    <constraint firstItem="Da1-aV-PLT" firstAttribute="leading" secondItem="CxT-D3-NTa" secondAttribute="trailing" id="JFE-qu-ukq"/>
+                    <constraint firstAttribute="bottom" secondItem="CxT-D3-NTa" secondAttribute="bottom" id="LLg-Y9-lsU"/>
+                    <constraint firstItem="7aV-XU-g67" firstAttribute="leading" secondItem="h5L-rP-ISD" secondAttribute="leading" constant="10" id="VRE-I3-EBt"/>
+                    <constraint firstItem="Da1-aV-PLT" firstAttribute="top" secondItem="h5L-rP-ISD" secondAttribute="top" id="gIK-Lg-LdZ"/>
+                    <constraint firstAttribute="trailing" secondItem="0Uu-D2-UIV" secondAttribute="trailing" id="hAl-5q-12J"/>
+                    <constraint firstItem="CxT-D3-NTa" firstAttribute="top" secondItem="h5L-rP-ISD" secondAttribute="top" id="lR3-J3-KSU"/>
+                    <constraint firstItem="0Uu-D2-UIV" firstAttribute="leading" secondItem="Da1-aV-PLT" secondAttribute="trailing" id="mdR-Zk-uZv"/>
+                    <constraint firstAttribute="bottom" secondItem="0Uu-D2-UIV" secondAttribute="bottom" id="nd9-TN-9xa"/>
+                    <constraint firstItem="0Uu-D2-UIV" firstAttribute="top" secondItem="h5L-rP-ISD" secondAttribute="top" id="u4V-qh-2d5"/>
+                    <constraint firstItem="CxT-D3-NTa" firstAttribute="leading" secondItem="7aV-XU-g67" secondAttribute="trailing" id="wom-QX-rUJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="nameLabel" destination="7aV-XU-g67" id="5n1-qO-AYE"/>
+            </connections>
+            <point key="canvasLocation" x="-121.5" y="-12"/>
+        </tableViewCell>
+    </objects>
+</document>

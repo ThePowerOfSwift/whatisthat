@@ -1,21 +1,21 @@
 //
-//  ResultTableViewCell.swift
+//  LogoAnnotationTableViewCell.swift
 //  WhatIsThat
 //
-//  Created by 渡邊浩二 on 2016/11/06.
+//  Created by 渡邊浩二 on 2016/11/13.
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
 import UIKit
 
-protocol LabelAnnotationTableViewCellDelegate {
+protocol LogoAnnotationTableViewCellDelegate {
     func gotoSearchPage(keyword: String, isImageSearch: Bool)
 }
 
-class LabelAnnotationTableViewCell: UITableViewCell {
+class LogoAnnotationTableViewCell: UITableViewCell {
     @IBOutlet weak var noteLabel: UILabel!
-
-    var delegate: LabelAnnotationTableViewCellDelegate?
+    
+    var delegate: LogoAnnotationTableViewCellDelegate?
     var note = "" {
         didSet {
             setContent()

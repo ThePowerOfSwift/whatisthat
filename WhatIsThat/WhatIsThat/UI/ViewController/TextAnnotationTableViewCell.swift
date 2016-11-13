@@ -1,26 +1,24 @@
 //
-//  ResultTableViewCell.swift
+//  TextAnnotationTableViewCell.swift
 //  WhatIsThat
 //
-//  Created by 渡邊浩二 on 2016/11/06.
+//  Created by 渡邊浩二 on 2016/11/13.
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
 import UIKit
 
-protocol LabelAnnotationTableViewCellDelegate {
+protocol TextAnnotationTableViewCellDelegate {
     func gotoSearchPage(keyword: String, isImageSearch: Bool)
 }
 
-class LabelAnnotationTableViewCell: UITableViewCell {
+class TextAnnotationTableViewCell: UITableViewCell {
+    @IBOutlet weak var localeLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
-
-    var delegate: LabelAnnotationTableViewCellDelegate?
-    var note = "" {
-        didSet {
-            setContent()
-        }
-    }
+    
+    var delegate: TextAnnotationTableViewCellDelegate?
+    var note   = ""
+    var locale = ""
     
     func setContent() {
         noteLabel.text = note

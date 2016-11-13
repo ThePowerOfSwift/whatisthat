@@ -1,16 +1,16 @@
 //
-//  ResultDataSource.swift
+//  LogoAnnotationTableViewDataSource.swift
 //  WhatIsThat
 //
-//  Created by 渡邊浩二 on 2016/11/07.
+//  Created by 渡邊浩二 on 2016/11/13.
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
 import UIKit
 
-class LabelAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
-    internal var viewClasses: [UITableViewCell.Type]? = [LabelAnnotationTableViewCell.self]
-    let results = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.labelAnnotations
+class LogoAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
+    internal var viewClasses: [UITableViewCell.Type]? = [LogoAnnotationTableViewCell.self]
+    let results = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.logoAnnotations
     var delegate: UIViewController?
     
     @available(iOS 2.0, *)
@@ -19,7 +19,7 @@ class LabelAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueCell(className: LabelAnnotationTableViewCell.self, indexPath: indexPath)
+        let cell = tableView.dequeueCell(className: LogoAnnotationTableViewCell.self, indexPath: indexPath)
         if let note = results?[indexPath.row].note {
             cell.note = note
         }
@@ -33,13 +33,13 @@ class LabelAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = fromXib(clazz: SimpleTitleView.self)
-        headerView?.titleLabel.text = "画像から推測するキーワード"
-        headerView?.backgroundView.backgroundColor = UIColor.yellow
+        headerView?.titleLabel.text = "ブランドロゴ"
+        headerView?.backgroundView.backgroundColor = UIColor.green
         return headerView
     }
 }
 
-extension LabelAnnotationTableViewDataSource: LabelAnnotationTableViewCellDelegate {
+extension LogoAnnotationTableViewDataSource: LogoAnnotationTableViewCellDelegate {
     func gotoSearchPage(keyword: String, isImageSearch: Bool) {
         guard let vc = fromStoryboard(clazz: WebViewController.self) else { return }
         vc.requestUrl = "https://google.co.jp/search?hl=ja&q=" + keyword + (isImageSearch ? "&tbm=isch" : "")
