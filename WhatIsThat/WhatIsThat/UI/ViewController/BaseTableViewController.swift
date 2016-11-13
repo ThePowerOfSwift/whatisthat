@@ -49,8 +49,7 @@ class BaseTableViewController: UIViewController, BaseTableViewControllerProtocol
         return tableView
     }
     
-    // MARK: UITableViewDataSource
-    
+    // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return datasouces.count
     }
@@ -63,8 +62,7 @@ class BaseTableViewController: UIViewController, BaseTableViewControllerProtocol
         return datasouces[indexPath.section].tableView(tableView, cellForRowAt: indexPath)
     }
     
-    // MARK: UITableViewDelegate
-    
+    // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return datasouces[section].tableView?(tableView, heightForHeaderInSection: 0) ?? 0
     }

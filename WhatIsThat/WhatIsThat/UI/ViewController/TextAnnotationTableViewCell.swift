@@ -22,6 +22,7 @@ class TextAnnotationTableViewCell: UITableViewCell {
     
     func setContent() {
         noteLabel.text = note
+        localeLabel.text = locale == "" ? "??" : locale
     }
     
     @IBAction func tappedSearchKeywordButton(_ sender: UIButton) {
