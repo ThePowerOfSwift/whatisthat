@@ -11,12 +11,17 @@ import UIKit
 import ObjectMapper
 import Realm
 
+protocol TopViewControllerDelegate {
+    func gotoResultPage(captureImage: UIImage)
+}
+
 class TopViewController: UIViewController {
     @IBOutlet weak var corporateLogoView: UIView!
     @IBOutlet weak var transitionButton: UIButton!
     
     var cameraView = fromXib(clazz: CameraView.self)
     let transition = BubbleTransition()
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +35,9 @@ class TopViewController: UIViewController {
             view.addSubview(cameraView)
             view.sendSubview(toBack: cameraView)
         }
+        
+        // Photo Library
+        imagePicker.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,8 +54,15 @@ class TopViewController: UIViewController {
     @IBAction func tappedSnapShotButton(_ sender: UIButton) {
         cameraView?.isRequestCapture = true
     }
+    
+    @IBAction func tappedPhotoLibraryButton(_ sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
 }
 
+// MARK: - UIViewControllerTransitioningDelegate
 extension TopViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
@@ -61,5 +76,31 @@ extension TopViewController: UIViewControllerTransitioningDelegate {
         transition.startingPoint = transitionButton.center
         transition.bubbleColor = transitionButton.backgroundColor!
         return transition
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+// MARK: - UINavigationControllerDelegate
+extension TopViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        dismiss(animated: true, completion: nil)
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            gotoResultPage(captureImage: pickedImage)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - TopViewControllerDelegate
+extension TopViewController: TopViewControllerDelegate {
+    func gotoResultPage(captureImage: UIImage) {
+        let vc = fromStoryboard(clazz: ResultViewController.self)
+        vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        vc?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
+        vc?.tappedImage = captureImage
+        present(vc!, animated: true, completion: nil)
     }
 }

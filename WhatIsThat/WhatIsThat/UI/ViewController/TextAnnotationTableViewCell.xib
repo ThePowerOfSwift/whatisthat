@@ -11,12 +11,12 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dXF-W8-etF" id="Zpk-aP-ira">
-                <frame key="frameInset" width="375" height="43.5"/>
+                <frame key="frameInset" width="375" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgc-tN-AJt">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgc-tN-AJt">
                         <constraints>
-                            <constraint firstAttribute="width" constant="42" id="LV4-wU-HVT"/>
+                            <constraint firstAttribute="width" constant="32" id="LV4-wU-HVT"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -74,7 +74,7 @@
                     <constraint firstAttribute="bottom" secondItem="Hgc-tN-AJt" secondAttribute="bottom" id="a1L-Pg-s3y"/>
                     <constraint firstAttribute="bottom" secondItem="BgL-Kh-ALa" secondAttribute="bottom" id="bmd-eZ-gi4"/>
                     <constraint firstItem="BgL-Kh-ALa" firstAttribute="leading" secondItem="tI6-c2-bpE" secondAttribute="trailing" id="e4N-II-kAS"/>
-                    <constraint firstItem="Hgc-tN-AJt" firstAttribute="leading" secondItem="Zpk-aP-ira" secondAttribute="leading" id="hXl-TZ-Kbv"/>
+                    <constraint firstItem="Hgc-tN-AJt" firstAttribute="leading" secondItem="Zpk-aP-ira" secondAttribute="leading" constant="10" id="hXl-TZ-Kbv"/>
                     <constraint firstAttribute="bottom" secondItem="KrN-iT-OtA" secondAttribute="bottom" id="krr-UZ-nh4"/>
                     <constraint firstItem="KrN-iT-OtA" firstAttribute="top" secondItem="Zpk-aP-ira" secondAttribute="top" id="l1w-An-zcx"/>
                     <constraint firstItem="BgL-Kh-ALa" firstAttribute="top" secondItem="Zpk-aP-ira" secondAttribute="top" id="ugc-9B-x8t"/>

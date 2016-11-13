@@ -11,7 +11,7 @@ import GLKit
 import AVFoundation
 
 class CameraView: UIView {
-    var delegate: UIViewController? = nil
+    var delegate: TopViewControllerDelegate?
     var videoDisplayView: GLKView!
     var videoDisplayViewRect: CGRect!
     var renderContext: CIContext!
@@ -31,25 +31,25 @@ class CameraView: UIView {
     }
     
     private func setUp() {
-        self.frame = CGRect(x: 0, y: 0, width: Const.Screen.Size.width, height: Const.Screen.Size.height)
+        frame = CGRect(x: 0, y: 0, width: Const.Screen.Size.width, height: Const.Screen.Size.height)
         initDisplay()
         initCamera()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture(touch:)))
         tap.numberOfTapsRequired = 1
-        self.addGestureRecognizer(tap)
+        addGestureRecognizer(tap)
     }
     
     override func willRemoveSubview(_ subview: UIView) {
         // カメラの停止とメモリ解放
-        self.cpsSession.stopRunning()
-        for output in self.cpsSession.outputs {
-            self.cpsSession.removeOutput(output as! AVCaptureOutput)
+        cpsSession.stopRunning()
+        for output in cpsSession.outputs {
+            cpsSession.removeOutput(output as! AVCaptureOutput)
         }
         
-        for input in self.cpsSession.inputs {
-            self.cpsSession.removeInput(input as! AVCaptureInput)
+        for input in cpsSession.inputs {
+            cpsSession.removeInput(input as! AVCaptureInput)
         }
-        self.cpsSession = nil
+        cpsSession = nil
     }
     
     // 画面の生成
@@ -100,17 +100,16 @@ class CameraView: UIView {
             self.cpsSession = AVCaptureSession()
             
             // Input
-            if (self.cpsSession.canAddInput(deviceInput)) {
-                self.cpsSession.addInput(deviceInput as AVCaptureDeviceInput)
+            if (cpsSession.canAddInput(deviceInput)) {
+                cpsSession.addInput(deviceInput as AVCaptureDeviceInput)
             }
             // Output
-            if (self.cpsSession.canAddOutput(videoDataOutput)) {
-                self.cpsSession.addOutput(videoDataOutput)
+            if (cpsSession.canAddOutput(videoDataOutput)) {
+                cpsSession.addOutput(videoDataOutput)
             }
             //解像度の指定
-            self.cpsSession.sessionPreset = AVCaptureSessionPresetHigh
-            
-            self.cpsSession.startRunning()
+            cpsSession.sessionPreset = AVCaptureSessionPresetHigh
+            cpsSession.startRunning()
         } catch (let error) {
             debugPrint(error)
         }
@@ -159,21 +158,17 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
         // 結果画面
         if isRequestCapture {
             isRequestCapture = false
-            let vc = fromStoryboard(clazz: ResultViewController.self)
             debugPrint("screenSize=\(Const.Screen.Size)")
             debugPrint("drawFrame=\(drawFrame)")
-            vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            vc?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
             guard let previewImage = UIImage.imageFromSampleBuffer(sampleBuffer: sampleBuffer)?.croppingImage(toRect:drawFrame) else { return }
-            if isScreenTapped {
-                let rect = getRect(withImage: previewImage)
-                debugPrint("rect=\(rect)")
-                vc?.tappedImage = previewImage.croppingImage(toRect: rect)
+            
+            if isScreenTapped,
+                let previewImage = previewImage.croppingImage(toRect: getRect(withImage: previewImage)) {
+                delegate?.gotoResultPage(captureImage: previewImage)
                 isScreenTapped = false
             } else {
-                vc?.tappedImage = previewImage
+                delegate?.gotoResultPage(captureImage: previewImage)
             }
-            delegate?.present(vc!, animated: true, completion: nil)
         }
     }
     
