@@ -10,15 +10,13 @@ import UIKit
 import SafariServices
 
 class WebViewController: UIViewController {
-    var isShowed: Bool = false
     var requestUrl: String? = nil
     
     override func viewDidAppear(_ animated: Bool) {
-        guard let requestUrl = self.requestUrl, isShowed == false else {
-            return
-        }
+        guard let requestUrl = self.requestUrl else { return }
+        guard let url = URL(string: requestUrl) else { return }
         
-        let vc = SFSafariViewController(url: URL(string: requestUrl)!)
+        let vc = SFSafariViewController(url: url)
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         vc.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
         vc.delegate = self
@@ -37,7 +35,6 @@ extension WebViewController: SFSafariViewControllerDelegate {
     }
     
     func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
-        isShowed = true
         debugPrint("safariViewController:didCompleteInitialLoad:")
     }
 }

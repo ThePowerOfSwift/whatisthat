@@ -23,6 +23,12 @@ class BaseTableViewController: UIViewController, BaseTableViewControllerProtocol
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView = createTable()
+        if let tableView = tableView {
+            view.addSubview(tableView)
+            tableView.dataSource = self
+            tableView.delegate   = self
+            tableView.tableFooterView = UIView()
+        }
     }
     
     internal func addDataSource(dataSource: BaseTableViewDataSource) {
@@ -38,11 +44,11 @@ class BaseTableViewController: UIViewController, BaseTableViewControllerProtocol
     
     func createTable() -> UITableView {
         let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: Const.Screen.Size.width, height: Const.Screen.Size.height), style: .plain)
-        view.addSubview(tableView)
-        tableView.dataSource = self
-        tableView.delegate   = self
+        tableView.backgroundColor = UIColor.clear
         return tableView
     }
+    
+    // MARK: UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return datasouces.count
@@ -54,5 +60,15 @@ class BaseTableViewController: UIViewController, BaseTableViewControllerProtocol
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return datasouces[indexPath.section].tableView(tableView, cellForRowAt: indexPath)
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return datasouces[section].tableView?(tableView, heightForHeaderInSection: 0) ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return datasouces[section].tableView?(tableView, viewForHeaderInSection: section)
     }
 }

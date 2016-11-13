@@ -8,27 +8,38 @@
 
 import UIKit
 
-class ResultTableViewDataSource: NSObject, BaseTableViewDataSource {
-    internal var viewClasses: [UITableViewCell.Type]? = [ResultTableViewCell.self]
-    let results = RealmManager.getAll(CloudVision.self)
+class LabelAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
+    internal var viewClasses: [UITableViewCell.Type]? = [LabelAnnotationTableViewCell.self]
+    let results = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.labelAnnotations
     var delegate: UIViewController?
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results?.first?.labelAnnotations.count ?? 0
+        return results?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueCell(className: ResultTableViewCell.self, indexPath: indexPath)
-        if let note = results?.first?.labelAnnotations[indexPath.row].note {
+        let cell = tableView.dequeueCell(className: LabelAnnotationTableViewCell.self, indexPath: indexPath)
+        if let note = results?[indexPath.row].note {
             cell.note = note
         }
         cell.delegate = self
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(30)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = fromXib(clazz: SimpleTitleView.self)
+        headerView?.titleLabel.text = "LABEL"
+        headerView?.backgroundView.backgroundColor = UIColor.yellow
+        return headerView
+    }
 }
 
-extension ResultTableViewDataSource: ResultTableViewCellDelegate {
+extension LabelAnnotationTableViewDataSource: LabelAnnotationTableViewCellDelegate {
     func gotoSearchPage(keyword: String, isImageSearch: Bool) {
         guard let vc = fromStoryboard(clazz: WebViewController.self) else { return }
         vc.requestUrl = "https://google.co.jp/search?hl=ja&q=" + keyword + (isImageSearch ? "&tbm=isch" : "")

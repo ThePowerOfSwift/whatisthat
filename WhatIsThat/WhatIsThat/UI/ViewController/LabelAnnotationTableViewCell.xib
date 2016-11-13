@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultTableViewCell" id="7cf-qX-Ioo" customClass="ResultTableViewCell" customModule="WhatIsThat" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelAnnotationTableViewCell" id="7cf-qX-Ioo" customClass="LabelAnnotationTableViewCell" customModule="WhatIsThat" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7cf-qX-Ioo" id="JaI-58-nqc">
@@ -63,11 +63,8 @@
                     <constraint firstItem="dyX-I0-UBU" firstAttribute="top" secondItem="JaI-58-nqc" secondAttribute="top" id="PdR-qg-Lmq"/>
                     <constraint firstItem="hTN-Fv-liR" firstAttribute="top" secondItem="JaI-58-nqc" secondAttribute="top" id="Uxc-r2-Eey"/>
                     <constraint firstAttribute="bottom" secondItem="hTN-Fv-liR" secondAttribute="bottom" id="VhG-NG-Dwr"/>
-                    <constraint firstItem="hTN-Fv-liR" firstAttribute="leading" secondItem="JaI-58-nqc" secondAttribute="leading" id="Zhr-f0-YyE"/>
+                    <constraint firstItem="hTN-Fv-liR" firstAttribute="leading" secondItem="JaI-58-nqc" secondAttribute="leading" constant="10" id="Zhr-f0-YyE"/>
                     <constraint firstItem="Pwe-T7-V5R" firstAttribute="top" secondItem="JaI-58-nqc" secondAttribute="top" id="iEv-cB-PNc"/>
-                    <constraint firstItem="hTN-Fv-liR" firstAttribute="top" secondItem="JaI-58-nqc" secondAttribute="top" id="j0P-AQ-Hm9"/>
-                    <constraint firstItem="hTN-Fv-liR" firstAttribute="leading" secondItem="JaI-58-nqc" secondAttribute="leading" id="j3K-dP-pwL"/>
-                    <constraint firstItem="3Lh-nl-fUT" firstAttribute="leading" secondItem="hTN-Fv-liR" secondAttribute="trailing" id="lga-PT-yuh"/>
                     <constraint firstItem="Pwe-T7-V5R" firstAttribute="leading" secondItem="3Lh-nl-fUT" secondAttribute="trailing" id="tI9-2j-eTu"/>
                     <constraint firstItem="dyX-I0-UBU" firstAttribute="leading" secondItem="Pwe-T7-V5R" secondAttribute="trailing" id="uZi-9X-0pZ"/>
                     <constraint firstAttribute="bottom" secondItem="Pwe-T7-V5R" secondAttribute="bottom" id="zCD-Ay-JEU"/>

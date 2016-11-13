@@ -8,19 +8,19 @@
 
 import UIKit
 
-protocol ResultTableViewCellDelegate {
+protocol LabelAnnotationTableViewCellDelegate {
     func gotoSearchPage(keyword: String, isImageSearch: Bool)
 }
 
-class ResultTableViewCell: UITableViewCell {
-    var delegate: ResultTableViewCellDelegate?
+class LabelAnnotationTableViewCell: UITableViewCell {
+    @IBOutlet weak var noteLabel: UILabel!
+
+    var delegate: LabelAnnotationTableViewCellDelegate?
     var note: String = "" {
         didSet {
             setContent()
         }
     }
-    
-    @IBOutlet weak var noteLabel: UILabel!
     
     func setContent() {
         noteLabel.text = note
