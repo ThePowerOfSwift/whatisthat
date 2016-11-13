@@ -12,9 +12,10 @@ import ObjectMapper
 import Realm
 
 class TopViewController: UIViewController {
-    @IBOutlet weak var transitionButton: UIButton!
     @IBOutlet weak var corporateLogoView: UIView!
+    @IBOutlet weak var transitionButton: UIButton!
     
+    var cameraView = fromXib(clazz: CameraView.self)
     let transition = BubbleTransition()
     
     override func viewDidLoad() {
@@ -24,7 +25,7 @@ class TopViewController: UIViewController {
         corporateLogoView.layer.shadowColor = UIColor.white.cgColor
         
         // カメラビュー
-        if let cameraView = fromXib(clazz: CameraView.self) {
+        if let cameraView = cameraView {
             cameraView.delegate = self
             view.addSubview(cameraView)
             view.sendSubview(toBack: cameraView)
@@ -40,6 +41,10 @@ class TopViewController: UIViewController {
         let controller = segue.destination
         controller.transitioningDelegate = self
         controller.modalPresentationStyle = .custom
+    }
+    
+    @IBAction func tappedSnapShotButton(_ sender: UIButton) {
+        cameraView?.isRequestCapture = true
     }
 }
 

@@ -25,7 +25,7 @@ extension UIImage {
         return UIImage(cgImage: imageRef, scale: 1.0, orientation: UIImageOrientation.right)
     }
     
-    func croppIngimage(toRect rect: CGRect) -> UIImage? {
+    func croppingImage(toRect rect: CGRect) -> UIImage? {
         guard let imageRef = self.cgImage else { return nil }
         guard let croppedImageRef = imageRef.cropping(to: rect) else { return nil }
         return UIImage(cgImage:croppedImageRef, scale: 1.0, orientation: UIImageOrientation.right)

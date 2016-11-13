@@ -93,7 +93,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="tappedSnapShotButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YZ0-Fe-Vnw"/>
+                                    <action selector="tappedSnapShotButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7pM-9C-cHg"/>
                                 </connections>
                             </button>
                         </subviews>
