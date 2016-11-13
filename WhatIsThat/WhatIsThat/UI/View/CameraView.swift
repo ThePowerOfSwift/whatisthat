@@ -16,7 +16,8 @@ class CameraView: UIView {
     var videoDisplayViewRect: CGRect!
     var renderContext: CIContext!
     var cpsSession: AVCaptureSession!
-    var isCaptured: Bool = false
+    var isRequestCapture: Bool = false
+    var isScreenTapped: Bool = false
     var touchPos = CGPoint(x: 0, y: 0)
 
     required init(coder aDecoder: NSCoder) {
@@ -122,7 +123,8 @@ class CameraView: UIView {
     func tapGesture(touch: UITapGestureRecognizer) {
         touchPos = touch.location(in: self)
         debugPrint("touchPoint = \(touchPos)")
-        isCaptured = true
+        isScreenTapped   = true
+        isRequestCapture = true
     }
 }
 
@@ -155,18 +157,22 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
         videoDisplayView.display()
         
         // 結果画面
-        if isCaptured {
-            isCaptured = false
+        if isRequestCapture {
+            isRequestCapture = false
             let vc = fromStoryboard(clazz: ResultViewController.self)
             debugPrint("screenSize=\(Const.Screen.Size)")
             debugPrint("drawFrame=\(drawFrame)")
             vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             vc?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
-            guard let previewImage = UIImage.imageFromSampleBuffer(sampleBuffer: sampleBuffer)?.croppIngimage(toRect:drawFrame) else { return }
-            let rect = getRect(withImage: previewImage)
-            debugPrint("rect=\(rect)")
-            vc?.tappedImage = previewImage.croppIngimage(toRect: rect)
-            //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+            guard let previewImage = UIImage.imageFromSampleBuffer(sampleBuffer: sampleBuffer)?.croppingImage(toRect:drawFrame) else { return }
+            if isScreenTapped {
+                let rect = getRect(withImage: previewImage)
+                debugPrint("rect=\(rect)")
+                vc?.tappedImage = previewImage.croppingImage(toRect: rect)
+                isScreenTapped = false
+            } else {
+                vc?.tappedImage = previewImage
+            }
             delegate?.present(vc!, animated: true, completion: nil)
         }
     }

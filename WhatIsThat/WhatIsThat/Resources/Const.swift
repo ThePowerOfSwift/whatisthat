@@ -18,8 +18,8 @@ struct Const {
         static let Size = UIScreen.main.bounds.size
     }
     struct Capture {
-        static let Width:  Int = 320
-        static let Height: Int = 140
+        static let Width:  Int = 100
+        static let Height: Int = 100
     }
     struct API {
         struct CloudVision {
