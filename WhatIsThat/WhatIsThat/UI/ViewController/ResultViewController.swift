@@ -19,12 +19,6 @@ class ResultViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let tappedImage = tappedImage else { return }
-        
-        // Loading
-        view.bringSubview(toFront: loadingVIew)
-        loadingVIew.isHidden = false
-        
         // Header
         if let headerView = headerView {
             headerView.mainImage = tappedImage
@@ -32,18 +26,11 @@ class ResultViewController: BaseTableViewController {
             view.addSubview(headerView)
         }
         
+        // Loading Indicator
+        view.bringSubview(toFront: loadingVIew)
+
         // API Request
-        CloudVisionManager().getData(image: tappedImage) { (response) in
-            switch response {
-            case .success:
-                debugPrint("API request is succeeded.")
-                self.addDataSource()
-                self.tableView?.reloadData()
-            case .failure(let error):
-                debugPrint(error)
-            }
-            self.loadingVIew.isHidden = true
-        }
+        loadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +74,42 @@ class ResultViewController: BaseTableViewController {
         let tableView = UITableView(frame: CGRect(x: 0, y: headerHeight, width: Const.Screen.Size.width, height: Const.Screen.Size.height - headerHeight), style: .plain)
         tableView.backgroundColor = UIColor.clear
         return tableView
+    }
+    
+    func loadData() {
+        guard let tappedImage = tappedImage else { return }
+        
+        loadingVIew.isHidden = false
+        CloudVisionManager().getData(image: tappedImage) { (response) in
+            switch response {
+            case .success:
+                debugPrint("API request is succeeded.")
+                self.addDataSource()
+                self.tableView?.reloadData()
+            case .failure(let error):
+                debugPrint(error)
+                self.showAlert()
+            }
+            self.loadingVIew.isHidden = true
+        }
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(
+            title: "通信エラー",
+            message: "データの取得に失敗しました。\n\n電波状況をお確かめの上、\n再度ご利用ください。",
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "リトライ",
+                                      style: .default,
+                                      handler:{ action in
+            self.loadData()
+        }))
+        alert.addAction(UIAlertAction(title: "戻る",
+                                      style: .cancel,
+                                      handler:{ action in
+            self.dismiss(animated: false, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }
 
