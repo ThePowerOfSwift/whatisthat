@@ -11,60 +11,8 @@ import RealmSwift
 import UIKit
 import PagingMenuController
 
-private struct PagingMenuOptions: PagingMenuControllerCustomizable {
-    var defaultPage = 1
-    
-    fileprivate var componentType: ComponentType {
-        return .all(menuOptions: MenuOptions(), pagingControllers: pagingControllers)
-    }
-    
-    fileprivate var pagingControllers: [UIViewController] {
-        guard let ocr     = fromStoryboard(class: OcrViewController.self)     else { return [] }
-        guard let keyword = fromStoryboard(class: KeywordViewController.self) else { return [] }
-        guard let face    = fromStoryboard(class: FaceViewController.self)    else { return [] }
-        return [ocr, keyword, face]
-    }
-    
-    fileprivate struct MenuOptions: MenuViewCustomizable {
-        var selectedBackgroundColor: UIColor {
-            return UIColor(hex: 0xFFB98E, alpha: 1.0)
-        }
-        var height: CGFloat {
-            return 40
-        }
-        var displayMode: MenuDisplayMode {
-            return .segmentedControl
-        }
-        var itemsOptions: [MenuItemViewCustomizable] {
-            return [MenuItem1(), MenuItem2(), MenuItem3()]
-        }
-        var animationDuration: TimeInterval {
-            return 0.2
-        }
-        var focusMode: MenuFocusMode {
-            return .underline(height: 4.0, color: UIColor.orange, horizontalPadding: 0.0, verticalPadding: 0.0)
-        }
-    }
-    
-    fileprivate struct MenuItem1: MenuItemViewCustomizable {
-        var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "OCR", color: UIColor.lightGray, selectedColor: UIColor.orange, font: UIFont.systemFont(ofSize: 16), selectedFont: UIFont.boldSystemFont(ofSize: 16)))
-        }
-    }
-    fileprivate struct MenuItem2: MenuItemViewCustomizable {
-        var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "キーワード", color: UIColor.lightGray, selectedColor: UIColor.orange, font: UIFont.systemFont(ofSize: 16), selectedFont: UIFont.boldSystemFont(ofSize: 16)))
-        }
-    }
-    fileprivate struct MenuItem3: MenuItemViewCustomizable {
-        var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "顔検出", color: UIColor.lightGray, selectedColor: UIColor.orange, font: UIFont.systemFont(ofSize: 16), selectedFont: UIFont.boldSystemFont(ofSize: 16)))
-        }
-    }
-}
-
 class ResultViewController: UIViewController {
-    @IBOutlet weak var loadingVIew: UIView!
+    @IBOutlet weak var loadingView: UIView!
 
     let headerView  = fromXib(class: SimpleImageView.self)
     var tappedImage: UIImage? = nil
@@ -79,7 +27,7 @@ class ResultViewController: UIViewController {
         createPageMenu()
         
         // Loading Indicator
-        view.bringSubview(toFront: loadingVIew)
+        view.bringSubview(toFront: loadingView)
 
         // API Request
         loadData()
@@ -114,11 +62,11 @@ class ResultViewController: UIViewController {
     func loadData() {
         guard let tappedImage = tappedImage else { return }
         
-        loadingVIew.isHidden = false
+        loadingView.isHidden = false
         CloudVisionManager().getData(image: tappedImage) { (response) in
             switch response {
             case .success:
-                debugPrint("API request is succeeded.")
+                debugPrint("Cloud vision API request is succeeded.")
                 let nc = NotificationCenter.default
                 nc.post(name: Notification.Name(rawValue:"updateKeywordData"), object: nil)
                 nc.post(name: Notification.Name(rawValue:"updateOcrData"), object: nil)
@@ -127,7 +75,7 @@ class ResultViewController: UIViewController {
                 debugPrint(error)
                 self.showAlert()
             }
-            self.loadingVIew.isHidden = true
+            self.loadingView.isHidden = true
         }
     }
     
@@ -180,5 +128,57 @@ extension ResultViewController: PagingMenuControllerDelegate {
         print(#function)
         print(previousMenuItemView)
         print(menuItemView)
+    }
+}
+
+private struct PagingMenuOptions: PagingMenuControllerCustomizable {
+    var defaultPage = 1
+    
+    fileprivate var componentType: ComponentType {
+        return .all(menuOptions: MenuOptions(), pagingControllers: pagingControllers)
+    }
+    
+    fileprivate var pagingControllers: [UIViewController] {
+        guard let ocr     = fromStoryboard(class: OcrViewController.self)     else { return [] }
+        guard let keyword = fromStoryboard(class: KeywordViewController.self) else { return [] }
+        guard let face    = fromStoryboard(class: FaceViewController.self)    else { return [] }
+        return [ocr, keyword, face]
+    }
+    
+    fileprivate struct MenuOptions: MenuViewCustomizable {
+        var selectedBackgroundColor: UIColor {
+            return UIColor(hex: 0xFFB98E, alpha: 1.0)
+        }
+        var height: CGFloat {
+            return 40
+        }
+        var displayMode: MenuDisplayMode {
+            return .segmentedControl
+        }
+        var itemsOptions: [MenuItemViewCustomizable] {
+            return [MenuItem1(), MenuItem2(), MenuItem3()]
+        }
+        var animationDuration: TimeInterval {
+            return 0.2
+        }
+        var focusMode: MenuFocusMode {
+            return .underline(height: 4.0, color: UIColor.orange, horizontalPadding: 0.0, verticalPadding: 0.0)
+        }
+    }
+    
+    fileprivate struct MenuItem1: MenuItemViewCustomizable {
+        var displayMode: MenuItemDisplayMode {
+            return .text(title: MenuItemText(text: "OCR", color: UIColor.lightGray, selectedColor: UIColor.orange, font: UIFont.systemFont(ofSize: 16), selectedFont: UIFont.boldSystemFont(ofSize: 16)))
+        }
+    }
+    fileprivate struct MenuItem2: MenuItemViewCustomizable {
+        var displayMode: MenuItemDisplayMode {
+            return .text(title: MenuItemText(text: "キーワード", color: UIColor.lightGray, selectedColor: UIColor.orange, font: UIFont.systemFont(ofSize: 16), selectedFont: UIFont.boldSystemFont(ofSize: 16)))
+        }
+    }
+    fileprivate struct MenuItem3: MenuItemViewCustomizable {
+        var displayMode: MenuItemDisplayMode {
+            return .text(title: MenuItemText(text: "顔検出", color: UIColor.lightGray, selectedColor: UIColor.orange, font: UIFont.systemFont(ofSize: 16), selectedFont: UIFont.boldSystemFont(ofSize: 16)))
+        }
     }
 }
