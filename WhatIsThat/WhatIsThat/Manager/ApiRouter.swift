@@ -17,18 +17,23 @@ protocol router {
 enum ApiRouter: URLRequestConvertible, router {
     
     case cloudVision([String: Any])
+    case weatherMap(String)
     
     var path: String {
         switch self {
         case .cloudVision(_):
             return "https://vision.googleapis.com/v1/images:annotate?key=\(Const.API.CloudVision.ApiKey)"
+        case .weatherMap(let cityname):
+            return "http://api.openweathermap.org/data/2.5/forecast?APPID=\(Const.API.WeatherMap.ApiKey)&q=\(cityname),jp"
         }
     }
-    
+
     var method: Alamofire.HTTPMethod {
         switch self {
         case .cloudVision(_):
             return .post
+        case .weatherMap(_):
+            return .get
         }
     }
     
@@ -41,6 +46,8 @@ enum ApiRouter: URLRequestConvertible, router {
         switch self {
         case .cloudVision(let params):
             return try! Alamofire.JSONEncoding.default.encode(request, with: params)
+        case .weatherMap(_):
+            return try! Alamofire.JSONEncoding.default.encode(request, with: nil)
         }
     }
 }

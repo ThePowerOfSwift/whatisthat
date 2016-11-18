@@ -25,5 +25,8 @@ struct Const {
         struct CloudVision {
             static let ApiKey = "AIzaSyA04hrp5OA2WcgmXfs6PE6smno018Cmg6A"
         }
+        struct WeatherMap {
+            static let ApiKey = "71342cab62280bfd50fff0b1a2d37dd5"
+        }
     }
 }

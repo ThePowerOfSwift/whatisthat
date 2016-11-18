@@ -22,12 +22,16 @@
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dka-QB-SC5" userLabel="Loading">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データ取得中…" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drA-kt-Fx8">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drA-kt-Fx8">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="4G2-cR-spD"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="EMs-1p-KCN"/>
                                             <constraint firstAttribute="height" constant="60" id="JyN-Ke-dAD"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="uy1-YX-zn0"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <string key="text">ただいま画像解析中…
+しばらくお待ちください。</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WvW-ZH-WFJ">
@@ -35,15 +39,29 @@
                                             <constraint firstAttribute="height" constant="37" id="g3p-C3-W6F"/>
                                             <constraint firstAttribute="width" constant="37" id="ih1-SV-lu9"/>
                                         </constraints>
+                                        <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※回線状況等により、1分ほどかかる場合がございます。" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sy3-Ov-z3H">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="DrA-ZJ-6AQ"/>
+                                            <constraint firstAttribute="width" constant="263" id="HWb-VF-RL8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="60G-cK-fAf"/>
+                                    <constraint firstAttribute="bottom" secondItem="Sy3-Ov-z3H" secondAttribute="bottom" id="7j1-bf-xpz"/>
                                     <constraint firstItem="WvW-ZH-WFJ" firstAttribute="centerX" secondItem="Dka-QB-SC5" secondAttribute="centerX" id="Je6-sc-wAa"/>
                                     <constraint firstItem="drA-kt-Fx8" firstAttribute="top" secondItem="Dka-QB-SC5" secondAttribute="top" id="M5z-mE-RZz"/>
+                                    <constraint firstItem="drA-kt-Fx8" firstAttribute="centerX" secondItem="Dka-QB-SC5" secondAttribute="centerX" id="XgK-43-UV9"/>
+                                    <constraint firstItem="drA-kt-Fx8" firstAttribute="top" secondItem="Dka-QB-SC5" secondAttribute="top" id="YTA-1k-8Ks"/>
                                     <constraint firstItem="WvW-ZH-WFJ" firstAttribute="centerY" secondItem="Dka-QB-SC5" secondAttribute="centerY" id="Zvp-VL-jjN"/>
                                     <constraint firstAttribute="height" constant="200" id="aCY-bs-R1j"/>
+                                    <constraint firstItem="Sy3-Ov-z3H" firstAttribute="centerX" secondItem="Dka-QB-SC5" secondAttribute="centerX" id="cNs-e3-5XU"/>
                                     <constraint firstItem="drA-kt-Fx8" firstAttribute="leading" secondItem="Dka-QB-SC5" secondAttribute="leading" id="xwE-oi-Fct"/>
                                 </constraints>
                             </view>
@@ -59,7 +77,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="loadingVIew" destination="Dka-QB-SC5" id="ayW-F7-jSG"/>
+                        <outlet property="loadingView" destination="Dka-QB-SC5" id="oPJ-HB-rev"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A97-bE-if6" userLabel="First Responder" sceneMemberID="firstResponder"/>
