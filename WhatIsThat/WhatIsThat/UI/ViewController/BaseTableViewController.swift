@@ -74,4 +74,8 @@ class BaseTableViewController: UIViewController, BaseTableViewControllerProtocol
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        datasouces[indexPath.section].tableView?(tableView, didSelectRowAt: indexPath)
+    }
 }
