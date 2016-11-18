@@ -35,7 +35,7 @@ class MenuItemTableViewDataSource: NSObject, BaseTableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Const.Screen.Size.width, height: Const.Screen.Size.height))
-        headerView.backgroundColor = UIColor.lightGray
+        headerView.backgroundColor = Const.Color.BackGroundGray
         return headerView
     }
     
@@ -43,7 +43,6 @@ class MenuItemTableViewDataSource: NSObject, BaseTableViewDataSource {
         guard let vc = fromStoryboard(class: WebViewController.self) else { return }
         guard let url = menuItems[indexPath.row]["url"] as? String else { return }
         vc.requestUrl = url
-        print("vc.requestUrl=\(vc.requestUrl)")
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         vc.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
         delegate?.present(vc, animated: false, completion: nil)

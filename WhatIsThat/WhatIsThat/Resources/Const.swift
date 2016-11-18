@@ -11,8 +11,7 @@ import UIKit
 
 struct Const {
     struct Color {
-        static let CorporateLogo = UIColor.black
-        static let HelpButtonBackground = UIColor.white
+        static let BackGroundGray = UIColor(hex: 0x8F8E94, alpha: 1.0)
     }
     struct Screen {
         static let Size = UIScreen.main.bounds.size
