@@ -41,7 +41,7 @@ class SafeSearchAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = fromXib(clazz: SimpleTitleView.self)
+        let headerView = fromXib(class: SimpleTitleView.self)
         headerView?.titleLabel.text = "有害コンテンツチェック"
         headerView?.backgroundView.backgroundColor = UIColor.red
         return headerView

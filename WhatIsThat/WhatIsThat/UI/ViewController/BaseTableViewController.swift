@@ -44,7 +44,7 @@ class BaseTableViewController: UIViewController, BaseTableViewControllerProtocol
     }
     
     func createTable() -> UITableView {
-        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: Const.Screen.Size.width, height: Const.Screen.Size.height), style: .plain)
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .plain)
         tableView.backgroundColor = UIColor.clear
         return tableView
     }

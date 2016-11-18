@@ -19,7 +19,7 @@ class TopViewController: UIViewController {
     @IBOutlet weak var corporateLogoView: UIView!
     @IBOutlet weak var transitionButton: UIButton!
     
-    var cameraView = fromXib(clazz: CameraView.self)
+    var cameraView = fromXib(class: CameraView.self)
     let transition = BubbleTransition()
     let imagePicker = UIImagePickerController()
     
@@ -43,6 +43,13 @@ class TopViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Clear DB
+        RealmManager.deleteAll(CloudVisions.self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -97,7 +104,7 @@ extension TopViewController: UIImagePickerControllerDelegate, UINavigationContro
 // MARK: - TopViewControllerDelegate
 extension TopViewController: TopViewControllerDelegate {
     func gotoResultPage(captureImage: UIImage) {
-        let vc = fromStoryboard(clazz: ResultViewController.self)
+        let vc = fromStoryboard(class: ResultViewController.self)
         vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         vc?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
         vc?.tappedImage = captureImage

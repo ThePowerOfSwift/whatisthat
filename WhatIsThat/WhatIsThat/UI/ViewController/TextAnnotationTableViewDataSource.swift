@@ -36,7 +36,7 @@ class TextAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = fromXib(clazz: SimpleTitleView.self)
+        let headerView = fromXib(class: SimpleTitleView.self)
         headerView?.titleLabel.text = "読み取った文字"
         headerView?.backgroundView.backgroundColor = UIColor.cyan
         return headerView
@@ -45,7 +45,7 @@ class TextAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
 
 extension TextAnnotationTableViewDataSource: TextAnnotationTableViewCellDelegate {
     func gotoSearchPage(keyword: String, isImageSearch: Bool) {
-        guard let vc = fromStoryboard(clazz: WebViewController.self) else { return }
+        guard let vc = fromStoryboard(class: WebViewController.self) else { return }
         vc.requestUrl = "https://google.co.jp/search?hl=ja&q=" + keyword + (isImageSearch ? "&tbm=isch" : "")
         print("vc.requestUrl=\(vc.requestUrl)")
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
