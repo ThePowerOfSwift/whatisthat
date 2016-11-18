@@ -32,7 +32,7 @@ class LandmarkAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = fromXib(clazz: SimpleTitleView.self)
+        let headerView = fromXib(class: SimpleTitleView.self)
         headerView?.titleLabel.text = "ランドマーク"
         headerView?.backgroundView.backgroundColor = UIColor.magenta
         return headerView
@@ -41,7 +41,7 @@ class LandmarkAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
 
 extension LandmarkAnnotationTableViewDataSource: LandmarkAnnotationTableViewCellDelegate {
     func gotoSearchPage(keyword: String, isImageSearch: Bool) {
-        guard let vc = fromStoryboard(clazz: WebViewController.self) else { return }
+        guard let vc = fromStoryboard(class: WebViewController.self) else { return }
         vc.requestUrl = "https://google.co.jp/search?hl=ja&q=" + keyword + (isImageSearch ? "&tbm=isch" : "")
         print("vc.requestUrl=\(vc.requestUrl)")
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext

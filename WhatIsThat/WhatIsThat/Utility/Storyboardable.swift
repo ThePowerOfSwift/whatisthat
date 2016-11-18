@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-func fromStoryboard<T: AnyObject>(clazz: T.Type) -> T! {
+func fromStoryboard<T: AnyObject>(class: T.Type) -> T! {
     let identifier = String(describing: T.self)
     let name = String(describing: T.self)
     let storyboard = UIStoryboard(name: name, bundle: nil)

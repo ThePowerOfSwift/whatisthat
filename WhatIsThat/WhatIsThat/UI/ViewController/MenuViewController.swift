@@ -46,7 +46,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
-        let vc = fromStoryboard(clazz: WebViewController.self)
+        let vc = fromStoryboard(class: WebViewController.self)
         vc?.requestUrl = "https://google.co.jp"
         vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         vc?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve

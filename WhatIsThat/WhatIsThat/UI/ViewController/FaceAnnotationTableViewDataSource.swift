@@ -56,7 +56,7 @@ class FaceAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = fromXib(clazz: SimpleTitleView.self)
+        let headerView = fromXib(class: SimpleTitleView.self)
         headerView?.titleLabel.text = "顔検知"
         headerView?.backgroundView.backgroundColor = UIColor.orange
         return headerView
