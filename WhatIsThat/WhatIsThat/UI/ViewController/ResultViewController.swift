@@ -84,7 +84,9 @@ class ResultViewController: UIViewController {
         guard let safeSearchAnnotation = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.safeSearchAnnotation else { return }
         var safeRate = 0
         if let adult = SafeSearchLikelyHood(rawValue: safeSearchAnnotation.adult) {
-            safeRate += adult.toScore()
+            let adultRate = adult.toScore()
+            safeRate += adultRate
+            headerView?.adultRate = adultRate
         }
         if let spoof = SafeSearchLikelyHood(rawValue: safeSearchAnnotation.spoof) {
             safeRate += spoof.toScore()
