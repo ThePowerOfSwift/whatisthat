@@ -27,6 +27,13 @@ class SimpleImageView: UIView {
             safeRateLabel.text = "\(safeRate)%"
         }
     }
+    var adultRate: Int = 0 {
+        didSet {
+            if adultRate < SafeSearchLikelyHood.UNKNOWN.toScore() {
+                mainImageView.addBlurEffect()
+            }
+        }
+    }
     
     /*
     // Only override draw() if you perform custom drawing.
