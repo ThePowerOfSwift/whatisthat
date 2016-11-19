@@ -27,8 +27,9 @@ class OcrViewController: BaseTableViewController {
     }
     
     override func createTable() -> UITableView {
-        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 220), style: .plain)
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 308), style: .plain)
         tableView.backgroundColor = UIColor.clear
+        tableView.rowHeight = UITableViewAutomaticDimension
         return tableView
     }
     

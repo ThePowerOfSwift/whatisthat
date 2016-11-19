@@ -43,10 +43,10 @@ class WeatherViewController: UIViewController {
         WeatherMapManager().getData(cityname: "Tokyo") { (response) in
             switch response {
             case .success:
-                debugPrint("WeatherMap API request is succeeded.")
+                print("WeatherMap API request is succeeded.")
                 self.updateDisplay()
             case .failure(let error):
-                debugPrint(error)
+                print(error)
                 self.showAlert()
             }
             self.loadingView.isHidden = true

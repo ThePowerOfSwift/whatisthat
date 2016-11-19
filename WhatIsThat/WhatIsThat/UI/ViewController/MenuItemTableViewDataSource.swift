@@ -39,7 +39,6 @@ class MenuItemTableViewDataSource: NSObject, BaseTableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = fromXib(class: SimpleTitleView.self)
-        headerView?.backgroundColor = Const.Color.BackGroundAccent
         if let title = menuItems.first?["title"] as? String {
             headerView?.titleLabel.text = title + (menuItems.count > 0 ? "等" : "")
         }

@@ -66,17 +66,36 @@ class ResultViewController: UIViewController {
         CloudVisionManager().getData(image: tappedImage) { (response) in
             switch response {
             case .success:
-                debugPrint("Cloud vision API request is succeeded.")
+                print("Cloud vision API request is succeeded.")
+                self.updateSafeSearchRate()
                 let nc = NotificationCenter.default
                 nc.post(name: Notification.Name(rawValue:"updateKeywordData"), object: nil)
                 nc.post(name: Notification.Name(rawValue:"updateOcrData"), object: nil)
                 nc.post(name: Notification.Name(rawValue:"updateFaceData"), object: nil)
             case .failure(let error):
-                debugPrint(error)
+                print(error)
                 self.showAlert()
             }
             self.loadingView.isHidden = true
         }
+    }
+    
+    func updateSafeSearchRate() {
+        guard let safeSearchAnnotation = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.safeSearchAnnotation else { return }
+        var safeRate = 0
+        if let adult = SafeSearchLikelyHood(rawValue: safeSearchAnnotation.adult) {
+            safeRate += adult.toScore()
+        }
+        if let spoof = SafeSearchLikelyHood(rawValue: safeSearchAnnotation.spoof) {
+            safeRate += spoof.toScore()
+        }
+        if let medical = SafeSearchLikelyHood(rawValue: safeSearchAnnotation.medical) {
+            safeRate += medical.toScore()
+        }
+        if let violence = SafeSearchLikelyHood(rawValue: safeSearchAnnotation.violence) {
+            safeRate += violence.toScore()
+        }
+        headerView?.safeRate = safeRate * 5
     }
     
     func showAlert() {
@@ -147,10 +166,10 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     fileprivate struct MenuOptions: MenuViewCustomizable {
         var selectedBackgroundColor: UIColor {
-            return UIColor(hex: 0xFFB98E, alpha: 1.0)
+            return Const.Color.BackGroundLightAccent
         }
         var height: CGFloat {
-            return 40
+            return 58
         }
         var displayMode: MenuDisplayMode {
             return .segmentedControl
@@ -162,23 +181,23 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
             return 0.2
         }
         var focusMode: MenuFocusMode {
-            return .underline(height: 4.0, color: UIColor.orange, horizontalPadding: 0.0, verticalPadding: 0.0)
+            return .underline(height: 4.0, color: Const.Color.MenuItemTitleBorder, horizontalPadding: 0.0, verticalPadding: 0.0)
         }
     }
     
     fileprivate struct MenuItem1: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "OCR", color: UIColor.lightGray, selectedColor: UIColor.orange, font: UIFont.systemFont(ofSize: 16), selectedFont: UIFont.boldSystemFont(ofSize: 16)))
+            return .text(title: MenuItemText(text: "OCR", color: Const.Color.MenuItemText, selectedColor: Const.Color.MenuItemTitle, font: UIFont.boldSystemFont(ofSize: 12), selectedFont: UIFont.boldSystemFont(ofSize: 12)))
         }
     }
     fileprivate struct MenuItem2: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "キーワード", color: UIColor.lightGray, selectedColor: UIColor.orange, font: UIFont.systemFont(ofSize: 16), selectedFont: UIFont.boldSystemFont(ofSize: 16)))
+            return .text(title: MenuItemText(text: "キーワード", color: Const.Color.MenuItemText, selectedColor: Const.Color.MenuItemTitle, font: UIFont.boldSystemFont(ofSize: 12), selectedFont: UIFont.boldSystemFont(ofSize: 12)))
         }
     }
     fileprivate struct MenuItem3: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "人物", color: UIColor.lightGray, selectedColor: UIColor.orange, font: UIFont.systemFont(ofSize: 16), selectedFont: UIFont.boldSystemFont(ofSize: 16)))
+            return .text(title: MenuItemText(text: "人物", color: Const.Color.MenuItemText, selectedColor: Const.Color.MenuItemTitle, font: UIFont.boldSystemFont(ofSize: 12), selectedFont: UIFont.boldSystemFont(ofSize: 12)))
         }
     }
 }

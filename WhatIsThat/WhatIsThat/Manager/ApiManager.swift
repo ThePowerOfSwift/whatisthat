@@ -33,7 +33,7 @@ class ApiManager: NSObject {
             case .failure(let error):
                 return completion(Result.failure(error))
             case .success(let rawValue):
-                debugPrint("[API Response] rawValue=\(rawValue)")
+                print("[API Response] rawValue=\(rawValue)")
                 guard let dictionary = rawValue as? [String: AnyObject] else {
                     let error = NSError(domain: "[API response error] response is not dictionary format.", code: -1, userInfo: nil)
                     return completion(Result.failure(error))

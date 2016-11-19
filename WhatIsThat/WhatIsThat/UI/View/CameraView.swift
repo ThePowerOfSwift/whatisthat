@@ -111,7 +111,7 @@ class CameraView: UIView {
             cpsSession.sessionPreset = AVCaptureSessionPresetHigh
             cpsSession.startRunning()
         } catch (let error) {
-            debugPrint(error)
+            print(error)
         }
     }
     
@@ -121,7 +121,7 @@ class CameraView: UIView {
     
     func tapGesture(touch: UITapGestureRecognizer) {
         touchPos = touch.location(in: self)
-        debugPrint("touchPoint = \(touchPos)")
+        print("touchPoint = \(touchPos)")
         isScreenTapped   = true
         isRequestCapture = true
     }
@@ -158,8 +158,8 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
         // 結果画面
         if isRequestCapture {
             isRequestCapture = false
-            debugPrint("screenSize=\(Const.Screen.Size)")
-            debugPrint("drawFrame=\(drawFrame)")
+            print("screenSize=\(Const.Screen.Size)")
+            print("drawFrame=\(drawFrame)")
             guard let previewImage = UIImage.imageFromSampleBuffer(sampleBuffer: sampleBuffer)?.croppingImage(toRect:drawFrame) else { return }
             
             if isScreenTapped,
