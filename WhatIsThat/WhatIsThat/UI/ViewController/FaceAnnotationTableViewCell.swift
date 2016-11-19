@@ -9,35 +9,18 @@
 import UIKit
 
 class FaceAnnotationTableViewCell: UITableViewCell {
-    @IBOutlet weak var detectionConfidenceLabel: UILabel!
-    @IBOutlet weak var landmarkingConfidenceLabel: UILabel!
     @IBOutlet weak var joyLikelihoodLabel: UILabel!
+    @IBOutlet weak var surpriseLikelihoodLabel: UILabel!
     @IBOutlet weak var sorrowLikelihoodLabel: UILabel!
     @IBOutlet weak var angerLikelihoodLabel: UILabel!
-    @IBOutlet weak var surpriseLikelihoodLabel: UILabel!
-    @IBOutlet weak var underExposedLikelihoodLabel: UILabel!
-    @IBOutlet weak var blurredLikelihoodLabel: UILabel!
-    @IBOutlet weak var headwearLikelihoodLabel: UILabel!
     
-    var detectionConfidence    = ""
-    var landmarkingConfidence  = ""
-    var joyLikelihood          = ""
-    var sorrowLikelihood       = ""
-    var angerLikelihood        = ""
-    var surpriseLikelihood     = ""
-    var underExposedLikelihood = ""
-    var blurredLikelihood      = ""
-    var headwearLikelihood     = ""
+    var result: FaceAnnotation?
     
     func setContent() {
-        detectionConfidenceLabel.text    = detectionConfidence
-        landmarkingConfidenceLabel.text  = landmarkingConfidence
-        joyLikelihoodLabel.text          = joyLikelihood
-        sorrowLikelihoodLabel.text       = sorrowLikelihood
-        angerLikelihoodLabel.text        = angerLikelihood
-        surpriseLikelihoodLabel.text     = surpriseLikelihood
-        underExposedLikelihoodLabel.text = underExposedLikelihood
-        blurredLikelihoodLabel.text      = blurredLikelihood
-        headwearLikelihoodLabel.text     = headwearLikelihood
+        guard let result = result else { return }
+        joyLikelihoodLabel.text      = String(result.joyLikelihood)
+        surpriseLikelihoodLabel.text = String(result.surpriseLikelihood)
+        sorrowLikelihoodLabel.text   = String(result.sorrowLikelihood)
+        angerLikelihoodLabel.text    = String(result.angerLikelihood)
     }
 }

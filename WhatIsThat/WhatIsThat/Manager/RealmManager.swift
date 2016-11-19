@@ -15,7 +15,7 @@ class RealmManager {
             let realm = try Realm()
             return realm.object(ofType: T.self, forPrimaryKey: key)
         } catch let error {
-            debugPrint("Failed to get RLMObject. error=\(error)")
+            print("Failed to get RLMObject. error=\(error)")
         }
         return nil
     }
@@ -25,7 +25,7 @@ class RealmManager {
             let realm = try Realm()
             return realm.objects(T.self)
         } catch let error {
-            debugPrint("Failed to get RLMObject. error=\(error)")
+            print("Failed to get RLMObject. error=\(error)")
         }
         return nil
     }
@@ -35,10 +35,10 @@ class RealmManager {
             let realm = try Realm()
             try realm.write {
                 realm.add(obj, update: update)
-                debugPrint("Succeeded to save=\(obj)")
+                print("Succeeded to save=\(obj)")
             }
         } catch let error {
-            debugPrint("Failed to write RLMObject. error=\(error)")
+            print("Failed to write RLMObject. error=\(error)")
         }
     }
     
@@ -47,10 +47,10 @@ class RealmManager {
             let realm = try Realm()
             try realm.write {
                 realm.delete(value)
-                debugPrint("Succeeded to delete=\(value)")
+                print("Succeeded to delete=\(value)")
             }
         } catch let error {
-            debugPrint("Failed to delete RLMObject. error=\(error)")
+            print("Failed to delete RLMObject. error=\(error)")
         }
     }
     
@@ -60,10 +60,10 @@ class RealmManager {
             try realm.write {
                 let obj = realm.objects(T.self)
                 realm.delete(obj)
-                debugPrint("Succeeded to delete=\(obj)")
+                print("Succeeded to delete=\(obj)")
             }
         } catch let error {
-            debugPrint("Failed to delete RLMObject. error=\(error)")
+            print("Failed to delete RLMObject. error=\(error)")
         }
     }
 }

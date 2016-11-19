@@ -14,11 +14,17 @@ protocol SimpleImageViewDelegate {
 
 class SimpleImageView: UIView {
     @IBOutlet weak var mainImageView: UIImageView!
-
+    @IBOutlet weak var safeRateLabel: UILabel!
+    
     var delegate: SimpleImageViewDelegate?
     var mainImage: UIImage? {
         didSet {
             mainImageView.image = mainImage
+        }
+    }
+    var safeRate: Int = 0 {
+        didSet {
+            safeRateLabel.text = "\(safeRate)%"
         }
     }
     

@@ -27,7 +27,7 @@ class KeywordViewController: BaseTableViewController {
     }
     
     override func createTable() -> UITableView {
-        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 220), style: .plain)
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 308), style: .plain)
         tableView.backgroundColor = UIColor.clear
         return tableView
     }
@@ -38,10 +38,16 @@ class KeywordViewController: BaseTableViewController {
         label.delegate = self
         self.addDataSource(dataSource: label)
         
+        // Border
+        self.addDataSource(dataSource: BorderTableViewDataSource())
+        
         // Logo
         let logo = LogoAnnotationTableViewDataSource()
         logo.delegate = self
         self.addDataSource(dataSource: logo)
+        
+        // Border
+        self.addDataSource(dataSource: BorderTableViewDataSource())
         
         // Landmark
         let landmark = LandmarkAnnotationTableViewDataSource()

@@ -9,6 +9,32 @@
 import RealmSwift
 import ObjectMapper
 
+enum SafeSearchLikelyHood: String {
+    case UNKNOWN       = "UNKNOWN"
+    case VERY_UNLIKELY = "VERY_UNLIKELY"
+    case UNLIKELY      = "UNLIKELY"
+    case POSSIBLE      = "POSSIBLE"
+    case LIKELY        = "LIKELY"
+    case VERY_LIKELY   = "VERY_LIKELY"
+    
+    func toScore() -> Int {
+        switch self {
+        case .UNKNOWN:
+            return 2
+        case .VERY_UNLIKELY:
+            return 5
+        case .UNLIKELY:
+            return 4
+        case .POSSIBLE:
+            return 3
+        case .LIKELY:
+            return 1
+        default:
+            return 0
+        }
+    }
+}
+
 class SafeSearchAnnotation: Object {
     dynamic var adult    = ""
     dynamic var medical  = ""

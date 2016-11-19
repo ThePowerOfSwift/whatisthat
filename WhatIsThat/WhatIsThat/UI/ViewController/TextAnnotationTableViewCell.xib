@@ -7,85 +7,87 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="dXF-W8-etF" userLabel="TextAnnotationTableViewCell" customClass="TextAnnotationTableViewCell" customModule="WhatIsThat" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="gcZ-if-2qB" userLabel="TextAnnotationTableViewCell" customClass="TextAnnotationTableViewCell" customModule="WhatIsThat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dXF-W8-etF" id="Zpk-aP-ira">
-                <frame key="frameInset" width="375" height="43"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gcZ-if-2qB" id="jud-1h-NHM">
+                <frame key="frameInset" width="375" height="39"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgc-tN-AJt">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNm-YF-LvO">
                         <constraints>
-                            <constraint firstAttribute="width" constant="32" id="LV4-wU-HVT"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="eTA-wl-Dch"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.56078431370000004" green="0.5568627451" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="??" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xw-Sf-K1b">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="GDZ-94-S6k"/>
+                            <constraint firstAttribute="height" constant="20" id="Qq3-wi-Xfs"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI6-c2-bpE">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PR1-QK-585" userLabel="Search Keyword Button">
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="9J9-CR-UYg"/>
+                            <constraint firstAttribute="height" constant="18" id="Vqq-4k-n53"/>
+                            <constraint firstAttribute="width" constant="18" id="Y1V-8c-EUz"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgL-Kh-ALa">
-                        <constraints>
-                            <constraint firstAttribute="width" constant="45" id="X3Z-bF-ghd"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                        <state key="normal" title="Google"/>
+                        <state key="normal" image="search"/>
                         <connections>
-                            <action selector="tappedSearchKeywordButton:" destination="dXF-W8-etF" eventType="touchUpInside" id="6c5-Xk-MeB"/>
+                            <action selector="tappedSearchKeywordButton:" destination="gcZ-if-2qB" eventType="touchUpInside" id="4EL-uX-A9A"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrN-iT-OtA">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLS-UP-Jgu" userLabel="Search Image Button">
                         <constraints>
-                            <constraint firstAttribute="width" constant="42" id="MVX-yL-B4T"/>
+                            <constraint firstAttribute="height" constant="21" id="1kz-Ut-v7f"/>
+                            <constraint firstAttribute="width" constant="24" id="9vI-l4-2zT"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                        <state key="normal" title="Image"/>
+                        <state key="normal" image="image_search"/>
                         <connections>
-                            <action selector="tappedSearchImageButton:" destination="dXF-W8-etF" eventType="touchUpInside" id="S8T-wp-UzD"/>
+                            <action selector="tappedSearchImageButton:" destination="gcZ-if-2qB" eventType="touchUpInside" id="WgJ-uN-ZHG"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJM-iH-YDt">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLL-L7-BZH" userLabel="Copy Button">
                         <constraints>
-                            <constraint firstAttribute="width" constant="38" id="Lmq-0V-9eF"/>
+                            <constraint firstAttribute="height" constant="17" id="Zyw-kq-gR7"/>
+                            <constraint firstAttribute="width" constant="15" id="nP1-wM-IAl"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                        <state key="normal" title="Copy"/>
+                        <state key="normal" image="content_copy"/>
                         <connections>
-                            <action selector="tappedCopyButton:" destination="dXF-W8-etF" eventType="touchUpInside" id="Yk7-go-xwV"/>
+                            <action selector="tappedCopyButton:" destination="gcZ-if-2qB" eventType="touchUpInside" id="VFJ-85-ge8"/>
                         </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="pJM-iH-YDt" firstAttribute="top" secondItem="Zpk-aP-ira" secondAttribute="top" id="0Uw-Bf-hp4"/>
-                    <constraint firstItem="Hgc-tN-AJt" firstAttribute="top" secondItem="Zpk-aP-ira" secondAttribute="top" id="4fd-lC-5Yx"/>
-                    <constraint firstItem="pJM-iH-YDt" firstAttribute="leading" secondItem="KrN-iT-OtA" secondAttribute="trailing" id="DN3-as-9JO"/>
-                    <constraint firstItem="tI6-c2-bpE" firstAttribute="leading" secondItem="Hgc-tN-AJt" secondAttribute="trailing" id="Fzp-O8-DpV"/>
-                    <constraint firstItem="tI6-c2-bpE" firstAttribute="top" secondItem="Zpk-aP-ira" secondAttribute="top" id="HWt-Wx-foV"/>
-                    <constraint firstItem="KrN-iT-OtA" firstAttribute="leading" secondItem="BgL-Kh-ALa" secondAttribute="trailing" id="NwF-B0-5g1"/>
-                    <constraint firstAttribute="bottom" secondItem="pJM-iH-YDt" secondAttribute="bottom" id="R1c-YY-ttL"/>
-                    <constraint firstAttribute="trailing" secondItem="pJM-iH-YDt" secondAttribute="trailing" id="W8T-BC-RgG"/>
-                    <constraint firstAttribute="bottom" secondItem="Hgc-tN-AJt" secondAttribute="bottom" id="a1L-Pg-s3y"/>
-                    <constraint firstAttribute="bottom" secondItem="BgL-Kh-ALa" secondAttribute="bottom" id="bmd-eZ-gi4"/>
-                    <constraint firstItem="BgL-Kh-ALa" firstAttribute="leading" secondItem="tI6-c2-bpE" secondAttribute="trailing" id="e4N-II-kAS"/>
-                    <constraint firstItem="Hgc-tN-AJt" firstAttribute="leading" secondItem="Zpk-aP-ira" secondAttribute="leading" constant="10" id="hXl-TZ-Kbv"/>
-                    <constraint firstAttribute="bottom" secondItem="KrN-iT-OtA" secondAttribute="bottom" id="krr-UZ-nh4"/>
-                    <constraint firstItem="KrN-iT-OtA" firstAttribute="top" secondItem="Zpk-aP-ira" secondAttribute="top" id="l1w-An-zcx"/>
-                    <constraint firstItem="BgL-Kh-ALa" firstAttribute="top" secondItem="Zpk-aP-ira" secondAttribute="top" id="ugc-9B-x8t"/>
-                    <constraint firstAttribute="bottom" secondItem="tI6-c2-bpE" secondAttribute="bottom" id="xcX-wI-KUP"/>
+                    <constraint firstItem="PR1-QK-585" firstAttribute="centerY" secondItem="jud-1h-NHM" secondAttribute="centerY" id="7Xe-ZE-7wa"/>
+                    <constraint firstItem="oNm-YF-LvO" firstAttribute="top" secondItem="jud-1h-NHM" secondAttribute="top" constant="5" id="BZD-bY-qOa"/>
+                    <constraint firstItem="SLS-UP-Jgu" firstAttribute="centerY" secondItem="jud-1h-NHM" secondAttribute="centerY" id="D8F-f7-ZpH"/>
+                    <constraint firstAttribute="trailing" secondItem="gLL-L7-BZH" secondAttribute="trailing" constant="15" id="M4w-s1-N6t"/>
+                    <constraint firstItem="SLS-UP-Jgu" firstAttribute="leading" secondItem="PR1-QK-585" secondAttribute="trailing" constant="15" id="MvU-kf-u3P"/>
+                    <constraint firstItem="9xw-Sf-K1b" firstAttribute="centerY" secondItem="jud-1h-NHM" secondAttribute="centerY" id="TPk-O8-0Iw"/>
+                    <constraint firstItem="gLL-L7-BZH" firstAttribute="centerY" secondItem="jud-1h-NHM" secondAttribute="centerY" id="kml-Q4-iXi"/>
+                    <constraint firstItem="PR1-QK-585" firstAttribute="leading" secondItem="9xw-Sf-K1b" secondAttribute="trailing" constant="15" id="lEc-nK-EZs"/>
+                    <constraint firstItem="9xw-Sf-K1b" firstAttribute="leading" secondItem="oNm-YF-LvO" secondAttribute="trailing" constant="10" id="lvI-ej-fSD"/>
+                    <constraint firstItem="oNm-YF-LvO" firstAttribute="leading" secondItem="jud-1h-NHM" secondAttribute="leading" constant="10" id="p3T-Hn-jYk"/>
+                    <constraint firstItem="gLL-L7-BZH" firstAttribute="leading" secondItem="SLS-UP-Jgu" secondAttribute="trailing" constant="15" id="unt-eF-706"/>
+                    <constraint firstAttribute="bottom" secondItem="oNm-YF-LvO" secondAttribute="bottom" constant="5" id="xVe-lO-wa3"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="localeLabel" destination="Hgc-tN-AJt" id="LyW-GJ-XTT"/>
-                <outlet property="noteLabel" destination="tI6-c2-bpE" id="VTT-4j-CeQ"/>
+                <outlet property="localeLabel" destination="9xw-Sf-K1b" id="zUC-IQ-WYJ"/>
+                <outlet property="noteLabel" destination="oNm-YF-LvO" id="ut7-IT-hxq"/>
             </connections>
             <point key="canvasLocation" x="-121.5" y="-12"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="content_copy" width="15" height="17"/>
+        <image name="image_search" width="24" height="20"/>
+        <image name="search" width="17" height="17"/>
+    </resources>
 </document>
