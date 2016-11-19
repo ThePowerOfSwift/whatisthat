@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,8 +19,8 @@
                             <constraint firstAttribute="height" constant="21" id="VDv-j6-10p"/>
                             <constraint firstAttribute="width" constant="180" id="mfL-xu-hCw"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.011764705882352941" green="0.011764705882352941" blue="0.011764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6X-8a-A2V">
@@ -29,13 +28,13 @@
                             <constraint firstAttribute="height" constant="21" id="GvP-TH-fqv"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.01176470588" green="0.01176470588" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="C6X-8a-A2V" firstAttribute="trailing" secondItem="vwP-K3-87g" secondAttribute="trailingMargin" id="BkR-am-1uO"/>
-                    <constraint firstItem="udb-b3-XBA" firstAttribute="leading" secondItem="vwP-K3-87g" secondAttribute="leadingMargin" id="EmX-gI-obB"/>
+                    <constraint firstAttribute="trailing" secondItem="C6X-8a-A2V" secondAttribute="trailing" constant="12" id="4eb-yd-UZ8"/>
+                    <constraint firstItem="udb-b3-XBA" firstAttribute="leading" secondItem="vwP-K3-87g" secondAttribute="leading" constant="30" id="5MQ-e4-Sqv"/>
                     <constraint firstItem="C6X-8a-A2V" firstAttribute="centerY" secondItem="vwP-K3-87g" secondAttribute="centerY" id="J95-jc-O0a"/>
                     <constraint firstItem="C6X-8a-A2V" firstAttribute="leading" secondItem="udb-b3-XBA" secondAttribute="trailing" constant="8" id="Jxy-LH-FQs"/>
                     <constraint firstItem="udb-b3-XBA" firstAttribute="centerY" secondItem="vwP-K3-87g" secondAttribute="centerY" id="yWO-8O-fnJ"/>

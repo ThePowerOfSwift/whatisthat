@@ -15,9 +15,7 @@ protocol TopViewControllerDelegate {
     func gotoResultPage(captureImage: UIImage)
 }
 
-class TopViewController: UIViewController {
-    @IBOutlet weak var corporateLogoView: UIView!
-    @IBOutlet weak var transitionButton: UIButton!
+class TopViewController: UIViewController {    @IBOutlet weak var transitionButton: UIButton!
     
     var cameraView = fromXib(class: CameraView.self)
     let transition = BubbleTransition()
@@ -25,9 +23,6 @@ class TopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 企業ロゴ
-        corporateLogoView.layer.shadowColor = UIColor.white.cgColor
         
         // カメラビュー
         if let cameraView = cameraView {

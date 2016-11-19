@@ -1,14 +1,15 @@
+
 //
-//  ResultHeaderView.swift
+//  PageTitleView.swift
 //  WhatIsThat
 //
-//  Created by 渡邊浩二 on 2016/11/13.
+//  Created by 渡邊浩二 on 2016/11/19.
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
 import UIKit
 
-class SimpleTitleView: UIView {
+class PageTitleView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
 
     /*

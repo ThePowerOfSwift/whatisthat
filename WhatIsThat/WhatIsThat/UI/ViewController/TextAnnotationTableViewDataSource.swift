@@ -32,13 +32,12 @@ class TextAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(30)
+        return CGFloat(40)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = fromXib(class: SimpleTitleView.self)
         headerView?.titleLabel.text = "読み取った文字"
-        headerView?.backgroundView.backgroundColor = UIColor.cyan
         return headerView
     }
 }
