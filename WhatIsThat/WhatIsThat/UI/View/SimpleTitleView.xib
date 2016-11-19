@@ -11,30 +11,35 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moP-O9-yXP">
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZg-dL-N3I">
-                    <frame key="frameInset" minX="10" width="355" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="point" translatesAutoresizingMaskIntoConstraints="NO" id="vSo-ST-Jzf">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="10" id="LjE-KD-vJS"/>
+                        <constraint firstAttribute="height" constant="10" id="nMo-9S-2db"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZg-dL-N3I">
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.01176470588" green="0.01176470588" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="moP-O9-yXP" firstAttribute="leading" secondItem="Ai4-6R-MVL" secondAttribute="leading" id="A4f-Qf-tld"/>
-                <constraint firstAttribute="trailing" secondItem="moP-O9-yXP" secondAttribute="trailing" id="Alg-VP-eNP"/>
-                <constraint firstItem="moP-O9-yXP" firstAttribute="top" secondItem="Ai4-6R-MVL" secondAttribute="top" id="aAn-zq-Y4u"/>
-                <constraint firstAttribute="bottom" secondItem="moP-O9-yXP" secondAttribute="bottom" id="z5M-q2-EbX"/>
+                <constraint firstAttribute="bottom" secondItem="iZg-dL-N3I" secondAttribute="bottom" id="Lmq-dJ-LnX"/>
+                <constraint firstItem="iZg-dL-N3I" firstAttribute="leading" secondItem="vSo-ST-Jzf" secondAttribute="trailing" constant="9" id="PmY-Bw-3J6"/>
+                <constraint firstItem="vSo-ST-Jzf" firstAttribute="leading" secondItem="Ai4-6R-MVL" secondAttribute="leading" constant="18" id="ToM-SA-1l6"/>
+                <constraint firstItem="vSo-ST-Jzf" firstAttribute="centerY" secondItem="Ai4-6R-MVL" secondAttribute="centerY" id="flp-eB-zOf"/>
+                <constraint firstAttribute="trailing" secondItem="iZg-dL-N3I" secondAttribute="trailing" id="iOm-QP-UGe"/>
+                <constraint firstItem="iZg-dL-N3I" firstAttribute="top" secondItem="Ai4-6R-MVL" secondAttribute="top" id="v2G-vM-i3T"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="backgroundView" destination="moP-O9-yXP" id="lzP-5a-hfK"/>
                 <outlet property="titleLabel" destination="iZg-dL-N3I" id="4ny-Ne-wFG"/>
             </connections>
-            <point key="canvasLocation" x="42" y="33"/>
+            <point key="canvasLocation" x="41.5" y="33"/>
         </view>
     </objects>
+    <resources>
+        <image name="point" width="10" height="10"/>
+    </resources>
 </document>

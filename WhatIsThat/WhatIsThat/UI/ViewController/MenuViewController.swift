@@ -31,6 +31,9 @@ class MenuViewController: BaseTableViewController {
     }
     
     func addDataSources() {
+        // ヘッダー
+        addDataSource(dataSource: MenuHeaderTableViewDataSource())
+        
         // このアプリについて
         let info = MenuItemTableViewDataSource()
         info.menuItems = [["title": "このアプリについて", "url": Const.Menu.Url.Information]]

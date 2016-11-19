@@ -94,6 +94,10 @@
 		01BC5A401DD7828F0008170C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC5A3F1DD7828F0008170C /* UIColor+Extension.swift */; };
 		01BC5A421DD782E70008170C /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC5A411DD782E70008170C /* UIApplication+Extension.swift */; };
 		01BC5A441DD7832C0008170C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC5A431DD7832C0008170C /* UIView+Extension.swift */; };
+		01CA323E1DDF6C8800D4D8AD /* BorderTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA323D1DDF6C8800D4D8AD /* BorderTableViewDataSource.swift */; };
+		01CA32401DDF6F0400D4D8AD /* MenuHeaderTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA323F1DDF6F0400D4D8AD /* MenuHeaderTableViewDataSource.swift */; };
+		01CA32421DDF703500D4D8AD /* PageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA32411DDF703500D4D8AD /* PageTitleView.swift */; };
+		01CA32441DDF704600D4D8AD /* PageTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CA32431DDF704600D4D8AD /* PageTitleView.xib */; };
 		01D6EC191DB33972000BDCDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D6EC181DB33972000BDCDD /* AppDelegate.swift */; };
 		01D6EC201DB33972000BDCDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01D6EC1F1DB33972000BDCDD /* Assets.xcassets */; };
 		01D6EC231DB33972000BDCDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D6EC211DB33972000BDCDD /* LaunchScreen.storyboard */; };
@@ -222,6 +226,10 @@
 		01BC5A3F1DD7828F0008170C /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		01BC5A411DD782E70008170C /* UIApplication+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		01BC5A431DD7832C0008170C /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		01CA323D1DDF6C8800D4D8AD /* BorderTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderTableViewDataSource.swift; sourceTree = "<group>"; };
+		01CA323F1DDF6F0400D4D8AD /* MenuHeaderTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuHeaderTableViewDataSource.swift; sourceTree = "<group>"; };
+		01CA32411DDF703500D4D8AD /* PageTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTitleView.swift; sourceTree = "<group>"; };
+		01CA32431DDF704600D4D8AD /* PageTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageTitleView.xib; sourceTree = "<group>"; };
 		01D6EC151DB33972000BDCDD /* WhatIsThat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatIsThat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01D6EC181DB33972000BDCDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01D6EC1F1DB33972000BDCDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -353,6 +361,8 @@
 		01505A8D1DD83FCD007AB57C /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				01CA32411DDF703500D4D8AD /* PageTitleView.swift */,
+				01CA32431DDF704600D4D8AD /* PageTitleView.xib */,
 				01505A8E1DD8406B007AB57C /* SimpleTitleView.swift */,
 				01505A901DD84081007AB57C /* SimpleTitleView.xib */,
 				01505A9A1DD859BB007AB57C /* SimpleImageView.swift */,
@@ -540,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				0192643F1DD382CE00C2DFE0 /* BaseTableViewDataSource.swift */,
+				01CA323D1DDF6C8800D4D8AD /* BorderTableViewDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -556,6 +567,7 @@
 		019850251DDF15FD000C8F55 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				01CA323F1DDF6F0400D4D8AD /* MenuHeaderTableViewDataSource.swift */,
 				019850261DDF1721000C8F55 /* MenuItemTableViewDataSource.swift */,
 			);
 			name = DataSources;
@@ -853,6 +865,7 @@
 			files = (
 				01542E661DC5F2E20050B641 /* WebViewController.storyboard in Resources */,
 				01542E621DC5F2E20050B641 /* ResultViewController.storyboard in Resources */,
+				01CA32441DDF704600D4D8AD /* PageTitleView.xib in Resources */,
 				01D8B06B1DDDEBAA00DA3139 /* FaceViewController.storyboard in Resources */,
 				019264441DD382E200C2DFE0 /* LabelAnnotationTableViewCell.xib in Resources */,
 				01B41D511DD87D98008C75E6 /* SafeSearchAnnotationTableViewCell.xib in Resources */,
@@ -1047,6 +1060,7 @@
 				01D8B0671DDDEB2300DA3139 /* FaceViewController.swift in Sources */,
 				01294AF11DC8E79B0038BB1D /* CloudVisionManager.swift in Sources */,
 				0198501F1DDECE76000C8F55 /* Weather.swift in Sources */,
+				01CA32401DDF6F0400D4D8AD /* MenuHeaderTableViewDataSource.swift in Sources */,
 				01BC5A3E1DD781710008170C /* NSObject+Extension.swift in Sources */,
 				01BC5A421DD782E70008170C /* UIApplication+Extension.swift in Sources */,
 				01542E761DC6420F0050B641 /* LandmarkAnnotation.swift in Sources */,
@@ -1061,10 +1075,12 @@
 				01D8B05F1DDDE83600DA3139 /* KeywordViewController.swift in Sources */,
 				01B41D451DD87267008C75E6 /* LandmarkAnnotationTableViewDataSource.swift in Sources */,
 				01542E741DC63DB90050B641 /* TextAnnotation.swift in Sources */,
+				01CA32421DDF703500D4D8AD /* PageTitleView.swift in Sources */,
 				01B41D561DD896D2008C75E6 /* FaceAnnotationTableViewCell.swift in Sources */,
 				0192643D1DD382AB00C2DFE0 /* BaseTableViewController.swift in Sources */,
 				01B41D5A1DD898C4008C75E6 /* FaceAnnotationTableViewDataSource.swift in Sources */,
 				01505A8F1DD8406B007AB57C /* SimpleTitleView.swift in Sources */,
+				01CA323E1DDF6C8800D4D8AD /* BorderTableViewDataSource.swift in Sources */,
 				01542E781DC79C5D0050B641 /* SafeSearchAnnotation.swift in Sources */,
 				01542E631DC5F2E20050B641 /* ResultViewController.swift in Sources */,
 				01BC5A401DD7828F0008170C /* UIColor+Extension.swift in Sources */,

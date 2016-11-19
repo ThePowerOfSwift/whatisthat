@@ -52,13 +52,12 @@ class FaceAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(30)
+        return CGFloat(40)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = fromXib(class: SimpleTitleView.self)
         headerView?.titleLabel.text = "顔検知"
-        headerView?.backgroundView.backgroundColor = UIColor.orange
         return headerView
     }
 }

@@ -29,13 +29,20 @@ class MenuItemTableViewDataSource: NSObject, BaseTableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(40)
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(20)
+        return CGFloat(40)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Const.Screen.Size.width, height: Const.Screen.Size.height))
-        headerView.backgroundColor = Const.Color.BackGroundGray
+        let headerView = fromXib(class: SimpleTitleView.self)
+        headerView?.backgroundColor = Const.Color.BackGroundAccent
+        if let title = menuItems.first?["title"] as? String {
+            headerView?.titleLabel.text = title + (menuItems.count > 0 ? "等" : "")
+        }
         return headerView
     }
     

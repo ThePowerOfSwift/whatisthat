@@ -178,7 +178,7 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     }
     fileprivate struct MenuItem3: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "顔検出", color: UIColor.lightGray, selectedColor: UIColor.orange, font: UIFont.systemFont(ofSize: 16), selectedFont: UIFont.boldSystemFont(ofSize: 16)))
+            return .text(title: MenuItemText(text: "人物", color: UIColor.lightGray, selectedColor: UIColor.orange, font: UIFont.systemFont(ofSize: 16), selectedFont: UIFont.boldSystemFont(ofSize: 16)))
         }
     }
 }

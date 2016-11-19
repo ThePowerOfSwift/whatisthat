@@ -63,6 +63,10 @@ class BaseTableViewController: UIViewController, BaseTableViewControllerProtocol
     }
     
     // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return datasouces[indexPath.section].tableView?(tableView, heightForRowAt: indexPath) ?? 0
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return datasouces[section].tableView?(tableView, heightForHeaderInSection: 0) ?? 0
     }
