@@ -64,7 +64,7 @@ class SimpleImageView: UIView {
         weatherButton.force = 1.5
         weatherButton.duration = 0.5
         weatherButton.animate()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.weatherImageView.image = WeatherMapManager.getWeatherIcon()
         }
     }

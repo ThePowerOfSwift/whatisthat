@@ -18,6 +18,7 @@ class ResultViewController: UIViewController {
     let headerView  = fromXib(class: SimpleImageView.self)
     var locationManager: CLLocationManager?
     var tappedImage: UIImage? = nil
+    var isShownWeatherButton: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,12 +148,14 @@ extension ResultViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let latitude  = manager.location?.coordinate.latitude else { return }
         guard let longitude = manager.location?.coordinate.longitude else { return }
+        guard isShownWeatherButton == false else { return }
         
+        isShownWeatherButton = true
+        self.locationManager?.stopUpdatingLocation()
         WeatherMapManager().getData(latitude: latitude, longitude: longitude) { (response) in
             switch response {
             case .success:
                 print("WeatherMap API request is succeeded.")
-                self.locationManager?.stopUpdatingLocation()
                 self.showWeatherButton()
             case .failure(let error):
                 print(error)
