@@ -1,10 +1,8 @@
 PODS:
-  - MMPopLabel (0.1.3)
   - PagingMenuController (2.0.0)
   - Spring (1.0.3)
 
 DEPENDENCIES:
-  - MMPopLabel
   - PagingMenuController
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
 
@@ -19,10 +17,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
-  MMPopLabel: d9909f18cacd5200f005ef3f0790c9490357b57a
   PagingMenuController: 60602bfb5421d6536c1e3097baeed601dec1d85b
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
 
-PODFILE CHECKSUM: 09196457871818ecee8c56c893b723fb191df9b3
+PODFILE CHECKSUM: f7271893b904b32f2393bebd3a2770bde6aa3bb6
 
 COCOAPODS: 1.0.1

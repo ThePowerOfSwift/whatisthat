@@ -39,7 +39,7 @@ struct Const {
         struct Url {
             static let Base        = "https://whatisthat-d17d1.firebaseapp.com"
             static let Contact     = "\(Menu.Url.Base)/contact.html"
-            static let Information = "\(Menu.Url.Base)/service.html"
+            static let Information = "\(Menu.Url.Base)"
             static let Licence     = "\(Menu.Url.Base)/licence.html"
             static let Privacy     = "\(Menu.Url.Base)/privacy.html"
             static let TermsOfUse  = "\(Menu.Url.Base)/termsOfUse.html"
