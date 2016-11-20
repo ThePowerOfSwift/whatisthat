@@ -34,9 +34,7 @@ class OcrViewController: BaseTableViewController {
     }
     
     @objc func updateData() {
-        let text = TextAnnotationTableViewDataSource()
-        text.delegate = self
-        self.addDataSource(dataSource: text)
+        self.addDataSource(dataSource: TextAnnotationTableViewDataSource())
         tableView?.reloadData()
     }
 }

@@ -11,7 +11,6 @@ import UIKit
 class TextAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     internal var viewClasses: [UITableViewCell.Type]? = [TextAnnotationTableViewCell.self, NoDataTableViewCell.self]
     let results = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.textAnnotations
-    var delegate: UIViewController?
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,6 +56,6 @@ extension TextAnnotationTableViewDataSource: TextAnnotationTableViewCellDelegate
         print("vc.requestUrl=\(vc.requestUrl)")
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         vc.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
-        delegate?.present(vc, animated: false, completion: nil)
+        UIApplication.shared.topViewController?.present(vc, animated: false, completion: nil)
     }
 }

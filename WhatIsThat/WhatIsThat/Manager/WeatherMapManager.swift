@@ -12,8 +12,8 @@ import RealmSwift
 import UIKit
 
 class WeatherMapManager: NSObject {
-    func getData(cityname: String, completion: @escaping (ApiResult) -> Void) {
-        let router = ApiRouter.weatherMap(cityname)
+    func getData(latitude: Double, longitude: Double, completion: @escaping (ApiResult) -> Void) {
+        let router = ApiRouter.weatherMap(latitude, longitude)
         ApiManager.sharedInstance.request(router, mapping: WeatherMap()) { (response) in
             switch response {
             case .success(let value):
@@ -24,5 +24,27 @@ class WeatherMapManager: NSObject {
                 completion(ApiResult.failure(error))
             }
         }
+    }
+    
+    static func getWeatherIcon() -> UIImage? {
+        guard let result = RealmManager.get(WeatherMap.self, key: 0) else { return nil }
+        guard let weather = result.list.first?.weather.first?.note.lowercased() else { return nil }
+        let imageFileName: String
+        if weather.contains("clear") {
+            imageFileName = "sunny"
+        } else if weather == "light rain" {
+            imageFileName = "light_rain"
+        } else if weather.hasSuffix("rain") {
+            imageFileName = "lower"
+        } else if weather.contains("snow") {
+            imageFileName = "snow"
+        } else if weather.contains("lightning") {
+            imageFileName = "lightning"
+        } else if weather.contains("partly") {
+            imageFileName = "partly_cloudy"
+        } else {
+            imageFileName = "cloudy"
+        }
+        return UIImage(named: imageFileName)
     }
 }

@@ -8,7 +8,7 @@
         <!--Keyword View Controller-->
         <scene sceneID="wE6-TM-my7">
             <objects>
-                <viewController storyboardIdentifier="KeywordViewController" id="6ZQ-cj-qyi" customClass="KeywordViewController" customModule="WhatIsThat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="KeywordViewController" storyboardIdentifier="KeywordViewController" id="6ZQ-cj-qyi" customClass="KeywordViewController" customModule="WhatIsThat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x80-Ob-m53"/>
                         <viewControllerLayoutGuide type="bottom" id="EGo-sx-C0y"/>

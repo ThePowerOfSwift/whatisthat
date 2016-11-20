@@ -17,14 +17,14 @@ protocol router {
 enum ApiRouter: URLRequestConvertible, router {
     
     case cloudVision([String: Any])
-    case weatherMap(String)
+    case weatherMap(Double, Double)
     
     var path: String {
         switch self {
         case .cloudVision(_):
             return "https://vision.googleapis.com/v1/images:annotate?key=\(Const.API.CloudVision.ApiKey)"
-        case .weatherMap(let cityname):
-            return "http://api.openweathermap.org/data/2.5/forecast?APPID=\(Const.API.WeatherMap.ApiKey)&q=\(cityname),jp"
+        case .weatherMap(let latitude, let longitude):
+            return "http://api.openweathermap.org/data/2.5/forecast?APPID=\(Const.API.WeatherMap.ApiKey)&lat=\(latitude)&lon=\(longitude)"
         }
     }
 

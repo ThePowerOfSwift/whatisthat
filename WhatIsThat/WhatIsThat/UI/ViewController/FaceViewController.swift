@@ -34,11 +34,7 @@ class FaceViewController: BaseTableViewController {
     }
     
     @objc func updateData() {
-        // Face
-        let face = FaceAnnotationTableViewDataSource()
-        addDataSource(dataSource: face)
-        
-        // reloadData
+        addDataSource(dataSource: FaceAnnotationTableViewDataSource())
         tableView?.reloadData()
     }
 }
