@@ -8,7 +8,7 @@
         <!--Result View Controller-->
         <scene sceneID="r8T-Vu-DIK">
             <objects>
-                <viewController storyboardIdentifier="ResultViewController" id="8fJ-KD-lKh" customClass="ResultViewController" customModule="WhatIsThat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ResultViewController" storyboardIdentifier="ResultViewController" id="8fJ-KD-lKh" customClass="ResultViewController" customModule="WhatIsThat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lUa-df-b7c"/>
                         <viewControllerLayoutGuide type="bottom" id="zaz-hI-SYd"/>

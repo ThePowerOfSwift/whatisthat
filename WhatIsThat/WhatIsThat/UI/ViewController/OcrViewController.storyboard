@@ -8,7 +8,7 @@
         <!--Ocr View Controller-->
         <scene sceneID="CPa-tv-1DB">
             <objects>
-                <viewController storyboardIdentifier="OcrViewController" id="wDp-vV-cSs" customClass="OcrViewController" customModule="WhatIsThat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="OcrViewController" storyboardIdentifier="OcrViewController" id="wDp-vV-cSs" customClass="OcrViewController" customModule="WhatIsThat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7u8-pd-lVR"/>
                         <viewControllerLayoutGuide type="bottom" id="Rg7-4N-6Sk"/>

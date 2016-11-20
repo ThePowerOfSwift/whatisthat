@@ -8,7 +8,7 @@
         <!--Face View Controller-->
         <scene sceneID="aZz-yb-umv">
             <objects>
-                <viewController storyboardIdentifier="FaceViewController" id="WE6-rI-lDc" customClass="FaceViewController" customModule="WhatIsThat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="FaceViewController" storyboardIdentifier="FaceViewController" id="WE6-rI-lDc" customClass="FaceViewController" customModule="WhatIsThat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hIv-cU-mbY"/>
                         <viewControllerLayoutGuide type="bottom" id="t7X-eg-lo5"/>

@@ -11,7 +11,6 @@ import UIKit
 class LandmarkAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     internal var viewClasses: [UITableViewCell.Type]? = [LandmarkAnnotationTableViewCell.self, NoDataTableViewCell.self]
     let results = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.landmarkAnnotations
-    var delegate: UIViewController?
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,6 +52,6 @@ extension LandmarkAnnotationTableViewDataSource: LandmarkAnnotationTableViewCell
         print("vc.requestUrl=\(vc.requestUrl)")
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         vc.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
-        delegate?.present(vc, animated: false, completion: nil)
+        UIApplication.shared.topViewController?.present(vc, animated: false, completion: nil)
     }
 }

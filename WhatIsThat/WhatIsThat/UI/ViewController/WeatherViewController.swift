@@ -9,14 +9,17 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
-    @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var mainImageView: UIImageView!
-    
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var cloud: UILabel!
-    @IBOutlet weak var wind: UILabel!
-    
+    @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var weatherImageView: UIImageView!
+    @IBOutlet weak var windSpeedLabel: UILabel!
+    @IBOutlet weak var closeButton: UIButton!
+
     var tappedImage: UIImage? = nil
     
     override func viewDidLoad() {
@@ -25,12 +28,8 @@ class WeatherViewController: UIViewController {
         // Set main image
         mainImageView.image = tappedImage
         
-        // Loading Indicator
-        view.bringSubview(toFront: loadingView)
-        view.bringSubview(toFront: contentView)
-        
-        // API Request
-        loadData()
+        // Show Weather Information
+        showWeather()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,45 +37,26 @@ class WeatherViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadData() {
-        loadingView.isHidden = false
-        WeatherMapManager().getData(cityname: "Tokyo") { (response) in
-            switch response {
-            case .success:
-                print("WeatherMap API request is succeeded.")
-                self.updateDisplay()
-            case .failure(let error):
-                print(error)
-                self.showAlert()
-            }
-            self.loadingView.isHidden = true
-        }
+    @IBAction func tappedCloseButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
-    func updateDisplay() {
+    func showWeather() {
         contentView.isHidden = false
-        guard let result = RealmManager.get(WeatherMap.self, key: 0) else { return }
-        print("result=\(result)")
-        name.text = result.name
-        cloud.text = "最低気温：\(result.list.first?.tempMin)"
-        wind.text = "天気：\(result.list.first?.weather.first?.note)"
-    }
-    
-    func showAlert() {
-        let alert = UIAlertController(
-            title: "通信エラー",
-            message: "データの取得に失敗しました。\n\n電波状況をお確かめの上、\n再度ご利用ください。",
-            preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "リトライ",
-                                      style: .default,
-                                      handler:{ action in
-                                        self.loadData()
-        }))
-        alert.addAction(UIAlertAction(title: "戻る",
-                                      style: .cancel,
-                                      handler:{ action in
-                                        self.dismiss(animated: false, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
+        guard let result   = RealmManager.get(WeatherMap.self, key: 0) else { return }
+        guard let temp     = result.list.first?.temp    else { return }
+        guard let humidity = result.list.first?.humidity else { return }
+        guard let pressure = result.list.first?.pressure else { return }
+        guard let weather = result.list.first?.weather.first?.note else { return }
+        guard let windSpeed = result.list.first?.windSpeed else { return }
+        
+        print("weather=\(weather)")
+        weatherImageView.image = WeatherMapManager.getWeatherIcon()
+        locationLabel.text = result.name
+        dateLabel.text = Date().toString(format: "yyyy年MM月dd日(EEE)")
+        temperatureLabel.text = "\(String(format: "%.01f", (CGFloat(temp) - 273.15)))℃"
+        humidityLabel.text    = "\(humidity)%"
+        windSpeedLabel.text   = "\(windSpeed)m/s"
+        pressureLabel.text    = "\(pressure)hpa"
     }
 }

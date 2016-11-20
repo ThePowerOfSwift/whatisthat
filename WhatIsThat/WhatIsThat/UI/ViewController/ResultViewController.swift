@@ -6,6 +6,7 @@
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
+import CoreLocation
 import ObjectMapper
 import RealmSwift
 import UIKit
@@ -15,7 +16,9 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var loadingView: UIView!
 
     let headerView  = fromXib(class: SimpleImageView.self)
+    var locationManager: CLLocationManager?
     var tappedImage: UIImage? = nil
+    var isShownWeatherButton: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +44,6 @@ class ResultViewController: UIViewController {
     func createHeaderView() {
         if let headerView = headerView {
             headerView.mainImage = tappedImage
-            headerView.delegate = self
             view.addSubview(headerView)
         }
     }
@@ -67,11 +69,12 @@ class ResultViewController: UIViewController {
             switch response {
             case .success:
                 print("Cloud vision API request is succeeded.")
-                self.updateSafeSearchRate()
                 let nc = NotificationCenter.default
                 nc.post(name: Notification.Name(rawValue:"updateKeywordData"), object: nil)
                 nc.post(name: Notification.Name(rawValue:"updateOcrData"), object: nil)
                 nc.post(name: Notification.Name(rawValue:"updateFaceData"), object: nil)
+                self.showSafeSearchRate()
+                self.showWeatherButtonIfNeeded()
             case .failure(let error):
                 print(error)
                 self.showAlert()
@@ -80,7 +83,7 @@ class ResultViewController: UIViewController {
         }
     }
     
-    func updateSafeSearchRate() {
+    func showSafeSearchRate() {
         guard let safeSearchAnnotation = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.safeSearchAnnotation else { return }
         var safeRate = 0
         if let adult = SafeSearchLikelyHood(rawValue: safeSearchAnnotation.adult) {
@@ -100,7 +103,29 @@ class ResultViewController: UIViewController {
         headerView?.safeRate = safeRate * 5
     }
     
-    func showAlert() {
+    func showWeatherButton() {
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name(rawValue:"showWeatherIcon"), object: nil)
+    }
+    
+    private func showWeatherButtonIfNeeded() {
+        let results = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.labelAnnotations
+        var isNeedWeatherInfo = false
+        results?.forEach({ (result) in
+            if result.note.lowercased() == "sky" {
+                isNeedWeatherInfo = true
+                return
+            }
+        })
+        guard isNeedWeatherInfo else { return }
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
+    }
+    
+    private func showAlert() {
         let alert = UIAlertController(
             title: "通信エラー",
             message: "データの取得に失敗しました。\n\n電波状況をお確かめの上、\n再度ご利用ください。",
@@ -119,9 +144,27 @@ class ResultViewController: UIViewController {
     }
 }
 
-extension ResultViewController: SimpleImageViewDelegate {
-    func tappedCancelButton() {
-        dismiss(animated: false, completion: nil)
+extension ResultViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let latitude  = manager.location?.coordinate.latitude else { return }
+        guard let longitude = manager.location?.coordinate.longitude else { return }
+        guard isShownWeatherButton == false else { return }
+        
+        isShownWeatherButton = true
+        self.locationManager?.stopUpdatingLocation()
+        WeatherMapManager().getData(latitude: latitude, longitude: longitude) { (response) in
+            switch response {
+            case .success:
+                print("WeatherMap API request is succeeded.")
+                self.showWeatherButton()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
+        print("error")
     }
 }
 
@@ -192,11 +235,13 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
             return .text(title: MenuItemText(text: "OCR", color: Const.Color.MenuItemText, selectedColor: Const.Color.MenuItemTitle, font: UIFont.boldSystemFont(ofSize: 12), selectedFont: UIFont.boldSystemFont(ofSize: 12)))
         }
     }
+    
     fileprivate struct MenuItem2: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
             return .text(title: MenuItemText(text: "キーワード", color: Const.Color.MenuItemText, selectedColor: Const.Color.MenuItemTitle, font: UIFont.boldSystemFont(ofSize: 12), selectedFont: UIFont.boldSystemFont(ofSize: 12)))
         }
     }
+    
     fileprivate struct MenuItem3: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
             return .text(title: MenuItemText(text: "人物", color: Const.Color.MenuItemText, selectedColor: Const.Color.MenuItemTitle, font: UIFont.boldSystemFont(ofSize: 12), selectedFont: UIFont.boldSystemFont(ofSize: 12)))

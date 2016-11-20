@@ -33,28 +33,11 @@ class KeywordViewController: BaseTableViewController {
     }
     
     @objc func updateData() {
-        // Label
-        let label = LabelAnnotationTableViewDataSource()
-        label.delegate = self
-        self.addDataSource(dataSource: label)
-        
-        // Border
+        self.addDataSource(dataSource: LabelAnnotationTableViewDataSource())
         self.addDataSource(dataSource: BorderTableViewDataSource())
-        
-        // Logo
-        let logo = LogoAnnotationTableViewDataSource()
-        logo.delegate = self
-        self.addDataSource(dataSource: logo)
-        
-        // Border
+        self.addDataSource(dataSource: LogoAnnotationTableViewDataSource())
         self.addDataSource(dataSource: BorderTableViewDataSource())
-        
-        // Landmark
-        let landmark = LandmarkAnnotationTableViewDataSource()
-        landmark.delegate = self
-        self.addDataSource(dataSource: landmark)
-        
-        // reloadData
+        self.addDataSource(dataSource: LandmarkAnnotationTableViewDataSource())
         tableView?.reloadData()
     }
 }

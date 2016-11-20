@@ -99,10 +99,10 @@ extension TopViewController: UIImagePickerControllerDelegate, UINavigationContro
 // MARK: - TopViewControllerDelegate
 extension TopViewController: TopViewControllerDelegate {
     func gotoResultPage(captureImage: UIImage) {
-        let vc = fromStoryboard(class: ResultViewController.self)
-        vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        vc?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
-        vc?.tappedImage = captureImage
-        present(vc!, animated: true, completion: nil)
+        guard let vc = fromStoryboard(class: ResultViewController.self) else { return }
+        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        vc.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
+        vc.tappedImage = captureImage
+        present(vc, animated: true, completion: nil)
     }
 }
