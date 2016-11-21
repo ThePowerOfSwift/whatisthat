@@ -23,12 +23,6 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dka-QB-SC5" userLabel="Loading">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drA-kt-Fx8">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="4G2-cR-spD"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="EMs-1p-KCN"/>
-                                            <constraint firstAttribute="height" constant="60" id="JyN-Ke-dAD"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="uy1-YX-zn0"/>
-                                        </constraints>
                                         <string key="text">ただいま画像解析中…
 しばらくお待ちください。</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -36,15 +30,15 @@
                                     </label>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WvW-ZH-WFJ">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="37" id="g3p-C3-W6F"/>
-                                            <constraint firstAttribute="width" constant="37" id="ih1-SV-lu9"/>
+                                            <constraint firstAttribute="width" constant="37" id="JIm-8Y-xVX"/>
+                                            <constraint firstAttribute="height" constant="37" id="jZt-Re-f62"/>
                                         </constraints>
                                         <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※回線状況等により、1分ほどかかる場合がございます。" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sy3-Ov-z3H">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="DrA-ZJ-6AQ"/>
-                                            <constraint firstAttribute="width" constant="263" id="HWb-VF-RL8"/>
+                                            <constraint firstAttribute="width" constant="256.5" id="tQr-r2-ouy"/>
+                                            <constraint firstAttribute="height" constant="12" id="vih-tr-TcK"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <nil key="textColor"/>
@@ -53,15 +47,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="60G-cK-fAf"/>
-                                    <constraint firstAttribute="bottom" secondItem="Sy3-Ov-z3H" secondAttribute="bottom" id="7j1-bf-xpz"/>
+                                    <constraint firstItem="Sy3-Ov-z3H" firstAttribute="top" secondItem="WvW-ZH-WFJ" secondAttribute="bottom" constant="100" id="280-tC-WSo"/>
+                                    <constraint firstAttribute="bottom" secondItem="Sy3-Ov-z3H" secondAttribute="bottom" constant="80" id="7j1-bf-xpz"/>
                                     <constraint firstItem="WvW-ZH-WFJ" firstAttribute="centerX" secondItem="Dka-QB-SC5" secondAttribute="centerX" id="Je6-sc-wAa"/>
-                                    <constraint firstItem="drA-kt-Fx8" firstAttribute="top" secondItem="Dka-QB-SC5" secondAttribute="top" id="M5z-mE-RZz"/>
+                                    <constraint firstItem="WvW-ZH-WFJ" firstAttribute="top" secondItem="drA-kt-Fx8" secondAttribute="bottom" constant="50" id="SGa-Jc-mmB"/>
                                     <constraint firstItem="drA-kt-Fx8" firstAttribute="centerX" secondItem="Dka-QB-SC5" secondAttribute="centerX" id="XgK-43-UV9"/>
-                                    <constraint firstItem="drA-kt-Fx8" firstAttribute="top" secondItem="Dka-QB-SC5" secondAttribute="top" id="YTA-1k-8Ks"/>
-                                    <constraint firstItem="WvW-ZH-WFJ" firstAttribute="centerY" secondItem="Dka-QB-SC5" secondAttribute="centerY" id="Zvp-VL-jjN"/>
-                                    <constraint firstAttribute="height" constant="200" id="aCY-bs-R1j"/>
                                     <constraint firstItem="Sy3-Ov-z3H" firstAttribute="centerX" secondItem="Dka-QB-SC5" secondAttribute="centerX" id="cNs-e3-5XU"/>
+                                    <constraint firstAttribute="trailing" secondItem="drA-kt-Fx8" secondAttribute="trailing" id="hdF-1Z-K8q"/>
                                     <constraint firstItem="drA-kt-Fx8" firstAttribute="leading" secondItem="Dka-QB-SC5" secondAttribute="leading" id="xwE-oi-Fct"/>
                                 </constraints>
                             </view>
@@ -69,11 +61,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fHp-aQ-rUK" firstAttribute="leading" secondItem="Y0U-xi-ymf" secondAttribute="leading" id="1fH-0T-pq5"/>
-                            <constraint firstItem="zaz-hI-SYd" firstAttribute="top" secondItem="Dka-QB-SC5" secondAttribute="bottom" constant="100" id="6mL-WQ-Y50"/>
+                            <constraint firstItem="Dka-QB-SC5" firstAttribute="top" secondItem="lUa-df-b7c" secondAttribute="bottom" constant="100" id="9Qk-gF-x9w"/>
                             <constraint firstAttribute="trailing" secondItem="fHp-aQ-rUK" secondAttribute="trailing" id="Idi-18-Lgx"/>
+                            <constraint firstAttribute="trailing" secondItem="Dka-QB-SC5" secondAttribute="trailing" id="aRb-fD-Kyb"/>
+                            <constraint firstItem="Dka-QB-SC5" firstAttribute="leading" secondItem="Y0U-xi-ymf" secondAttribute="leading" id="aUy-Ej-F5v"/>
                             <constraint firstItem="fHp-aQ-rUK" firstAttribute="top" secondItem="Y0U-xi-ymf" secondAttribute="top" id="fgh-cJ-eyA"/>
+                            <constraint firstItem="zaz-hI-SYd" firstAttribute="top" secondItem="Dka-QB-SC5" secondAttribute="bottom" id="fm2-9v-9TX"/>
                             <constraint firstItem="zaz-hI-SYd" firstAttribute="top" secondItem="fHp-aQ-rUK" secondAttribute="bottom" id="k5f-cH-3mt"/>
-                            <constraint firstItem="Dka-QB-SC5" firstAttribute="centerX" secondItem="Y0U-xi-ymf" secondAttribute="centerX" id="vmV-Ei-p1t"/>
                         </constraints>
                     </view>
                     <connections>

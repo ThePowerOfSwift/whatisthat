@@ -13,7 +13,6 @@ end
 target 'WhatIsThat' do
 #    pod "LTMorphingLabel", :git => "https://github.com/lexrus/LTMorphingLabel", :branch => "swift3"
   pod 'PagingMenuController'
-  pod "MMPopLabel"
   pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 end
 
