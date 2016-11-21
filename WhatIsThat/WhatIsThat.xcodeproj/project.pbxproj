@@ -68,6 +68,7 @@
 		0170FFDE1DBFA60C00B9C12F /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170FFDD1DBFA60C00B9C12F /* UIImage+Extension.swift */; };
 		0175330E1DCAC35200876A50 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0175330D1DCAC35200876A50 /* ApiManager.swift */; };
 		018696741DE0BF3600D05229 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018696731DE0BF3600D05229 /* CoreLocation.framework */; };
+		018870791DE33FAE00C3F4D2 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018870781DE33FAE00C3F4D2 /* GlobalFunctions.swift */; };
 		019264351DD381CC00C2DFE0 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019264341DD381CC00C2DFE0 /* UITableView+Extension.swift */; };
 		0192643D1DD382AB00C2DFE0 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0192643C1DD382AB00C2DFE0 /* BaseTableViewController.swift */; };
 		019264401DD382CE00C2DFE0 /* BaseTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0192643F1DD382CE00C2DFE0 /* BaseTableViewDataSource.swift */; };
@@ -202,6 +203,7 @@
 		0170FFDD1DBFA60C00B9C12F /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIImage+Extension.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0175330D1DCAC35200876A50 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ApiManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		018696731DE0BF3600D05229 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		018870781DE33FAE00C3F4D2 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		019264341DD381CC00C2DFE0 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		0192643C1DD382AB00C2DFE0 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		0192643F1DD382CE00C2DFE0 /* BaseTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 			children = (
 				01D6EC1F1DB33972000BDCDD /* Assets.xcassets */,
 				01D6EC4C1DB340F1000BDCDD /* Const.swift */,
+				018870781DE33FAE00C3F4D2 /* GlobalFunctions.swift */,
 				01D6EC211DB33972000BDCDD /* LaunchScreen.storyboard */,
 			);
 			name = Resources;
@@ -1091,6 +1094,7 @@
 				0175330E1DCAC35200876A50 /* ApiManager.swift in Sources */,
 				019264401DD382CE00C2DFE0 /* BaseTableViewDataSource.swift in Sources */,
 				01B41D481DD876ED008C75E6 /* TextAnnotationTableViewCell.swift in Sources */,
+				018870791DE33FAE00C3F4D2 /* GlobalFunctions.swift in Sources */,
 				01E5DCD61DE0AAD90060ECE4 /* NSDate+Extension.swift in Sources */,
 				01542E611DC5F2E20050B641 /* MenuViewController.swift in Sources */,
 				019850231DDEE34F000C8F55 /* WeatherList.swift in Sources */,

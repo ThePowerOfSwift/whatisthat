@@ -65,7 +65,7 @@ class ResultViewController: UIViewController {
         guard let tappedImage = tappedImage else { return }
         
         loadingView.isHidden = false
-        CloudVisionManager().getData(image: tappedImage) { (response) in
+        CloudVisionManager().getData(image: tappedImage) { [weak self] (response) in
             switch response {
             case .success:
                 print("Cloud vision API request is succeeded.")
@@ -73,13 +73,13 @@ class ResultViewController: UIViewController {
                 nc.post(name: Notification.Name(rawValue:"updateKeywordData"), object: nil)
                 nc.post(name: Notification.Name(rawValue:"updateOcrData"), object: nil)
                 nc.post(name: Notification.Name(rawValue:"updateFaceData"), object: nil)
-                self.showSafeSearchRate()
-                self.showWeatherButtonIfNeeded()
+                self?.showSafeSearchRate()
+                self?.showWeatherButtonIfNeeded()
             case .failure(let error):
                 print(error)
-                self.showAlert()
+                self?.showAlert()
             }
-            self.loadingView.isHidden = true
+            self?.loadingView.isHidden = true
         }
     }
     
@@ -112,7 +112,8 @@ class ResultViewController: UIViewController {
         let results = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.labelAnnotations
         var isNeedWeatherInfo = false
         results?.forEach({ (result) in
-            if result.note.lowercased() == "sky" {
+            let keyword = result.note.lowercased()
+            if keyword == "sky" || keyword == "blue" {
                 isNeedWeatherInfo = true
                 return
             }
@@ -152,11 +153,11 @@ extension ResultViewController: CLLocationManagerDelegate {
         
         isShownWeatherButton = true
         self.locationManager?.stopUpdatingLocation()
-        WeatherMapManager().getData(latitude: latitude, longitude: longitude) { (response) in
+        WeatherMapManager().getData(latitude: latitude, longitude: longitude) { [weak self] (response) in
             switch response {
             case .success:
                 print("WeatherMap API request is succeeded.")
-                self.showWeatherButton()
+                self?.showWeatherButton()
             case .failure(let error):
                 print(error)
             }

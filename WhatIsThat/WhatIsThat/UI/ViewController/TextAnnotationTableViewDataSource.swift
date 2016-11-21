@@ -52,6 +52,7 @@ class TextAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
 extension TextAnnotationTableViewDataSource: TextAnnotationTableViewCellDelegate {
     func gotoSearchPage(keyword: String, isImageSearch: Bool) {
         guard let vc = fromStoryboard(class: WebViewController.self) else { return }
+        guard let keyword = keyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         vc.requestUrl = "https://google.co.jp/search?hl=ja&q=" + keyword + (isImageSearch ? "&tbm=isch" : "")
         print("vc.requestUrl=\(vc.requestUrl)")
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
