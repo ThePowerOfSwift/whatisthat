@@ -112,7 +112,8 @@ class ResultViewController: UIViewController {
         let results = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.labelAnnotations
         var isNeedWeatherInfo = false
         results?.forEach({ (result) in
-            if result.note.lowercased() == "sky" {
+            let keyword = result.note.lowercased()
+            if keyword == "sky" || keyword == "blue" {
                 isNeedWeatherInfo = true
                 return
             }
