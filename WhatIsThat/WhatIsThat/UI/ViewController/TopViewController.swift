@@ -10,8 +10,9 @@ import BubbleTransition
 import UIKit
 import ObjectMapper
 import Realm
+import Photos
 
-protocol TopViewControllerDelegate {
+protocol TopViewControllerDelegate: class {
     func gotoResultPage(captureImage: UIImage)
 }
 
@@ -20,6 +21,8 @@ class TopViewController: UIViewController {    @IBOutlet weak var transitionButt
     var cameraView = fromXib(class: CameraView.self)
     let transition = BubbleTransition()
     let imagePicker = UIImagePickerController()
+    var latitude: Double?
+    var longitude: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,14 +88,29 @@ extension TopViewController: UIViewControllerTransitioningDelegate {
 // MARK: - UINavigationControllerDelegate
 extension TopViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        dismiss(animated: true, completion: nil)
+        guard picker.sourceType == UIImagePickerControllerSourceType.photoLibrary else { return }
+        getLocationFromPhotoLibrary(info: info)
+        
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            dismiss(animated: true, completion: nil)
             gotoResultPage(captureImage: pickedImage)
         }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func getLocationFromPhotoLibrary(info: [String : Any]) {
+        guard UserDefaults.standard.isUseLocationFromImage else { return }
+        guard let url = info[UIImagePickerControllerReferenceURL] as? URL else { return }
+        print("photo url=\(url)")
+        let fetchResult = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
+        let asset = fetchResult.firstObject
+        let coordinate = asset?.location
+        print("photo coordinate=\(coordinate)")
+        longitude = coordinate?.coordinate.longitude
+        latitude  = coordinate?.coordinate.latitude
     }
 }
 
@@ -103,6 +121,8 @@ extension TopViewController: TopViewControllerDelegate {
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         vc.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
         vc.tappedImage = captureImage
+        vc.longitude = longitude
+        vc.latitude = latitude
         present(vc, animated: true, completion: nil)
     }
 }

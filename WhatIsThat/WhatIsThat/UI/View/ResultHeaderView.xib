@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="6vJ-Jj-Uwg" customClass="SimpleImageView" customModule="WhatIsThat" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="6vJ-Jj-Uwg" userLabel="Result Header View" customClass="ResultHeaderView" customModule="WhatIsThat" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -81,9 +81,9 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Xpu-Jj-SY9" secondAttribute="bottom" id="HUe-dE-Y7h"/>
                 <constraint firstItem="Xpu-Jj-SY9" firstAttribute="top" secondItem="6vJ-Jj-Uwg" secondAttribute="top" id="IKu-C9-dNH"/>
-                <constraint firstItem="5pa-iC-D2j" firstAttribute="top" secondItem="6vJ-Jj-Uwg" secondAttribute="top" constant="10" id="P7g-aL-Dxe"/>
+                <constraint firstItem="5pa-iC-D2j" firstAttribute="top" secondItem="6vJ-Jj-Uwg" secondAttribute="top" constant="20" id="P7g-aL-Dxe"/>
                 <constraint firstItem="dqU-Pv-5zS" firstAttribute="centerX" secondItem="6vJ-Jj-Uwg" secondAttribute="centerX" constant="5" id="UwX-zD-GqP"/>
-                <constraint firstAttribute="trailing" secondItem="5pa-iC-D2j" secondAttribute="trailing" constant="10" id="kSn-bG-QxY"/>
+                <constraint firstAttribute="trailing" secondItem="5pa-iC-D2j" secondAttribute="trailing" constant="5" id="kSn-bG-QxY"/>
                 <constraint firstItem="sgD-9p-tHT" firstAttribute="leading" secondItem="dqU-Pv-5zS" secondAttribute="leading" constant="10" id="mIG-dl-cZ0"/>
                 <constraint firstItem="sgD-9p-tHT" firstAttribute="centerY" secondItem="dqU-Pv-5zS" secondAttribute="centerY" id="mJ5-JL-FVO"/>
                 <constraint firstItem="Xpu-Jj-SY9" firstAttribute="leading" secondItem="6vJ-Jj-Uwg" secondAttribute="leading" id="mJI-fS-pmp"/>

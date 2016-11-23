@@ -15,10 +15,11 @@ struct Const {
         static let BackGroundLightGray   = UIColor(hex: 0xB9B9B9, alpha: 1.0)
         static let BackGroundAccent      = UIColor(hex: 0xFF9600, alpha: 1.0)
         static let BackGroundLightAccent = UIColor(hex: 0xFFF2DF, alpha: 1.0)
+        static let MenuItemAccent        = UIColor(hex: 0xFF9600, alpha: 1.0)
+        static let MenuItemBorder        = UIColor(hex: 0xFF9600, alpha: 1.0)
         static let MenuItemTitleBorder   = UIColor(hex: 0xFF9600, alpha: 1.0)
         static let MenuItemTitle         = UIColor(hex: 0x030303, alpha: 1.0)
         static let MenuItemText          = UIColor(hex: 0x8F8E94, alpha: 1.0)
-        static let MenuItemBorder        = UIColor(hex: 0xFF9600, alpha: 1.0)
     }
     struct Screen {
         static let Size = UIScreen.main.bounds.size

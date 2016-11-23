@@ -12,13 +12,19 @@ import RealmSwift
 import UIKit
 import PagingMenuController
 
+protocol ResultViewControllerDelegate: class {
+    func gotoWeatherPage()
+}
+
 class ResultViewController: UIViewController {
     @IBOutlet weak var loadingView: UIView!
 
-    let headerView  = fromXib(class: SimpleImageView.self)
+    let headerView = fromXib(class: ResultHeaderView.self)
     var locationManager: CLLocationManager?
     var tappedImage: UIImage? = nil
     var isShownWeatherButton: Bool = false
+    var latitude: Double?
+    var longitude: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +50,7 @@ class ResultViewController: UIViewController {
     func createHeaderView() {
         if let headerView = headerView {
             headerView.mainImage = tappedImage
+            headerView.delegate = self
             view.addSubview(headerView)
         }
     }
@@ -103,27 +110,50 @@ class ResultViewController: UIViewController {
         headerView?.safeRate = safeRate * 5
     }
     
-    func showWeatherButton() {
-        let nc = NotificationCenter.default
-        nc.post(name: Notification.Name(rawValue:"showWeatherIcon"), object: nil)
-    }
-    
-    private func showWeatherButtonIfNeeded() {
-        let results = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.labelAnnotations
-        var isNeedWeatherInfo = false
-        results?.forEach({ (result) in
-            let keyword = result.note.lowercased()
+    private func isNeedShowWeatherButton() -> Bool {
+        var result = false
+        let lists = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.labelAnnotations
+        lists?.forEach({ (list) in
+            let keyword = list.note.lowercased()
             if keyword == "sky" || keyword == "blue" {
-                isNeedWeatherInfo = true
+                result = true
                 return
             }
         })
-        guard isNeedWeatherInfo else { return }
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        locationManager?.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        locationManager?.requestWhenInUseAuthorization()
-        locationManager?.startUpdatingLocation()
+        return result
+    }
+    
+    func showWeatherButton() {
+        guard isShownWeatherButton == false else { return }
+        guard let latitude  = self.latitude else { return }
+        guard let longitude = self.longitude else { return }
+        isShownWeatherButton = true
+        WeatherMapManager().getData(latitude: latitude, longitude: longitude) { (response) in
+            switch response {
+            case .success:
+                print("WeatherMap API request is succeeded.")
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name(rawValue:"showWeatherIcon"), object: nil)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func showWeatherButtonIfNeeded() {
+        guard isNeedShowWeatherButton() else { return }
+        // 天気ボタンを表示
+        if UserDefaults.standard.isUseLocationFromImage && latitude != nil && longitude != nil {
+            // 画像から位置情報を取得
+            showWeatherButton()
+        } else if UserDefaults.standard.isUseLocationFromDevice {
+            // 端末から位置情報を取得
+            locationManager = CLLocationManager()
+            locationManager?.delegate = self
+            locationManager?.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            locationManager?.requestWhenInUseAuthorization()
+            locationManager?.startUpdatingLocation()
+        }
     }
     
     private func showAlert() {
@@ -145,23 +175,24 @@ class ResultViewController: UIViewController {
     }
 }
 
+extension ResultViewController: ResultViewControllerDelegate {
+    func gotoWeatherPage() {
+        guard let vc = fromStoryboard(class: WeatherViewController.self) else { return }
+        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        vc.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
+        vc.tappedImage = tappedImage
+        vc.latitude    = latitude
+        vc.longitude   = longitude
+        UIApplication.shared.topViewController?.present(vc, animated: true, completion: nil)
+    }
+}
+
 extension ResultViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let latitude  = manager.location?.coordinate.latitude else { return }
-        guard let longitude = manager.location?.coordinate.longitude else { return }
-        guard isShownWeatherButton == false else { return }
-        
-        isShownWeatherButton = true
-        self.locationManager?.stopUpdatingLocation()
-        WeatherMapManager().getData(latitude: latitude, longitude: longitude) { [weak self] (response) in
-            switch response {
-            case .success:
-                print("WeatherMap API request is succeeded.")
-                self?.showWeatherButton()
-            case .failure(let error):
-                print(error)
-            }
-        }
+        latitude  = manager.location?.coordinate.latitude
+        longitude = manager.location?.coordinate.longitude
+        locationManager?.stopUpdatingLocation()
+        showWeatherButton()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
@@ -204,9 +235,9 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     }
     
     fileprivate var pagingControllers: [UIViewController] {
-        guard let ocr     = fromStoryboard(class: OcrViewController.self)     else { return [] }
+        guard let ocr = fromStoryboard(class: OcrViewController.self) else { return [] }
         guard let keyword = fromStoryboard(class: KeywordViewController.self) else { return [] }
-        guard let face    = fromStoryboard(class: FaceViewController.self)    else { return [] }
+        guard let face = fromStoryboard(class: FaceViewController.self) else { return [] }
         return [ocr, keyword, face]
     }
     
