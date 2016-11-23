@@ -24,9 +24,11 @@ class LandmarkAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
         }
         let cell = tableView.dequeueCell(className: LandmarkAnnotationTableViewCell.self, indexPath: indexPath)
         if let note = results?[indexPath.row].note {
-            cell.name = note
+            cell.note = note
         }
+        cell.locale = "EN"
         cell.delegate = self
+        cell.setContent()
         return cell
     }
     

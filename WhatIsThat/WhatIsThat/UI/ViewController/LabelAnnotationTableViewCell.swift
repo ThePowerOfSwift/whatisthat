@@ -13,17 +13,17 @@ protocol LabelAnnotationTableViewCellDelegate {
 }
 
 class LabelAnnotationTableViewCell: UITableViewCell {
+    @IBOutlet weak var localeLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
 
     var delegate: LabelAnnotationTableViewCellDelegate?
-    var note = "" {
-        didSet {
-            setContent()
-        }
-    }
+    var note   = ""
+    var locale = ""
+    var isTranslated = false
     
     func setContent() {
-        noteLabel.text = note
+        noteLabel.text = (isTranslated ? "   - " : "") + note
+        localeLabel.text = locale == "" ? "??" : locale.uppercased()
     }
     
     @IBAction func tappedSearchKeywordButton(_ sender: UIButton) {
@@ -35,6 +35,6 @@ class LabelAnnotationTableViewCell: UITableViewCell {
     }
     
     @IBAction func tappedCopyButton(_ sender: UIButton) {
-        UIPasteboard.general.string = noteLabel.text
+        UIPasteboard.general.string = note
     }
 }

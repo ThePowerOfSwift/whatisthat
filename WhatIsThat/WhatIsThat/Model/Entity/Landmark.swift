@@ -9,7 +9,6 @@
 import RealmSwift
 import ObjectMapper
 
-
 class Landmark: Object {
     dynamic var name = ""
     

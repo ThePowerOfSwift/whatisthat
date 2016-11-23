@@ -29,7 +29,7 @@ struct Const {
         static let Height: Int = 100
     }
     struct API {
-        struct CloudVision {
+        struct GoogleApiKey {
             static let ApiKey = "AIzaSyA04hrp5OA2WcgmXfs6PE6smno018Cmg6A"
         }
         struct WeatherMap {

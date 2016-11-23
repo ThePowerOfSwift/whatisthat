@@ -19,10 +19,11 @@ class TextAnnotationTableViewCell: UITableViewCell {
     var delegate: TextAnnotationTableViewCellDelegate?
     var note   = ""
     var locale = ""
+    var isTranslated = false
     
     func setContent() {
-        noteLabel.text = note
-        localeLabel.text = locale == "" ? "??" : locale
+        noteLabel.text = (isTranslated ? "   - " : "") + note
+        localeLabel.text = locale == "" ? "??" : locale.uppercased()
     }
     
     @IBAction func tappedSearchKeywordButton(_ sender: UIButton) {
@@ -34,6 +35,6 @@ class TextAnnotationTableViewCell: UITableViewCell {
     }
     
     @IBAction func tappedCopyButton(_ sender: UIButton) {
-        UIPasteboard.general.string = noteLabel.text
+        UIPasteboard.general.string = note
     }
 }

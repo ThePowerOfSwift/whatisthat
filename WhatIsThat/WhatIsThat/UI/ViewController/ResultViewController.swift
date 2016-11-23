@@ -47,6 +47,14 @@ class ResultViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Clear DB
+        RealmManager.deleteAll(CloudVisions.self)
+        RealmManager.deleteAll(Translates.self)
+    }
+    
     func createHeaderView() {
         if let headerView = headerView {
             headerView.mainImage = tappedImage
@@ -82,6 +90,7 @@ class ResultViewController: UIViewController {
                 nc.post(name: Notification.Name(rawValue:"updateFaceData"), object: nil)
                 self?.showSafeSearchRate()
                 self?.showWeatherButtonIfNeeded()
+                self?.loadDataIfNeededTranslate()
             case .failure(let error):
                 print(error)
                 self?.showAlert()
@@ -172,6 +181,28 @@ class ResultViewController: UIViewController {
             self.dismiss(animated: false, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
+    }
+    
+    private func loadDataIfNeededTranslate() {
+        guard UserDefaults.standard.isUseTranstate == true else { return }
+        // labelを翻訳
+        let labelAnnotations = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.labelAnnotations
+        var queries = [String]()
+        labelAnnotations?.forEach({ (annotation) in
+            queries.append(annotation.note)
+        })
+        if queries.count > 0 {
+            TranslationManager().getData(queries: queries, source: "en", target: "ja") { (response) in
+                switch response {
+                case .success:
+                    print("Translate API request is succeeded.")
+                    let nc = NotificationCenter.default
+                    nc.post(name: Notification.Name(rawValue:"reloadKeywordData"), object: nil)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
 }
 

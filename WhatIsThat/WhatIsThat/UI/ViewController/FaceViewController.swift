@@ -14,6 +14,7 @@ class FaceViewController: BaseTableViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: Notification.Name(rawValue:"updateFaceData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name(rawValue:"reloadFaceData"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +36,10 @@ class FaceViewController: BaseTableViewController {
     
     @objc func updateData() {
         addDataSource(dataSource: FaceAnnotationTableViewDataSource())
+        tableView?.reloadData()
+    }
+    
+    @objc func reloadData() {
         tableView?.reloadData()
     }
 }

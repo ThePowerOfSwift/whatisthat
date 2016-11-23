@@ -26,7 +26,9 @@ class LogoAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
         if let note = results?[indexPath.row].note {
             cell.note = note
         }
+        cell.locale = "EN"
         cell.delegate = self
+        cell.setContent()
         return cell
     }
     

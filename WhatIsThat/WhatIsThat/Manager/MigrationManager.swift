@@ -12,7 +12,7 @@ class MigrationManager: NSObject {
     static func initialSettings() {
         guard UserDefaults.standard.isLaunchApplication == false else { return }
         UserDefaults.standard.isLaunchApplication     = true
-        UserDefaults.standard.isUseAutoTranstate      = false
+        UserDefaults.standard.isUseTranstate          = false
         UserDefaults.standard.isUseLocationFromImage  = false
         UserDefaults.standard.isUseLocationFromDevice = true
     }

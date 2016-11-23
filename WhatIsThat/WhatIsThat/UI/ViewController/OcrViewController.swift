@@ -14,6 +14,7 @@ class OcrViewController: BaseTableViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: Notification.Name(rawValue:"updateOcrData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name(rawValue:"reloadOcrData"), object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,6 +36,10 @@ class OcrViewController: BaseTableViewController {
     
     @objc func updateData() {
         self.addDataSource(dataSource: TextAnnotationTableViewDataSource())
+        tableView?.reloadData()
+    }
+    
+    @objc func reloadData() {
         tableView?.reloadData()
     }
 }
