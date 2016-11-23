@@ -24,11 +24,11 @@ class SettingItemTableViewDataSource: NSObject, BaseTableViewDataSource {
         
         if indexPath.row == 0 {
             title = "自動翻訳を利用する"
-            note  = "画像解析の結果を自動翻訳します。"
+            note  = "画像解析の結果を自動翻訳します。\n端末からの位置情報を優先して利用されます。"
             isOn  = UserDefaults.standard.isUseAutoTranstate
         } else if indexPath.row == 1 {
-            title = "画像から位置情報を取得"
-            note  = "画像に埋め込まれた位置情報から場所を特定し、その場所の天気を表示します。"
+            title = "PhotoLibraryから位置情報を取得"
+            note  = "PhoroLiraryの画像に埋め込まれた位置情報から場所を特定し、その場所の天気を表示します。"
             isOn  = UserDefaults.standard.isUseLocationFromImage
         } else if indexPath.row == 2 {
             title = "端末から位置情報を取得"

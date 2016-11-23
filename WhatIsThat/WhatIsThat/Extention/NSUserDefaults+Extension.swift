@@ -8,11 +8,22 @@
 
 import UIKit
 
+private let IS_LAUNCH_APPLICATION_KEY       = "IS_LAUNCH_APPLICATION"
 private let IS_USE_AUTO_TRANSLATE_KEY       = "IS_USE_AUTO_TRANSLATE"
 private let IS_USE_LOCATION_FROM_IMAGE_KEY  = "IS_USE_LOCATION_FROM_IMAGE"
 private let IS_USE_LOCATION_FROM_DEVICE_KEY = "IS_USE_LOCATION_FROM_DEVICE"
 
 extension UserDefaults {
+    var isLaunchApplication: Bool {
+        get {
+            return self.bool(forKey: IS_LAUNCH_APPLICATION_KEY)
+        }
+        set {
+            self.set(newValue, forKey: IS_LAUNCH_APPLICATION_KEY)
+            synchronize()
+        }
+    }
+    
     var isUseAutoTranstate: Bool {
         get {
             return self.bool(forKey: IS_USE_AUTO_TRANSLATE_KEY)
