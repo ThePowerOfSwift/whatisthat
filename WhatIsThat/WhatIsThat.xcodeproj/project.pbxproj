@@ -96,9 +96,6 @@
 		01BC5A421DD782E70008170C /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC5A411DD782E70008170C /* UIApplication+Extension.swift */; };
 		01BC5A441DD7832C0008170C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC5A431DD7832C0008170C /* UIView+Extension.swift */; };
 		01CA323E1DDF6C8800D4D8AD /* BorderTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA323D1DDF6C8800D4D8AD /* BorderTableViewDataSource.swift */; };
-		01CA32401DDF6F0400D4D8AD /* MenuHeaderTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA323F1DDF6F0400D4D8AD /* MenuHeaderTableViewDataSource.swift */; };
-		01CA32421DDF703500D4D8AD /* PageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA32411DDF703500D4D8AD /* PageTitleView.swift */; };
-		01CA32441DDF704600D4D8AD /* PageTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CA32431DDF704600D4D8AD /* PageTitleView.xib */; };
 		01D6EC191DB33972000BDCDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D6EC181DB33972000BDCDD /* AppDelegate.swift */; };
 		01D6EC201DB33972000BDCDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01D6EC1F1DB33972000BDCDD /* Assets.xcassets */; };
 		01D6EC231DB33972000BDCDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D6EC211DB33972000BDCDD /* LaunchScreen.storyboard */; };
@@ -115,6 +112,13 @@
 		01D8B0761DDEC28A00DA3139 /* WeatherMapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D8B0751DDEC28A00DA3139 /* WeatherMapManager.swift */; };
 		01D8B07A1DDEC64600DA3139 /* WeatherMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D8B0791DDEC64600DA3139 /* WeatherMap.swift */; };
 		01E5DCD61DE0AAD90060ECE4 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E5DCD51DE0AAD90060ECE4 /* NSDate+Extension.swift */; };
+		01F12F921DE4553900A22EF5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F12F911DE4553900A22EF5 /* SettingsViewController.swift */; };
+		01F12F941DE4556E00A22EF5 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01F12F931DE4556E00A22EF5 /* SettingsViewController.storyboard */; };
+		01F12F9A1DE4A11300A22EF5 /* SettingItemTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F12F991DE4A11300A22EF5 /* SettingItemTableViewDataSource.swift */; };
+		01F12F9C1DE4A17800A22EF5 /* SettingItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F12F9B1DE4A17800A22EF5 /* SettingItemTableViewCell.swift */; };
+		01F12F9E1DE4A1AC00A22EF5 /* SettingItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F12F9D1DE4A1AC00A22EF5 /* SettingItemTableViewCell.xib */; };
+		01F12FA01DE4A30300A22EF5 /* PaperSwitch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F12F9F1DE4A30300A22EF5 /* PaperSwitch.framework */; };
+		01F12FA21DE5364400A22EF5 /* NSUserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F12FA11DE5364400A22EF5 /* NSUserDefaults+Extension.swift */; };
 		01F486521DCB57E20080D446 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F486511DCB57E20080D446 /* LoadingView.swift */; };
 		01F486541DCB57F80080D446 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F486531DCB57F80080D446 /* LoadingView.xib */; };
 		982A268BE8F93EDDB71CB5BB /* Pods_WhatIsThatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC32EAB9195DAE13FD1946AE /* Pods_WhatIsThatTests.framework */; };
@@ -230,9 +234,6 @@
 		01BC5A411DD782E70008170C /* UIApplication+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		01BC5A431DD7832C0008170C /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		01CA323D1DDF6C8800D4D8AD /* BorderTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderTableViewDataSource.swift; sourceTree = "<group>"; };
-		01CA323F1DDF6F0400D4D8AD /* MenuHeaderTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuHeaderTableViewDataSource.swift; sourceTree = "<group>"; };
-		01CA32411DDF703500D4D8AD /* PageTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTitleView.swift; sourceTree = "<group>"; };
-		01CA32431DDF704600D4D8AD /* PageTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageTitleView.xib; sourceTree = "<group>"; };
 		01D6EC151DB33972000BDCDD /* WhatIsThat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatIsThat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01D6EC181DB33972000BDCDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01D6EC1F1DB33972000BDCDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -254,6 +255,13 @@
 		01D8B0751DDEC28A00DA3139 /* WeatherMapManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherMapManager.swift; sourceTree = "<group>"; };
 		01D8B0791DDEC64600DA3139 /* WeatherMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherMap.swift; sourceTree = "<group>"; };
 		01E5DCD51DE0AAD90060ECE4 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
+		01F12F911DE4553900A22EF5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		01F12F931DE4556E00A22EF5 /* SettingsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsViewController.storyboard; sourceTree = "<group>"; };
+		01F12F991DE4A11300A22EF5 /* SettingItemTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemTableViewDataSource.swift; sourceTree = "<group>"; };
+		01F12F9B1DE4A17800A22EF5 /* SettingItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemTableViewCell.swift; sourceTree = "<group>"; };
+		01F12F9D1DE4A1AC00A22EF5 /* SettingItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingItemTableViewCell.xib; sourceTree = "<group>"; };
+		01F12F9F1DE4A30300A22EF5 /* PaperSwitch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaperSwitch.framework; path = Carthage/Build/iOS/PaperSwitch.framework; sourceTree = "<group>"; };
+		01F12FA11DE5364400A22EF5 /* NSUserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		01F486511DCB57E20080D446 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		01F486531DCB57F80080D446 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		0D693EE20B7442C33718ACDD /* Pods-WhatIsThat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatIsThat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatIsThat/Pods-WhatIsThat.release.xcconfig"; sourceTree = "<group>"; };
@@ -274,6 +282,7 @@
 				018696741DE0BF3600D05229 /* CoreLocation.framework in Frameworks */,
 				F32ADDF48C0BE82D950E1B20 /* Pods_WhatIsThat.framework in Frameworks */,
 				01B843ED1DB656AF002624F4 /* ObjectMapper.framework in Frameworks */,
+				01F12FA01DE4A30300A22EF5 /* PaperSwitch.framework in Frameworks */,
 				0156BBE51DC253FE00B7E5BA /* RealmSwift.framework in Frameworks */,
 				0156BBE31DC253EF00B7E5BA /* Realm.framework in Frameworks */,
 				0156BBED1DC254AF00B7E5BA /* WebImage.framework in Frameworks */,
@@ -375,8 +384,6 @@
 		01505A8D1DD83FCD007AB57C /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				01CA32411DDF703500D4D8AD /* PageTitleView.swift */,
-				01CA32431DDF704600D4D8AD /* PageTitleView.xib */,
 				01505A8E1DD8406B007AB57C /* SimpleTitleView.swift */,
 				01505A901DD84081007AB57C /* SimpleTitleView.xib */,
 				01505A9A1DD859BB007AB57C /* SimpleImageView.swift */,
@@ -445,6 +452,7 @@
 			children = (
 				0192643B1DD3829D00C2DFE0 /* Common */,
 				019264371DD3825900C2DFE0 /* Result */,
+				01F12F901DE4551400A22EF5 /* Settings */,
 				019264361DD3822800C2DFE0 /* Top */,
 				01D8B0701DDEC0D200DA3139 /* Weather */,
 				0192643A1DD3827F00C2DFE0 /* WebView */,
@@ -484,6 +492,7 @@
 				0170FFDD1DBFA60C00B9C12F /* UIImage+Extension.swift */,
 				01056D6C1DE05A960037E13C /* UIImageView+Extension.swift */,
 				019264341DD381CC00C2DFE0 /* UITableView+Extension.swift */,
+				01F12FA11DE5364400A22EF5 /* NSUserDefaults+Extension.swift */,
 				01BC5A431DD7832C0008170C /* UIView+Extension.swift */,
 			);
 			path = Extention;
@@ -582,7 +591,6 @@
 		019850251DDF15FD000C8F55 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				01CA323F1DDF6F0400D4D8AD /* MenuHeaderTableViewDataSource.swift */,
 				019850261DDF1721000C8F55 /* MenuItemTableViewDataSource.swift */,
 			);
 			name = DataSources;
@@ -718,6 +726,34 @@
 			name = WeatherMap;
 			sourceTree = "<group>";
 		};
+		01F12F901DE4551400A22EF5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				01F12F981DE4A08500A22EF5 /* Cells */,
+				01F12F971DE4A07A00A22EF5 /* DataSources */,
+				01F12F931DE4556E00A22EF5 /* SettingsViewController.storyboard */,
+				01F12F911DE4553900A22EF5 /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		01F12F971DE4A07A00A22EF5 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				01F12F991DE4A11300A22EF5 /* SettingItemTableViewDataSource.swift */,
+			);
+			name = DataSources;
+			sourceTree = "<group>";
+		};
+		01F12F981DE4A08500A22EF5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				01F12F9D1DE4A1AC00A22EF5 /* SettingItemTableViewCell.xib */,
+				01F12F9B1DE4A17800A22EF5 /* SettingItemTableViewCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		AB0762FC3801501FFD663E59 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -732,6 +768,7 @@
 		B2BF70FB36F18E8F0CD4E49B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01F12F9F1DE4A30300A22EF5 /* PaperSwitch.framework */,
 				018696731DE0BF3600D05229 /* CoreLocation.framework */,
 				0109D1EB1DCDE022008C8E6F /* Nimble.framework */,
 				0109D1E91DCDE017008C8E6F /* Quick.framework */,
@@ -872,7 +909,6 @@
 			files = (
 				01542E661DC5F2E20050B641 /* WebViewController.storyboard in Resources */,
 				01542E621DC5F2E20050B641 /* ResultViewController.storyboard in Resources */,
-				01CA32441DDF704600D4D8AD /* PageTitleView.xib in Resources */,
 				01D8B06B1DDDEBAA00DA3139 /* FaceViewController.storyboard in Resources */,
 				019264441DD382E200C2DFE0 /* LabelAnnotationTableViewCell.xib in Resources */,
 				01056D691DE0504F0037E13C /* NoDataTableViewCell.xib in Resources */,
@@ -882,11 +918,13 @@
 				01B41D581DD89836008C75E6 /* FaceAnnotationTableViewCell.xib in Resources */,
 				01D6EC231DB33972000BDCDD /* LaunchScreen.storyboard in Resources */,
 				01F486541DCB57F80080D446 /* LoadingView.xib in Resources */,
+				01F12F941DE4556E00A22EF5 /* SettingsViewController.storyboard in Resources */,
 				0198502B1DDF1A80000C8F55 /* MenuItemTableViewCell.xib in Resources */,
 				01D6EC201DB33972000BDCDD /* Assets.xcassets in Resources */,
 				01505AA81DD86F84007AB57C /* LandmarkAnnotationTableViewCell.xib in Resources */,
 				01D8B06D1DDDEC4400DA3139 /* KeywordViewController.storyboard in Resources */,
 				01505AA11DD86A72007AB57C /* LogoAnnotationTableViewCell.xib in Resources */,
+				01F12F9E1DE4A1AC00A22EF5 /* SettingItemTableViewCell.xib in Resources */,
 				01505A911DD84081007AB57C /* SimpleTitleView.xib in Resources */,
 				01542E641DC5F2E20050B641 /* TopViewController.storyboard in Resources */,
 				01D8B06F1DDDEC7000DA3139 /* OcrViewController.storyboard in Resources */,
@@ -945,6 +983,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/BubbleTransition.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/WebImage.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PaperSwitch.framework",
 			);
 			name = "Run Script";
 			outputPaths = (
@@ -1057,7 +1096,9 @@
 				01056D6D1DE05A960037E13C /* UIImageView+Extension.swift in Sources */,
 				010308F91DCEDBE800C53C59 /* Landmark.swift in Sources */,
 				01542E721DC63CFE0050B641 /* LogoAnnotation.swift in Sources */,
+				01F12F921DE4553900A22EF5 /* SettingsViewController.swift in Sources */,
 				010308F61DCED2B900C53C59 /* City.swift in Sources */,
+				01F12FA21DE5364400A22EF5 /* NSUserDefaults+Extension.swift in Sources */,
 				01505A9B1DD859BB007AB57C /* SimpleImageView.swift in Sources */,
 				019264461DD382EC00C2DFE0 /* LabelAnnotationTableViewDataSource.swift in Sources */,
 				01048E011DCCDF10003126CA /* RealmManager.swift in Sources */,
@@ -1067,7 +1108,6 @@
 				01D8B0671DDDEB2300DA3139 /* FaceViewController.swift in Sources */,
 				01294AF11DC8E79B0038BB1D /* CloudVisionManager.swift in Sources */,
 				0198501F1DDECE76000C8F55 /* Weather.swift in Sources */,
-				01CA32401DDF6F0400D4D8AD /* MenuHeaderTableViewDataSource.swift in Sources */,
 				01BC5A3E1DD781710008170C /* NSObject+Extension.swift in Sources */,
 				01BC5A421DD782E70008170C /* UIApplication+Extension.swift in Sources */,
 				01542E761DC6420F0050B641 /* LandmarkAnnotation.swift in Sources */,
@@ -1082,15 +1122,16 @@
 				01B41D451DD87267008C75E6 /* LandmarkAnnotationTableViewDataSource.swift in Sources */,
 				01542E741DC63DB90050B641 /* TextAnnotation.swift in Sources */,
 				01056D6B1DE050E20037E13C /* NoDataTableViewCell.swift in Sources */,
-				01CA32421DDF703500D4D8AD /* PageTitleView.swift in Sources */,
 				01B41D561DD896D2008C75E6 /* FaceAnnotationTableViewCell.swift in Sources */,
 				0192643D1DD382AB00C2DFE0 /* BaseTableViewController.swift in Sources */,
 				01B41D5A1DD898C4008C75E6 /* FaceAnnotationTableViewDataSource.swift in Sources */,
+				01F12F9A1DE4A11300A22EF5 /* SettingItemTableViewDataSource.swift in Sources */,
 				01505A8F1DD8406B007AB57C /* SimpleTitleView.swift in Sources */,
 				01CA323E1DDF6C8800D4D8AD /* BorderTableViewDataSource.swift in Sources */,
 				01542E781DC79C5D0050B641 /* SafeSearchAnnotation.swift in Sources */,
 				01542E631DC5F2E20050B641 /* ResultViewController.swift in Sources */,
 				01BC5A401DD7828F0008170C /* UIColor+Extension.swift in Sources */,
+				01F12F9C1DE4A17800A22EF5 /* SettingItemTableViewCell.swift in Sources */,
 				0175330E1DCAC35200876A50 /* ApiManager.swift in Sources */,
 				019264401DD382CE00C2DFE0 /* BaseTableViewDataSource.swift in Sources */,
 				01B41D481DD876ED008C75E6 /* TextAnnotationTableViewCell.swift in Sources */,
