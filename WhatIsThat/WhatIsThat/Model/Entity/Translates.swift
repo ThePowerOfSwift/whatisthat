@@ -10,7 +10,7 @@ import RealmSwift
 import ObjectMapper
 
 class Translates: Object {
-    dynamic private var id = 0
+    dynamic var id = 0
     var translations = List<Translate>()
     
     override static func primaryKey() -> String? {

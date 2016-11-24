@@ -33,7 +33,10 @@ enum ApiRouter: URLRequestConvertible, router {
                     query += "&q=\(encodedKey)"
                 }
             })
-            return "https://translation.googleapis.com/language/translate/v2?key=\(Const.API.GoogleApiKey.ApiKey)&source=\(source)&target=\(target)\(query)"
+            if source.characters.count > 0 {
+                query += "&source=\(source)"
+            }
+            return "https://translation.googleapis.com/language/translate/v2?key=\(Const.API.GoogleApiKey.ApiKey)&target=\(target)\(query)"
         }
     }
 

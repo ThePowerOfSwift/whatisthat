@@ -12,11 +12,12 @@ import RealmSwift
 import UIKit
 
 class TranslationManager: NSObject {
-    func getData(queries: [String], source: String, target: String, completion: @escaping (ApiResult) -> Void) {
+    func getData(typeId: CloudVisionTypeId, queries: [String], source: String, target: String, completion: @escaping (ApiResult) -> Void) {
         let router = ApiRouter.translate(queries, source, target)
         ApiManager.sharedInstance.request(router, mapping: Translates()) { (response) in
             switch response {
             case .success(let value):
+                value.id = typeId.rawValue
                 RealmManager.save(value)
                 completion(ApiResult.success)
             case.failure(let error):

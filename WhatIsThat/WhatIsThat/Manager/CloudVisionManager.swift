@@ -60,7 +60,7 @@ class CloudVisionManager: NSObject {
                     ],
                     [
                         "type": "TEXT_DETECTION",
-                        "maxResults": 5
+                        "maxResults": 1
                     ]
                 ]
             ]

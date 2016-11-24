@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+enum CloudVisionTypeId: Int {
+    case Label      = 1
+    case Logo       = 2
+    case Landmark   = 3
+    case Text       = 4
+    case Face       = 5
+    case SafeSearch = 6
+}
+
 struct Const {
     struct Color {
         static let BackGroundGray        = UIColor(hex: 0x8F8E94, alpha: 1.0)

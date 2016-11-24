@@ -17,7 +17,7 @@ class LabelAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         labels = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.labelAnnotations
-        translates = RealmManager.get(Translates.self, key: 0)?.translations
+        translates = RealmManager.get(Translates.self, key: CloudVisionTypeId.Label.rawValue)?.translations
         let count = (labels?.count ?? 0) + (translates?.count ?? 0)
         return count > 0 ? count : 1
     }
