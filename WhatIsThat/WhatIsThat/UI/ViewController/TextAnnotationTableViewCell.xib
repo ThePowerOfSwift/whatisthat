@@ -24,8 +24,8 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="??" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xw-Sf-K1b">
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="GDZ-94-S6k"/>
-                            <constraint firstAttribute="height" constant="20" id="Qq3-wi-Xfs"/>
+                            <constraint firstAttribute="width" constant="24" id="GDZ-94-S6k"/>
+                            <constraint firstAttribute="height" constant="50" id="Qq3-wi-Xfs"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
