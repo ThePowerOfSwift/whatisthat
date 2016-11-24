@@ -14,6 +14,7 @@ class KeywordViewController: BaseTableViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: Notification.Name(rawValue:"updateKeywordData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name(rawValue:"reloadKeywordData"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +31,10 @@ class KeywordViewController: BaseTableViewController {
         let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 308), style: .plain)
         tableView.backgroundColor = UIColor.clear
         return tableView
+    }
+    
+    @objc func reloadData() {
+        tableView?.reloadData()
     }
     
     @objc func updateData() {

@@ -6,27 +6,60 @@
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
+import RealmSwift
 import UIKit
 
 class LandmarkAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     internal var viewClasses: [UITableViewCell.Type]? = [LandmarkAnnotationTableViewCell.self, NoDataTableViewCell.self]
-    let results = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.landmarkAnnotations
+    var landmarks: List<LandmarkAnnotation>?
+    var translates: List<Translate>?
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = results?.count ?? 0
+        landmarks = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.landmarkAnnotations
+        translates = RealmManager.get(Translates.self, key: CloudVisionTypeId.Landmark.rawValue)?.translations
+        let count = (landmarks?.count ?? 0) + (translates?.count ?? 0)
         return count > 0 ? count : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (results?.count ?? 0) == 0 {
+        let landmarkCount  = landmarks?.count ?? 0
+        let translateCount = translates?.count ?? 0
+        if (landmarkCount + translateCount) == 0 {
             return tableView.dequeueCell(className: NoDataTableViewCell.self, indexPath: indexPath)
         }
         let cell = tableView.dequeueCell(className: LandmarkAnnotationTableViewCell.self, indexPath: indexPath)
-        if let note = results?[indexPath.row].note {
-            cell.name = note
+        // 翻訳なし
+        if translateCount == 0 {
+            // 元データ
+            let landmark = landmarks?[indexPath.row]
+            if let note = landmark?.note {
+                cell.note = note
+            }
+            cell.locale = "EN"
+            cell.isTranslated = false
+        } else {
+            // 翻訳あり
+            if (indexPath.row % 2) == 0 {
+                // 元データ
+                let landmark = landmarks?[(indexPath.row / 2)]
+                if let note = landmark?.note {
+                    cell.note = note
+                }
+                cell.locale = "EN"
+                cell.isTranslated = false
+            } else {
+                // 翻訳データ
+                let translate = translates?[(indexPath.row / 2)]
+                if let note = translate?.translatedText {
+                    cell.note = note
+                }
+                cell.locale = "JA"
+                cell.isTranslated = true
+            }
         }
         cell.delegate = self
+        cell.setContent()
         return cell
     }
     

@@ -27,6 +27,10 @@ class TopViewController: UIViewController {    @IBOutlet weak var transitionButt
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Clear DB
+        RealmManager.deleteAll(CloudVisions.self)
+        RealmManager.deleteAll(Translates.self)
+        
         // カメラビュー
         if let cameraView = cameraView {
             cameraView.delegate = self
@@ -41,13 +45,6 @@ class TopViewController: UIViewController {    @IBOutlet weak var transitionButt
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Clear DB
-        RealmManager.deleteAll(CloudVisions.self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

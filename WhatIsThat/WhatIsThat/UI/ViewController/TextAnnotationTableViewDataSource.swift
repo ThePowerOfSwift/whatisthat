@@ -6,28 +6,55 @@
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
+import RealmSwift
 import UIKit
 
 class TextAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
     internal var viewClasses: [UITableViewCell.Type]? = [TextAnnotationTableViewCell.self, NoDataTableViewCell.self]
-    let results = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.textAnnotations
+    var texts: List<TextAnnotation>?
+    var translates: List<Translate>?
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = results?.count ?? 0
-        return count > 0 ? count : 1
+        texts = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.textAnnotations
+        translates = RealmManager.get(Translates.self, key: CloudVisionTypeId.Text.rawValue)?.translations
+        let textCount      = (texts?.count ?? 0)      > 0 ? 1 : 0
+        let translateCount = (translates?.count ?? 0) > 0 ? 1 : 0
+        let count          = (textCount + translateCount) > 0 ? (textCount + translateCount) : 1
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (results?.count ?? 0) == 0 {
+        let textCount      = (texts?.count ?? 0)      > 0 ? 1 : 0
+        let translateCount = (translates?.count ?? 0) > 0 ? 1 : 0
+        if (textCount + translateCount) == 0 {
             return tableView.dequeueCell(className: NoDataTableViewCell.self, indexPath: indexPath)
         }
         let cell = tableView.dequeueCell(className: TextAnnotationTableViewCell.self, indexPath: indexPath)
-        if let locale = results?[indexPath.row].locale {
-            cell.locale = locale
-        }
-        if let note = results?[indexPath.row].note {
-            cell.note = note
+        if indexPath.row == 0 {
+            // 元データ
+            let text = texts?.first
+            if let note = text?.note {
+                cell.note = note
+            }
+            if translateCount > 0, let locale = translates?.first?.detectedSourceLanguage {
+                cell.locale = locale
+            } else if let locale = text?.locale {
+                cell.locale = locale
+            }
+            cell.isTranslated = false
+        } else {
+            // 翻訳データ
+            let translate = translates?.first
+            if let note = translate?.translatedText {
+                cell.note = note
+            }
+            if let locale = translate?.detectedSourceLanguage, locale == "ja" {
+                cell.locale = "EN"
+            } else {
+                cell.locale = "JA"
+            }
+            cell.isTranslated = true
         }
         cell.delegate = self
         cell.setContent()

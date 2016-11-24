@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -7,70 +7,82 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="40" id="stR-dc-dVS" userLabel="LabelAnnotationTableViewCell" customClass="LabelAnnotationTableViewCell" customModule="WhatIsThat" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="QRf-FF-db2" userLabel="LabelAnnotationTableViewCell" customClass="LabelAnnotationTableViewCell" customModule="WhatIsThat" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="stR-dc-dVS" id="39v-cd-YMg">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QRf-FF-db2" id="udo-OV-pIS">
                 <frame key="frameInset" width="375" height="39"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVv-Mn-4Bd">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8KJ-rP-Tgt">
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="AMT-7x-2Z9"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="eg6-QD-9pu"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.56078431370000004" green="0.5568627451" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSW-MH-H2S" userLabel="Search Keyword Button">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="??" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEa-ZL-A0O">
                         <constraints>
-                            <constraint firstAttribute="height" constant="18" id="W3n-WO-KZU"/>
-                            <constraint firstAttribute="width" constant="18" id="iPs-N0-pEG"/>
+                            <constraint firstAttribute="height" constant="20" id="INl-TV-QWe"/>
+                            <constraint firstAttribute="width" constant="20" id="OdE-zg-wXg"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFw-LD-CBh" userLabel="Search Keyword Button">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="18" id="TMx-ma-2iS"/>
+                            <constraint firstAttribute="height" constant="18" id="req-BQ-bH7"/>
                         </constraints>
                         <state key="normal" image="search"/>
                         <connections>
-                            <action selector="tappedSearchKeywordButton:" destination="stR-dc-dVS" eventType="touchUpInside" id="WzN-j4-nFV"/>
+                            <action selector="tappedSearchKeywordButton:" destination="QRf-FF-db2" eventType="touchUpInside" id="bj4-24-HD0"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AgO-0h-WjH" userLabel="Search Image Button">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6d7-VL-hgl" userLabel="Search Image Button">
                         <constraints>
-                            <constraint firstAttribute="width" constant="24" id="F6E-Ei-gJR"/>
-                            <constraint firstAttribute="height" constant="21" id="rfU-Cc-IZg"/>
+                            <constraint firstAttribute="width" constant="24" id="l2h-ts-uZT"/>
+                            <constraint firstAttribute="height" constant="21" id="vQf-gn-Yb7"/>
                         </constraints>
                         <state key="normal" image="image_search"/>
                         <connections>
-                            <action selector="tappedSearchImageButton:" destination="stR-dc-dVS" eventType="touchUpInside" id="bHt-7x-eBR"/>
+                            <action selector="tappedSearchImageButton:" destination="QRf-FF-db2" eventType="touchUpInside" id="Z6e-1L-bWU"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qP-1r-jpw" userLabel="Copy Button">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jB7-if-hg6" userLabel="Copy Button">
                         <constraints>
-                            <constraint firstAttribute="width" constant="15" id="X1B-UI-IiJ"/>
-                            <constraint firstAttribute="height" constant="17" id="hxF-9z-Aw6"/>
+                            <constraint firstAttribute="width" constant="15" id="Abx-30-WSr"/>
+                            <constraint firstAttribute="height" constant="17" id="iwQ-Tm-ays"/>
                         </constraints>
                         <state key="normal" image="content_copy"/>
                         <connections>
-                            <action selector="tappedCopyButton:" destination="stR-dc-dVS" eventType="touchUpInside" id="vnG-Ra-Fj7"/>
+                            <action selector="tappedCopyButton:" destination="QRf-FF-db2" eventType="touchUpInside" id="VcK-jl-1KW"/>
                         </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="3qP-1r-jpw" firstAttribute="centerY" secondItem="39v-cd-YMg" secondAttribute="centerY" id="5NH-MU-3jr"/>
-                    <constraint firstItem="bVv-Mn-4Bd" firstAttribute="top" secondItem="39v-cd-YMg" secondAttribute="top" constant="5" id="AA6-j9-VxD"/>
-                    <constraint firstItem="AgO-0h-WjH" firstAttribute="leading" secondItem="aSW-MH-H2S" secondAttribute="trailing" constant="15" id="JAP-Ib-lIj"/>
-                    <constraint firstAttribute="trailing" secondItem="3qP-1r-jpw" secondAttribute="trailing" constant="15" id="JU8-kj-AMZ"/>
-                    <constraint firstItem="3qP-1r-jpw" firstAttribute="leading" secondItem="AgO-0h-WjH" secondAttribute="trailing" constant="15" id="Mwb-xg-3oZ"/>
-                    <constraint firstAttribute="bottom" secondItem="bVv-Mn-4Bd" secondAttribute="bottom" constant="5" id="Nib-mv-ptP"/>
-                    <constraint firstItem="aSW-MH-H2S" firstAttribute="centerY" secondItem="39v-cd-YMg" secondAttribute="centerY" id="YlE-z9-3Bi"/>
-                    <constraint firstItem="aSW-MH-H2S" firstAttribute="leading" secondItem="bVv-Mn-4Bd" secondAttribute="trailing" constant="10" id="fUK-WA-4sN"/>
-                    <constraint firstItem="bVv-Mn-4Bd" firstAttribute="leading" secondItem="39v-cd-YMg" secondAttribute="leading" constant="10" id="uUe-iS-VVW"/>
-                    <constraint firstItem="AgO-0h-WjH" firstAttribute="centerY" secondItem="39v-cd-YMg" secondAttribute="centerY" id="vAR-8e-1Sh"/>
+                    <constraint firstAttribute="bottom" secondItem="8KJ-rP-Tgt" secondAttribute="bottom" constant="5" id="3y1-TX-wQ0"/>
+                    <constraint firstItem="8KJ-rP-Tgt" firstAttribute="top" secondItem="udo-OV-pIS" secondAttribute="top" constant="5" id="5wh-e1-WE3"/>
+                    <constraint firstItem="jB7-if-hg6" firstAttribute="leading" secondItem="6d7-VL-hgl" secondAttribute="trailing" constant="15" id="E1M-S0-taM"/>
+                    <constraint firstItem="6d7-VL-hgl" firstAttribute="leading" secondItem="HFw-LD-CBh" secondAttribute="trailing" constant="15" id="JTN-zB-RFy"/>
+                    <constraint firstItem="dEa-ZL-A0O" firstAttribute="centerY" secondItem="udo-OV-pIS" secondAttribute="centerY" id="KMV-k6-5Ob"/>
+                    <constraint firstItem="HFw-LD-CBh" firstAttribute="centerY" secondItem="udo-OV-pIS" secondAttribute="centerY" id="Z5G-K2-Ds1"/>
+                    <constraint firstItem="8KJ-rP-Tgt" firstAttribute="leading" secondItem="udo-OV-pIS" secondAttribute="leading" constant="10" id="ZeO-AA-QyP"/>
+                    <constraint firstItem="HFw-LD-CBh" firstAttribute="leading" secondItem="dEa-ZL-A0O" secondAttribute="trailing" constant="15" id="afg-yz-S94"/>
+                    <constraint firstItem="dEa-ZL-A0O" firstAttribute="leading" secondItem="8KJ-rP-Tgt" secondAttribute="trailing" constant="10" id="fkF-1j-o8f"/>
+                    <constraint firstItem="jB7-if-hg6" firstAttribute="centerY" secondItem="udo-OV-pIS" secondAttribute="centerY" id="raN-7I-bnw"/>
+                    <constraint firstItem="6d7-VL-hgl" firstAttribute="centerY" secondItem="udo-OV-pIS" secondAttribute="centerY" id="rlt-KI-kKL"/>
+                    <constraint firstAttribute="trailing" secondItem="jB7-if-hg6" secondAttribute="trailing" constant="15" id="uRO-Qj-4Oy"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="noteLabel" destination="bVv-Mn-4Bd" id="U5I-yK-asP"/>
+                <outlet property="localeLabel" destination="dEa-ZL-A0O" id="esw-8C-sAQ"/>
+                <outlet property="noteLabel" destination="8KJ-rP-Tgt" id="poU-AW-Udf"/>
             </connections>
-            <point key="canvasLocation" x="-121.5" y="-4"/>
+            <point key="canvasLocation" x="-121.5" y="-12"/>
         </tableViewCell>
     </objects>
     <resources>

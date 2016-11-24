@@ -122,6 +122,9 @@
 		01F12FA61DE55AA700A22EF5 /* MigrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F12FA51DE55AA700A22EF5 /* MigrationManager.swift */; };
 		01F12FA81DE5641000A22EF5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F12FA71DE5641000A22EF5 /* MapKit.framework */; };
 		01F12FAB1DE5A3FC00A22EF5 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F12FAA1DE5A3FC00A22EF5 /* Photos.framework */; };
+		01F12FAE1DE5C20700A22EF5 /* Translates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F12FAD1DE5C20700A22EF5 /* Translates.swift */; };
+		01F12FB01DE5C29E00A22EF5 /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F12FAF1DE5C29E00A22EF5 /* Translate.swift */; };
+		01F12FB21DE5CA5600A22EF5 /* TranslationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F12FB11DE5CA5600A22EF5 /* TranslationManager.swift */; };
 		01F486521DCB57E20080D446 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F486511DCB57E20080D446 /* LoadingView.swift */; };
 		01F486541DCB57F80080D446 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F486531DCB57F80080D446 /* LoadingView.xib */; };
 		982A268BE8F93EDDB71CB5BB /* Pods_WhatIsThatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC32EAB9195DAE13FD1946AE /* Pods_WhatIsThatTests.framework */; };
@@ -260,14 +263,17 @@
 		01E5DCD51DE0AAD90060ECE4 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		01F12F911DE4553900A22EF5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		01F12F931DE4556E00A22EF5 /* SettingsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsViewController.storyboard; sourceTree = "<group>"; };
-		01F12F991DE4A11300A22EF5 /* SettingItemTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemTableViewDataSource.swift; sourceTree = "<group>"; };
+		01F12F991DE4A11300A22EF5 /* SettingItemTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingItemTableViewDataSource.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		01F12F9B1DE4A17800A22EF5 /* SettingItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemTableViewCell.swift; sourceTree = "<group>"; };
 		01F12F9D1DE4A1AC00A22EF5 /* SettingItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingItemTableViewCell.xib; sourceTree = "<group>"; };
 		01F12F9F1DE4A30300A22EF5 /* PaperSwitch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaperSwitch.framework; path = Carthage/Build/iOS/PaperSwitch.framework; sourceTree = "<group>"; };
-		01F12FA11DE5364400A22EF5 /* NSUserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+Extension.swift"; sourceTree = "<group>"; };
-		01F12FA51DE55AA700A22EF5 /* MigrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MigrationManager.swift; sourceTree = "<group>"; };
+		01F12FA11DE5364400A22EF5 /* NSUserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "NSUserDefaults+Extension.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		01F12FA51DE55AA700A22EF5 /* MigrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MigrationManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		01F12FA71DE5641000A22EF5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		01F12FAA1DE5A3FC00A22EF5 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		01F12FAD1DE5C20700A22EF5 /* Translates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translates.swift; sourceTree = "<group>"; };
+		01F12FAF1DE5C29E00A22EF5 /* Translate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
+		01F12FB11DE5CA5600A22EF5 /* TranslationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationManager.swift; sourceTree = "<group>"; };
 		01F486511DCB57E20080D446 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		01F486531DCB57F80080D446 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		0D693EE20B7442C33718ACDD /* Pods-WhatIsThat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatIsThat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatIsThat/Pods-WhatIsThat.release.xcconfig"; sourceTree = "<group>"; };
@@ -438,6 +444,7 @@
 			isa = PBXGroup;
 			children = (
 				01D8B0771DDEC5F800DA3139 /* CloudVision */,
+				01F12FAC1DE5C1CF00A22EF5 /* Translate */,
 				01D8B0781DDEC60E00DA3139 /* WeatherMap */,
 			);
 			path = Entity;
@@ -475,6 +482,7 @@
 				01294AF01DC8E79B0038BB1D /* CloudVisionManager.swift */,
 				01F12FA51DE55AA700A22EF5 /* MigrationManager.swift */,
 				01048E001DCCDF10003126CA /* RealmManager.swift */,
+				01F12FB11DE5CA5600A22EF5 /* TranslationManager.swift */,
 				01D8B0751DDEC28A00DA3139 /* WeatherMapManager.swift */,
 			);
 			path = Manager;
@@ -769,6 +777,15 @@
 				01505A981DD8599F007AB57C /* ResultHeaderView.xib */,
 			);
 			name = Result;
+			sourceTree = "<group>";
+		};
+		01F12FAC1DE5C1CF00A22EF5 /* Translate */ = {
+			isa = PBXGroup;
+			children = (
+				01F12FAD1DE5C20700A22EF5 /* Translates.swift */,
+				01F12FAF1DE5C29E00A22EF5 /* Translate.swift */,
+			);
+			name = Translate;
 			sourceTree = "<group>";
 		};
 		AB0762FC3801501FFD663E59 /* Pods */ = {
@@ -1140,16 +1157,19 @@
 				01D8B05F1DDDE83600DA3139 /* KeywordViewController.swift in Sources */,
 				01B41D451DD87267008C75E6 /* LandmarkAnnotationTableViewDataSource.swift in Sources */,
 				01542E741DC63DB90050B641 /* TextAnnotation.swift in Sources */,
+				01F12FB01DE5C29E00A22EF5 /* Translate.swift in Sources */,
 				01056D6B1DE050E20037E13C /* NoDataTableViewCell.swift in Sources */,
 				01B41D561DD896D2008C75E6 /* FaceAnnotationTableViewCell.swift in Sources */,
 				0192643D1DD382AB00C2DFE0 /* BaseTableViewController.swift in Sources */,
 				01B41D5A1DD898C4008C75E6 /* FaceAnnotationTableViewDataSource.swift in Sources */,
+				01F12FB21DE5CA5600A22EF5 /* TranslationManager.swift in Sources */,
 				01F12F9A1DE4A11300A22EF5 /* SettingItemTableViewDataSource.swift in Sources */,
 				01505A8F1DD8406B007AB57C /* SimpleTitleView.swift in Sources */,
 				01CA323E1DDF6C8800D4D8AD /* BorderTableViewDataSource.swift in Sources */,
 				01542E781DC79C5D0050B641 /* SafeSearchAnnotation.swift in Sources */,
 				01542E631DC5F2E20050B641 /* ResultViewController.swift in Sources */,
 				01BC5A401DD7828F0008170C /* UIColor+Extension.swift in Sources */,
+				01F12FAE1DE5C20700A22EF5 /* Translates.swift in Sources */,
 				01F12F9C1DE4A17800A22EF5 /* SettingItemTableViewCell.swift in Sources */,
 				0175330E1DCAC35200876A50 /* ApiManager.swift in Sources */,
 				019264401DD382CE00C2DFE0 /* BaseTableViewDataSource.swift in Sources */,

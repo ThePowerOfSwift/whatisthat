@@ -13,28 +13,28 @@ protocol LandmarkAnnotationTableViewCellDelegate {
 }
 
 class LandmarkAnnotationTableViewCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var localeLabel: UILabel!
+    @IBOutlet weak var noteLabel: UILabel!
     
     var delegate: LandmarkAnnotationTableViewCellDelegate?
-    var name = "" {
-        didSet {
-            setContent()
-        }
-    }
+    var note   = ""
+    var locale = ""
+    var isTranslated = false
     
     func setContent() {
-        nameLabel.text = name
+        noteLabel.text = (isTranslated ? "   - " : "") + note
+        localeLabel.text = locale == "" ? "??" : locale.uppercased()
     }
     
     @IBAction func tappedSearchKeywordButton(_ sender: UIButton) {
-        delegate?.gotoSearchPage(keyword: name, isImageSearch: false)
+        delegate?.gotoSearchPage(keyword: note, isImageSearch: false)
     }
     
     @IBAction func tappedSearchImageButton(_ sender: UIButton) {
-        delegate?.gotoSearchPage(keyword: name, isImageSearch: true)
+        delegate?.gotoSearchPage(keyword: note, isImageSearch: true)
     }
     
     @IBAction func tappedCopyButton(_ sender: UIButton) {
-        UIPasteboard.general.string = nameLabel.text
+        UIPasteboard.general.string = note
     }
 }

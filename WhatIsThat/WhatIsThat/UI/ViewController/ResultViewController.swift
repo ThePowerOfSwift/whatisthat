@@ -47,6 +47,14 @@ class ResultViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Clear DB
+        RealmManager.deleteAll(CloudVisions.self)
+        RealmManager.deleteAll(Translates.self)
+    }
+    
     func createHeaderView() {
         if let headerView = headerView {
             headerView.mainImage = tappedImage
@@ -82,6 +90,7 @@ class ResultViewController: UIViewController {
                 nc.post(name: Notification.Name(rawValue:"updateFaceData"), object: nil)
                 self?.showSafeSearchRate()
                 self?.showWeatherButtonIfNeeded()
+                self?.loadDataIfNeededTranslate()
             case .failure(let error):
                 print(error)
                 self?.showAlert()
@@ -115,7 +124,7 @@ class ResultViewController: UIViewController {
         let lists = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.labelAnnotations
         lists?.forEach({ (list) in
             let keyword = list.note.lowercased()
-            if keyword == "sky" || keyword == "blue" {
+            if keyword == "sky" {
                 result = true
                 return
             }
@@ -172,6 +181,92 @@ class ResultViewController: UIViewController {
             self.dismiss(animated: false, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
+    }
+    
+    private func loadDataIfNeededTranslate() {
+        guard UserDefaults.standard.isUseTranstate == true else { return }
+        transferLabelAnnotations()
+        transferLogoAnnotations()
+        transferLandmarkAnnotations()
+        transferTextAnnotations()
+    }
+    
+    private func transferLabelAnnotations() {
+        let labelAnnotations = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.labelAnnotations
+        var queries = [String]()
+        labelAnnotations?.forEach({ (annotation) in
+            queries.append(annotation.note)
+        })
+        guard queries.count > 0 else { return }
+        TranslationManager().getData(typeId: .Label, queries: queries, source: "en", target: "ja") { (response) in
+            switch response {
+            case .success:
+                print("[Label] Translate API request is succeeded.")
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name(rawValue:"reloadKeywordData"), object: nil)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func transferLogoAnnotations() {
+        let logoAnnotations = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.logoAnnotations
+        var queries = [String]()
+        logoAnnotations?.forEach({ (annotation) in
+            queries.append(annotation.note)
+        })
+        guard queries.count > 0 else { return }
+        TranslationManager().getData(typeId: .Logo, queries: queries, source: "en", target: "ja") { (response) in
+            switch response {
+            case .success:
+                print("[Logo] Translate API request is succeeded.")
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name(rawValue:"reloadKeywordData"), object: nil)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func transferLandmarkAnnotations() {
+        let landmarkAnnotations = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.landmarkAnnotations
+        var queries = [String]()
+        landmarkAnnotations?.forEach({ (annotation) in
+            queries.append(annotation.note)
+        })
+        guard queries.count > 0 else { return }
+        TranslationManager().getData(typeId: .Landmark, queries: queries, source: "en", target: "ja") { (response) in
+            switch response {
+            case .success:
+                print("[Landmark] Translate API request is succeeded.")
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name(rawValue:"reloadKeywordData"), object: nil)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func transferTextAnnotations() {
+        let textAnnotations = RealmManager.get(CloudVisions.self, key: 0)?.responses.first?.textAnnotations
+        var locale = "ja"
+        var target = "en"
+        if textAnnotations?.first?.locale != "ja" {
+            locale = ""
+            target = "ja"
+        }
+        guard let note = textAnnotations?.first?.note else { return }
+        TranslationManager().getData(typeId: .Text, queries: [note], source: locale, target: target) { (response) in
+            switch response {
+            case .success:
+                print("[Text] Translate API request is succeeded.")
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name(rawValue:"reloadOcrData"), object: nil)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
