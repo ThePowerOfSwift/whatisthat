@@ -37,7 +37,7 @@ class TextAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
             if let note = text?.note {
                 cell.note = note
             }
-            if translateCount > 0, let locale = translates?.first?.detectedSourceLanguage {
+            if let locale = text?.locale {
                 cell.locale = locale
             } else if let locale = text?.locale {
                 cell.locale = locale
@@ -49,7 +49,7 @@ class TextAnnotationTableViewDataSource: NSObject, BaseTableViewDataSource {
             if let note = translate?.translatedText {
                 cell.note = note
             }
-            if let locale = translate?.detectedSourceLanguage, locale == "ja" {
+            if let locale = translate?.detectedSourceLanguage, locale.characters.count == 0 {
                 cell.locale = "EN"
             } else {
                 cell.locale = "JA"
