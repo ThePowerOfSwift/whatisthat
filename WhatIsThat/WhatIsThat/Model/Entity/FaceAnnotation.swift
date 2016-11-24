@@ -12,13 +12,13 @@ import ObjectMapper
 class FaceAnnotation: Object {
     dynamic var detectionConfidence    = 0.0
     dynamic var landmarkingConfidence  = 0.0
-    dynamic var joyLikelihood          = 0.0
-    dynamic var sorrowLikelihood       = 0.0
-    dynamic var angerLikelihood        = 0.0
-    dynamic var surpriseLikelihood     = 0.0
-    dynamic var underExposedLikelihood = 0.0
-    dynamic var blurredLikelihood      = 0.0
-    dynamic var headwearLikelihood     = 0.0
+    dynamic var joyLikelihood          = ""
+    dynamic var sorrowLikelihood       = ""
+    dynamic var angerLikelihood        = ""
+    dynamic var surpriseLikelihood     = ""
+    dynamic var underExposedLikelihood = ""
+    dynamic var blurredLikelihood      = ""
+    dynamic var headwearLikelihood     = ""
     
     required convenience init?(map: Map) {
         self.init()

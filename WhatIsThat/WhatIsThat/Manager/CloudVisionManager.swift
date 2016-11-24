@@ -11,25 +11,25 @@ import ObjectMapper
 import RealmSwift
 import UIKit
 
-class CloudVisionManager: NSObject {
-    enum Likelihood: String {
-        case Unknown      = "UNKNOWN"
-        case VeryUnlikely = "VERY_UNLIKELY"
-        case Unlikely     = "UNLIKELY"
-        case Possible     = "POSSIBLE"
-        case Likely       = "LIKELY"
-        case VeryLikely   = "VERY_LIKELY"
-        
-        func isValidContent() -> Bool {
-            switch self {
-            case .Unknown, .VeryUnlikely, .Unlikely:
-                return true
-            default:
-                return false
-            }
+enum Likelihood: String {
+    case Unknown      = "UNKNOWN"
+    case VeryUnlikely = "VERY_UNLIKELY"
+    case Unlikely     = "UNLIKELY"
+    case Possible     = "POSSIBLE"
+    case Likely       = "LIKELY"
+    case VeryLikely   = "VERY_LIKELY"
+    
+    func isValidContent() -> Bool {
+        switch self {
+        case .Unknown, .VeryUnlikely, .Unlikely:
+            return true
+        default:
+            return false
         }
     }
-    
+}
+
+class CloudVisionManager: NSObject {
     func getData(image: UIImage, completion: @escaping (ApiResult) -> Void) {
         let imageString = image.base64EncodeImage()
         let params: [String: Any] = [

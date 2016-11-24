@@ -24,7 +24,7 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="??" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWs-ze-WDH">
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="2kU-39-sYb"/>
+                            <constraint firstAttribute="width" constant="24" id="2kU-39-sYb"/>
                             <constraint firstAttribute="height" constant="20" id="Idc-6J-Rd0"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
