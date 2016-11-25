@@ -333,7 +333,8 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
         guard let ocr = fromStoryboard(class: OcrViewController.self) else { return [] }
         guard let keyword = fromStoryboard(class: KeywordViewController.self) else { return [] }
         guard let face = fromStoryboard(class: FaceViewController.self) else { return [] }
-        return [ocr, keyword, face]
+        guard let topic = fromStoryboard(class: TopicViewController.self) else { return [] }
+        return [ocr, keyword, face, topic]
     }
     
     fileprivate struct MenuOptions: MenuViewCustomizable {
@@ -347,7 +348,7 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
             return .segmentedControl
         }
         var itemsOptions: [MenuItemViewCustomizable] {
-            return [MenuItem1(), MenuItem2(), MenuItem3()]
+            return [MenuItem1(), MenuItem2(), MenuItem3(), MenuItem4()]
         }
         var animationDuration: TimeInterval {
             return 0.2
@@ -372,6 +373,12 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     fileprivate struct MenuItem3: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
             return .text(title: MenuItemText(text: "人物", color: Const.Color.MenuItemText, selectedColor: Const.Color.MenuItemTitle, font: UIFont.boldSystemFont(ofSize: 12), selectedFont: UIFont.boldSystemFont(ofSize: 12)))
+        }
+    }
+    
+    fileprivate struct MenuItem4: MenuItemViewCustomizable {
+        var displayMode: MenuItemDisplayMode {
+            return .text(title: MenuItemText(text: "トピック", color: Const.Color.MenuItemText, selectedColor: Const.Color.MenuItemTitle, font: UIFont.boldSystemFont(ofSize: 12), selectedFont: UIFont.boldSystemFont(ofSize: 12)))
         }
     }
 }
