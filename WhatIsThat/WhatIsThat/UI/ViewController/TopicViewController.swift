@@ -18,6 +18,26 @@ class TopicViewController: BaseTableViewController {
 //        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: Notification.Name(rawValue:"updateRssData"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name(rawValue:"reloadRssData"), object: nil)
 
+        loadData()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func createTable() -> UITableView {
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 308), style: .plain)
+        tableView.backgroundColor = UIColor.clear
+        return tableView
+    }
+    
+    func loadData() {
         XmlParser.sharedInstance.loadDataFromFile(filename: "http://news.yahoo.co.jp/pickup/rss.xml") { [weak self] (data) in
             if let (category, jsons) = XmlParser.sharedInstance.getArrayFromRssXmlData(data: data) {
                 var i =  0
@@ -42,36 +62,12 @@ class TopicViewController: BaseTableViewController {
                         datasource.category = category
                         datasource.jsons = jsons
                         self?.addDataSource(dataSource: datasource)
+                        self?.tableView?.setNeedsLayout()
                         self?.tableView?.reloadData()
                     }
                 }
             }
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    override func createTable() -> UITableView {
-        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 308), style: .plain)
-        tableView.backgroundColor = UIColor.clear
-        return tableView
-    }
-    
-//    @objc func updateData() {
-//        self.addDataSource(dataSource: TopicTableViewDataSource())
-//        tableView?.reloadData()
-//    }
-//    
-//    @objc func reloadData() {
-//        tableView?.reloadData()
-//    }
 }
 
