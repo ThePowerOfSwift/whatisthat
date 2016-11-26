@@ -29,6 +29,8 @@ class TopicTableViewDataSource: NSObject, BaseTableViewDataSource {
         if let pubDate = jsons?[indexPath.row]["pubDate"] as? String {
             cell.pubDate = pubDate
         }
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
         return cell
     }
     

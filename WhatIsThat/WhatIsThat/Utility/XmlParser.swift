@@ -26,7 +26,7 @@ class XmlParser: NSObject {
     }
     
     func getArrayFromRssXmlData(data: Data?) -> (String, [[String: Any]])? {
-        var category = ""
+        var category = "主要トピックス"
         var jsons = [[String: Any]]()
         guard let data = data else { return nil }
         
@@ -63,9 +63,15 @@ class XmlParser: NSObject {
             
             for element in document.xpath("//meta") {
                 if element.attr("name") == "item-image",
-                   let filename = element.attr("content") {
+                    let filename = element.attr("content") {
                     result = filename
                     print("image-file=\(filename)")
+                    break
+                }
+                if element.attr("property") == "og:image",
+                   let filename = element.attr("content") {
+                    result = filename
+                    print("og:image=\(filename)")
                     break
                 }
             }

@@ -39,8 +39,8 @@ class ResultHeaderView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         closeButton.layer.shadowColor = UIColor.white.cgColor
-        safeLabel.layer.shadowColor = UIColor.white.cgColor
-        safeRateLabel.layer.shadowColor = UIColor.white.cgColor
+        safeLabel.layer.shadowColor = UIColor.black.cgColor
+        safeRateLabel.layer.shadowColor = UIColor.black.cgColor
         NotificationCenter.default.addObserver(self, selector: #selector(showWeatherIcon), name: Notification.Name(rawValue:"showWeatherIcon"), object: nil)
     }
     

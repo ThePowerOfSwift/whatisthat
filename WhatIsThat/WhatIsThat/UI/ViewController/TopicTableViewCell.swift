@@ -41,12 +41,12 @@ class TopicTableViewCell: UITableViewCell {
         
         titleLabel.text = title
         pubDateLabel.text = pubDate
-        
-        guard let link = link, link.characters.count > 0 else { return }
-        
-        let cache = Shared.imageCache
-        cache.fetch(key: link).onSuccess { image in
-            self.thumbnailImageView.image = image
-        }
+
+//        guard let link = link, link.characters.count > 0 else { return }
+//        
+//        let cache = Shared.imageCache
+//        cache.fetch(key: link).onSuccess { image in
+//            self.thumbnailImageView.image = image
+//        }
     }
 }

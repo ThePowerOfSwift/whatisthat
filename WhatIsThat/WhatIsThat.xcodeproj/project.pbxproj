@@ -74,6 +74,7 @@
 		0175330E1DCAC35200876A50 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0175330D1DCAC35200876A50 /* ApiManager.swift */; };
 		0184A5871DE9096200250FAC /* XmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0184A5861DE9096200250FAC /* XmlParser.swift */; };
 		0184A5891DE90B4700250FAC /* Fuzi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0184A5881DE90B4700250FAC /* Fuzi.framework */; };
+		0184A58B1DE9BDF000250FAC /* RssHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0184A58A1DE9BDF000250FAC /* RssHelper.swift */; };
 		018696741DE0BF3600D05229 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018696731DE0BF3600D05229 /* CoreLocation.framework */; };
 		018870791DE33FAE00C3F4D2 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018870781DE33FAE00C3F4D2 /* GlobalFunctions.swift */; };
 		019264351DD381CC00C2DFE0 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019264341DD381CC00C2DFE0 /* UITableView+Extension.swift */; };
@@ -226,6 +227,7 @@
 		0175330D1DCAC35200876A50 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ApiManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0184A5861DE9096200250FAC /* XmlParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XmlParser.swift; sourceTree = "<group>"; };
 		0184A5881DE90B4700250FAC /* Fuzi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuzi.framework; path = Carthage/Build/iOS/Fuzi.framework; sourceTree = "<group>"; };
+		0184A58A1DE9BDF000250FAC /* RssHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RssHelper.swift; sourceTree = "<group>"; };
 		018696731DE0BF3600D05229 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		018870781DE33FAE00C3F4D2 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		019264341DD381CC00C2DFE0 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				0170FFD81DBFA5E400B9C12F /* Storyboardable.swift */,
 				0184A5861DE9096200250FAC /* XmlParser.swift */,
 				0170FFD91DBFA5E400B9C12F /* Xibable.swift */,
+				0184A58A1DE9BDF000250FAC /* RssHelper.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1196,6 +1199,7 @@
 				0192643D1DD382AB00C2DFE0 /* BaseTableViewController.swift in Sources */,
 				01B41D5A1DD898C4008C75E6 /* FaceAnnotationTableViewDataSource.swift in Sources */,
 				01F12FB21DE5CA5600A22EF5 /* TranslationManager.swift in Sources */,
+				0184A58B1DE9BDF000250FAC /* RssHelper.swift in Sources */,
 				01F12F9A1DE4A11300A22EF5 /* SettingItemTableViewDataSource.swift in Sources */,
 				01505A8F1DD8406B007AB57C /* SimpleTitleView.swift in Sources */,
 				01CA323E1DDF6C8800D4D8AD /* BorderTableViewDataSource.swift in Sources */,
