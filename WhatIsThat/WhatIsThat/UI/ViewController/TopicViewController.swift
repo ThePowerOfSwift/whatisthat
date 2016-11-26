@@ -15,9 +15,6 @@ class TopicViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: Notification.Name(rawValue:"updateRssData"), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name(rawValue:"reloadRssData"), object: nil)
-
         loadData()
     }
     
@@ -58,12 +55,14 @@ class TopicViewController: BaseTableViewController {
                     }
                     i += 1
                     if i == totalNum {
-                        let datasource = TopicTableViewDataSource()
-                        datasource.category = category
-                        datasource.jsons = jsons
-                        self?.addDataSource(dataSource: datasource)
-                        self?.tableView?.setNeedsLayout()
-                        self?.tableView?.reloadData()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            let datasource = TopicTableViewDataSource()
+                            datasource.category = category
+                            datasource.jsons = jsons
+                            self?.addDataSource(dataSource: datasource)
+                            self?.tableView?.setNeedsLayout()
+                            self?.tableView?.reloadData()
+                        }
                     }
                 }
             }
