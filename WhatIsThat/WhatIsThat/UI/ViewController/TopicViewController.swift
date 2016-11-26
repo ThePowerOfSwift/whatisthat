@@ -6,10 +6,11 @@
 //  Copyright © 2016年 渡邊浩二. All rights reserved.
 //
 
+import Haneke
+import SDWebImage
 import UIKit
 
 class TopicViewController: BaseTableViewController {
-    let xmlParser = XmlParser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,36 +18,33 @@ class TopicViewController: BaseTableViewController {
 //        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: Notification.Name(rawValue:"updateRssData"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name(rawValue:"reloadRssData"), object: nil)
 
-        xmlParser.loadJsonDataFromRssFile(filename: "http://news.yahoo.co.jp/pickup/rss.xml") { [weak self] (data) in
-            if let (category, jsons) = self?.xmlParser.getArrayFromRssXmlData(data: data) {
-                let datasource = TopicTableViewDataSource()
-                datasource.category = category
-                datasource.jsons = jsons
-                self?.addDataSource(dataSource: datasource)
-                self?.tableView?.reloadData()
-                self?.tableView?.layoutIfNeeded()
-            }
-        }
-        
-        xmlParser.loadJsonDataFromRssFile(filename: "http://news.yahoo.co.jp/pickup/world/rss.xml") { [weak self] (data) in
-            if let (category, jsons) = self?.xmlParser.getArrayFromRssXmlData(data: data) {
-                let datasource = TopicTableViewDataSource()
-                datasource.category = category
-                datasource.jsons = jsons
-                self?.addDataSource(dataSource: datasource)
-                self?.tableView?.reloadData()
-                self?.tableView?.layoutIfNeeded()
-            }
-        }
-        
-        xmlParser.loadJsonDataFromRssFile(filename: "http://news.yahoo.co.jp/pickup/sports/rss.xml") { [weak self] (data) in
-            if let (category, jsons) = self?.xmlParser.getArrayFromRssXmlData(data: data) {
-                let datasource = TopicTableViewDataSource()
-                datasource.category = category
-                datasource.jsons = jsons
-                self?.addDataSource(dataSource: datasource)
-                self?.tableView?.reloadData()
-                self?.tableView?.layoutIfNeeded()
+        XmlParser.sharedInstance.loadDataFromFile(filename: "http://news.yahoo.co.jp/pickup/rss.xml") { [weak self] (data) in
+            if let (category, jsons) = XmlParser.sharedInstance.getArrayFromRssXmlData(data: data) {
+                var i =  0
+                let totalNum = jsons.count
+                for json in jsons {
+                    guard let link = json["link"] as? String else { return }
+                    XmlParser.sharedInstance.loadDataFromFile(filename: link) { (data) in
+                        let imageFilePath = XmlParser.sharedInstance.getSiteImageFilenameFromData(data: data)
+                        if let url = URL(string: imageFilePath) {
+                            let cache = Shared.imageCache
+                            let imageView = UIImageView()
+                            imageView.sd_setImage(with: url, placeholderImage: nil, options: [SDWebImageOptions.continueInBackground, SDWebImageOptions.lowPriority, SDWebImageOptions.refreshCached, SDWebImageOptions.handleCookies, SDWebImageOptions.retryFailed]) { (image, error, cacheType, url) in
+                                if let image = image {
+                                    cache.set(value: image, key: link)
+                                }
+                            }
+                        }
+                    }
+                    i += 1
+                    if i == totalNum {
+                        let datasource = TopicTableViewDataSource()
+                        datasource.category = category
+                        datasource.jsons = jsons
+                        self?.addDataSource(dataSource: datasource)
+                        self?.tableView?.reloadData()
+                    }
+                }
             }
         }
     }

@@ -11,7 +11,9 @@ import Fuzi
 
 class XmlParser: NSObject {
     
-    func loadJsonDataFromRssFile(filename: String, completion: @escaping (Data?) -> Void) {
+    static let sharedInstance = XmlParser()
+    
+    func loadDataFromFile(filename: String, completion: @escaping (Data?) -> Void) {
         guard let url = URL(string: filename) else { return completion(nil) }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error == nil {
@@ -23,11 +25,10 @@ class XmlParser: NSObject {
         task.resume()
     }
     
-    func getArrayFromRssXmlData(data: Data?) -> (String, [[String: Any]]) {
+    func getArrayFromRssXmlData(data: Data?) -> (String, [[String: Any]])? {
         var category = ""
         var jsons = [[String: Any]]()
-        
-        guard let data = data else { return (category, jsons) }
+        guard let data = data else { return nil }
         
         do {
             let document = try XMLDocument(data: data)
@@ -38,7 +39,6 @@ class XmlParser: NSObject {
             }
             
             for element in document.xpath("//item") {
-                //print("element=\(element)")
                 if let title   = element.children(tag: "title").first?.stringValue,
                    let link    = element.children(tag: "link").first?.stringValue,
                    let pubDate = element.children(tag: "pubDate").first?.stringValue{
@@ -48,6 +48,30 @@ class XmlParser: NSObject {
         } catch let error {
             print(error)
         }
+        
+        guard jsons.count > 0 else { return nil }
         return (category, jsons)
+    }
+    
+    func getSiteImageFilenameFromData(data: Data?) -> String {
+        var result = ""
+        guard let data = data else { return "" }
+        
+        do {
+            let document = try XMLDocument(data: data)
+            //print("get stated. document=\(document)")
+            
+            for element in document.xpath("//meta") {
+                if element.attr("name") == "item-image",
+                   let filename = element.attr("content") {
+                    result = filename
+                    print("image-file=\(filename)")
+                    break
+                }
+            }
+        } catch let error {
+            print(error)
+        }
+        return result
     }
 }

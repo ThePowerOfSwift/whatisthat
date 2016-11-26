@@ -1,25 +1,34 @@
 PODS:
+  - HanekeSwift (0.10.1)
   - PagingMenuController (2.0.0)
   - Spring (1.0.3)
 
 DEPENDENCIES:
+  - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`, branch `feature/swift-3`)
   - PagingMenuController
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
 
 EXTERNAL SOURCES:
+  HanekeSwift:
+    :branch: feature/swift-3
+    :git: https://github.com/Haneke/HanekeSwift.git
   Spring:
     :branch: swift3
     :git: https://github.com/MengTo/Spring.git
 
 CHECKOUT OPTIONS:
+  HanekeSwift:
+    :commit: 1157a124ec699f4ad926cb054f1d0bfce88ae7a9
+    :git: https://github.com/Haneke/HanekeSwift.git
   Spring:
     :commit: 3a9227c6e9157e7b47f5ac1ee5abab2a56b50002
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
+  HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
   PagingMenuController: 60602bfb5421d6536c1e3097baeed601dec1d85b
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
 
-PODFILE CHECKSUM: f7271893b904b32f2393bebd3a2770bde6aa3bb6
+PODFILE CHECKSUM: b6376d004ccca2d1e41c3609fea0f1b85c15b547
 
 COCOAPODS: 1.0.1
