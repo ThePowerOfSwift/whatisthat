@@ -11,26 +11,27 @@ import SDWebImage
 
 class TopicTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var thumbnailImageView: UIImageView!
-    
-    var category: String = "" {
-        didSet {
-            categoryLabel.text = category
-        }
-    }
+    @IBOutlet weak var pubDateLabel: UILabel!
     
     var title: String? = "" {
         didSet {
             titleLabel.text = title
         }
     }
-
-    var thumbnailUrl: String = "" {
+    
+    var pubDate: String? = "" {
         didSet {
-            guard let url = URL(string: thumbnailUrl) else { return }
-            thumbnailImageView.sd_setImage(with: url)
+            pubDateLabel.text = pubDate
+        }
+    }
+
+    var link: String = "" {
+        didSet {
+            guard let url = URL(string: link) else { return }
+            //thumbnailImageView.sd_setImage(with: url)
         }
     }
     
@@ -45,4 +46,9 @@ class TopicTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        indicatorView.isHidden = false
+        indicatorView.startAnimating()
+    }
 }

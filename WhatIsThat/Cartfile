@@ -3,3 +3,4 @@ github "Hearst-DD/ObjectMapper" ~> 2.1
 github "realm/realm-cocoa" "v2.0.2"
 github "andreamazz/BubbleTransition"
 github "Ramotion/paper-switch"
+github "cezheng/Fuzi" ~> 1.0.0
