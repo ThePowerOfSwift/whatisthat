@@ -43,5 +43,9 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>本アプリでは天気情報を取得するために位置情報を利用致します。</string>
+	<key>NSCameraUsageDescription</key>
+	<string>本アプリでは画像をキャプチャーのためにカメラを利用致します。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>本アプリでは画像をキャプチャーのためにPhoto Libraryを利用致します。</string>
 </dict>
 </plist>
