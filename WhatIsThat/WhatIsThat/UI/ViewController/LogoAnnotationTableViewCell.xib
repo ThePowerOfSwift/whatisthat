@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="D9E-fy-rOy" userLabel="LogoAnnotationTableViewCell" customClass="LogoAnnotationTableViewCell" customModule="WhatIsThat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D9E-fy-rOy" id="8l2-0Z-kuK">
+                <frame key="frameInset" width="375" height="39"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="931-jG-LTj">
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="gr2-bZ-Qhd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.56078431370000004" green="0.5568627451" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="??" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWs-ze-WDH">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="2kU-39-sYb"/>
+                            <constraint firstAttribute="height" constant="20" id="Idc-6J-Rd0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xox-TU-cfE" userLabel="Search Keyword Button">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="bD4-Su-eHS"/>
+                            <constraint firstAttribute="width" constant="18" id="re4-gf-g2T"/>
+                        </constraints>
+                        <state key="normal" image="search"/>
+                        <connections>
+                            <action selector="tappedSearchKeywordButton:" destination="D9E-fy-rOy" eventType="touchUpInside" id="FZp-BV-5Ya"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gt-Jp-rIu" userLabel="Search Image Button">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Hcr-ug-azA"/>
+                            <constraint firstAttribute="width" constant="24" id="cuq-iT-Vlj"/>
+                        </constraints>
+                        <state key="normal" image="image_search"/>
+                        <connections>
+                            <action selector="tappedSearchImageButton:" destination="D9E-fy-rOy" eventType="touchUpInside" id="O8k-H3-Veg"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihg-LO-AzG" userLabel="Copy Button">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Efg-Ex-dIO"/>
+                            <constraint firstAttribute="width" constant="15" id="lAv-dn-dkc"/>
+                        </constraints>
+                        <state key="normal" image="content_copy"/>
+                        <connections>
+                            <action selector="tappedCopyButton:" destination="D9E-fy-rOy" eventType="touchUpInside" id="ck9-f7-h3m"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="931-jG-LTj" firstAttribute="top" secondItem="8l2-0Z-kuK" secondAttribute="top" constant="5" id="6no-hk-NlS"/>
+                    <constraint firstAttribute="trailing" secondItem="ihg-LO-AzG" secondAttribute="trailing" constant="15" id="6uI-QJ-Lnn"/>
+                    <constraint firstItem="xox-TU-cfE" firstAttribute="leading" secondItem="SWs-ze-WDH" secondAttribute="trailing" constant="15" id="Cq6-M5-BfU"/>
+                    <constraint firstAttribute="bottom" secondItem="931-jG-LTj" secondAttribute="bottom" constant="5" id="H97-UU-Dby"/>
+                    <constraint firstItem="SWs-ze-WDH" firstAttribute="leading" secondItem="931-jG-LTj" secondAttribute="trailing" constant="10" id="NgT-Ks-esc"/>
+                    <constraint firstItem="SWs-ze-WDH" firstAttribute="centerY" secondItem="8l2-0Z-kuK" secondAttribute="centerY" id="RCM-tz-rKM"/>
+                    <constraint firstItem="931-jG-LTj" firstAttribute="leading" secondItem="8l2-0Z-kuK" secondAttribute="leading" constant="10" id="THj-J8-eQd"/>
+                    <constraint firstItem="ihg-LO-AzG" firstAttribute="leading" secondItem="0gt-Jp-rIu" secondAttribute="trailing" constant="15" id="Wu2-Fl-B4w"/>
+                    <constraint firstItem="ihg-LO-AzG" firstAttribute="centerY" secondItem="8l2-0Z-kuK" secondAttribute="centerY" id="co8-Ja-rlU"/>
+                    <constraint firstItem="xox-TU-cfE" firstAttribute="centerY" secondItem="8l2-0Z-kuK" secondAttribute="centerY" id="fyq-Jx-2c0"/>
+                    <constraint firstItem="0gt-Jp-rIu" firstAttribute="leading" secondItem="xox-TU-cfE" secondAttribute="trailing" constant="15" id="jmM-5K-AdK"/>
+                    <constraint firstItem="0gt-Jp-rIu" firstAttribute="centerY" secondItem="8l2-0Z-kuK" secondAttribute="centerY" id="rN6-WK-WD0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="localeLabel" destination="SWs-ze-WDH" id="hVK-Uj-ftQ"/>
+                <outlet property="noteLabel" destination="931-jG-LTj" id="yrp-7U-wML"/>
+            </connections>
+            <point key="canvasLocation" x="-121.5" y="-12"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="content_copy" width="15" height="17"/>
+        <image name="image_search" width="24" height="20"/>
+        <image name="search" width="17" height="17"/>
+    </resources>
+</document>

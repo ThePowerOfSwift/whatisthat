@@ -12,7 +12,9 @@ end
 
 target 'WhatIsThat' do
 #    pod "LTMorphingLabel", :git => "https://github.com/lexrus/LTMorphingLabel", :branch => "swift3"
-	pod "MMPopLabel"
+  pod 'PagingMenuController'
+  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
+  pod 'HanekeSwift', :git => 'https://github.com/Haneke/HanekeSwift.git', :branch => 'feature/swift-3'
 end
 
 target 'WhatIsThatTests' do

@@ -10,25 +10,36 @@ import BubbleTransition
 import UIKit
 import ObjectMapper
 import Realm
+import Photos
 
-class TopViewController: UIViewController {
-    @IBOutlet weak var transitionButton: UIButton!
-    @IBOutlet weak var corporateLogoView: UIView!
+protocol TopViewControllerDelegate: class {
+    func gotoResultPage(captureImage: UIImage)
+}
+
+class TopViewController: UIViewController {    @IBOutlet weak var transitionButton: UIButton!
     
+    var cameraView = fromXib(class: CameraView.self)
     let transition = BubbleTransition()
+    let imagePicker = UIImagePickerController()
+    var latitude: Double?
+    var longitude: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 企業ロゴ
-        corporateLogoView.layer.shadowColor = UIColor.white.cgColor
+        // Clear DB
+        RealmManager.deleteAll(CloudVisions.self)
+        RealmManager.deleteAll(Translates.self)
         
         // カメラビュー
-        if let cameraView = fromXib(clazz: CameraView.self) {
+        if let cameraView = cameraView {
             cameraView.delegate = self
             view.addSubview(cameraView)
             view.sendSubview(toBack: cameraView)
         }
+        
+        // Photo Library
+        imagePicker.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,10 +52,19 @@ class TopViewController: UIViewController {
         controller.transitioningDelegate = self
         controller.modalPresentationStyle = .custom
     }
+    
     @IBAction func tappedSnapShotButton(_ sender: UIButton) {
+        cameraView?.isRequestCapture = true
+    }
+    
+    @IBAction func tappedPhotoLibraryButton(_ sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
     }
 }
 
+// MARK: - UIViewControllerTransitioningDelegate
 extension TopViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
@@ -58,5 +78,48 @@ extension TopViewController: UIViewControllerTransitioningDelegate {
         transition.startingPoint = transitionButton.center
         transition.bubbleColor = transitionButton.backgroundColor!
         return transition
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+// MARK: - UINavigationControllerDelegate
+extension TopViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard picker.sourceType == UIImagePickerControllerSourceType.photoLibrary else { return }
+        getLocationFromPhotoLibrary(info: info)
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            dismiss(animated: true, completion: nil)
+            gotoResultPage(captureImage: pickedImage)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func getLocationFromPhotoLibrary(info: [String : Any]) {
+        guard UserDefaults.standard.isUseLocationFromImage else { return }
+        guard let url = info[UIImagePickerControllerReferenceURL] as? URL else { return }
+        print("photo url=\(url)")
+        let fetchResult = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
+        let asset = fetchResult.firstObject
+        let coordinate = asset?.location
+        print("photo coordinate=\(coordinate)")
+        longitude = coordinate?.coordinate.longitude
+        latitude  = coordinate?.coordinate.latitude
+    }
+}
+
+// MARK: - TopViewControllerDelegate
+extension TopViewController: TopViewControllerDelegate {
+    func gotoResultPage(captureImage: UIImage) {
+        guard let vc = fromStoryboard(class: ResultViewController.self) else { return }
+        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        vc.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
+        vc.tappedImage = captureImage
+        vc.longitude = longitude
+        vc.latitude = latitude
+        present(vc, animated: true, completion: nil)
     }
 }

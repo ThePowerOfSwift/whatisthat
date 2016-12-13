@@ -11,12 +11,13 @@ import GLKit
 import AVFoundation
 
 class CameraView: UIView {
-    var delegate: UIViewController? = nil
+    var delegate: TopViewControllerDelegate?
     var videoDisplayView: GLKView!
     var videoDisplayViewRect: CGRect!
     var renderContext: CIContext!
     var cpsSession: AVCaptureSession!
-    var isCaptured: Bool = false
+    var isRequestCapture: Bool = false
+    var isScreenTapped: Bool = false
     var touchPos = CGPoint(x: 0, y: 0)
 
     required init(coder aDecoder: NSCoder) {
@@ -30,25 +31,25 @@ class CameraView: UIView {
     }
     
     private func setUp() {
-        self.frame = CGRect(x: 0, y: 0, width: Const.Screen.Size.width, height: Const.Screen.Size.height)
+        frame = CGRect(x: 0, y: 0, width: Const.Screen.Size.width, height: Const.Screen.Size.height)
         initDisplay()
         initCamera()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture(touch:)))
         tap.numberOfTapsRequired = 1
-        self.addGestureRecognizer(tap)
+        addGestureRecognizer(tap)
     }
     
     override func willRemoveSubview(_ subview: UIView) {
         // カメラの停止とメモリ解放
-        self.cpsSession.stopRunning()
-        for output in self.cpsSession.outputs {
-            self.cpsSession.removeOutput(output as! AVCaptureOutput)
+        cpsSession.stopRunning()
+        for output in cpsSession.outputs {
+            cpsSession.removeOutput(output as! AVCaptureOutput)
         }
         
-        for input in self.cpsSession.inputs {
-            self.cpsSession.removeInput(input as! AVCaptureInput)
+        for input in cpsSession.inputs {
+            cpsSession.removeInput(input as! AVCaptureInput)
         }
-        self.cpsSession = nil
+        cpsSession = nil
     }
     
     // 画面の生成
@@ -99,19 +100,18 @@ class CameraView: UIView {
             self.cpsSession = AVCaptureSession()
             
             // Input
-            if (self.cpsSession.canAddInput(deviceInput)) {
-                self.cpsSession.addInput(deviceInput as AVCaptureDeviceInput)
+            if (cpsSession.canAddInput(deviceInput)) {
+                cpsSession.addInput(deviceInput as AVCaptureDeviceInput)
             }
             // Output
-            if (self.cpsSession.canAddOutput(videoDataOutput)) {
-                self.cpsSession.addOutput(videoDataOutput)
+            if (cpsSession.canAddOutput(videoDataOutput)) {
+                cpsSession.addOutput(videoDataOutput)
             }
             //解像度の指定
-            self.cpsSession.sessionPreset = AVCaptureSessionPresetHigh
-            
-            self.cpsSession.startRunning()
+            cpsSession.sessionPreset = AVCaptureSessionPresetHigh
+            cpsSession.startRunning()
         } catch (let error) {
-            debugPrint(error)
+            print(error)
         }
     }
     
@@ -121,8 +121,9 @@ class CameraView: UIView {
     
     func tapGesture(touch: UITapGestureRecognizer) {
         touchPos = touch.location(in: self)
-        debugPrint("touchPoint = \(touchPos)")
-        isCaptured = true
+        print("touchPoint = \(touchPos)")
+        isScreenTapped   = true
+        isRequestCapture = true
     }
 }
 
@@ -155,31 +156,31 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
         videoDisplayView.display()
         
         // 結果画面
-        if isCaptured {
-            isCaptured = false
-            let vc = fromStoryboard(clazz: ResultViewController.self)
-            debugPrint("screenSize=\(Const.Screen.Size)")
-            debugPrint("drawFrame=\(drawFrame)")
-            vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            vc?.modalTransitionStyle   = UIModalTransitionStyle.crossDissolve
-            guard let previewImage = UIImage.imageFromSampleBuffer(sampleBuffer: sampleBuffer)?.croppIngimage(toRect:drawFrame) else { return }
-            let rect = getRect(withImage: previewImage)
-            debugPrint("rect=\(rect)")
-            vc?.tappedImage = previewImage.croppIngimage(toRect: rect)
-            //view?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
-            delegate?.present(vc!, animated: true, completion: nil)
+        if isRequestCapture {
+            isRequestCapture = false
+            print("screenSize=\(Const.Screen.Size)")
+            print("drawFrame=\(drawFrame)")
+            guard let previewImage = UIImage.imageFromSampleBuffer(sampleBuffer: sampleBuffer)?.croppingImage(toRect:drawFrame) else { return }
+            
+            if isScreenTapped,
+                let previewImage = previewImage.croppingImage(toRect: getRect(withImage: previewImage)) {
+                delegate?.gotoResultPage(captureImage: previewImage)
+                isScreenTapped = false
+            } else {
+                delegate?.gotoResultPage(captureImage: previewImage)
+            }
         }
     }
     
     func getRect(withImage image: UIImage) -> CGRect {
         let widthImage = UIImageView(image: image).frame.width
-        let widthHalf  = CGFloat(Const.Capture.Width / 2)
         let heightHalf = CGFloat(Const.Capture.Height / 2)
+        let widthHalf  = CGFloat(Const.Capture.Width / 2)
         let scale  = widthImage / Const.Screen.Size.width
-        let posX   = touchPos.x - widthHalf < 0 ? 0 : touchPos.x - widthHalf
-        let posY   = touchPos.y - heightHalf < 0 ? 0 : touchPos.y - heightHalf
-        let width  = touchPos.x + widthHalf - posX
-        let height = touchPos.y + heightHalf - posY
-        return CGRect(x:posY * scale, y: (CGFloat(Const.Screen.Size.width) - posX - CGFloat(Const.Capture.Width)) * scale, width: width * scale, height: height * scale)
+        let posX   = touchPos.x - heightHalf < 0 ? 0 : touchPos.x - heightHalf
+        let posY   = touchPos.y - widthHalf < 0 ? 0 : touchPos.y - widthHalf
+        let width  = touchPos.x + heightHalf - posX
+        let height = touchPos.y + widthHalf - posY
+        return CGRect(x:posY * scale, y: (CGFloat(Const.Screen.Size.width) - posX - CGFloat(Const.Capture.Height)) * scale, width: width * scale, height: height * scale)
     }
 }
