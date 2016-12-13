@@ -12,6 +12,7 @@ import Spring
 class ResultHeaderView: UIView {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var mainImageView: UIImageView!
+    @IBOutlet weak var safeLabel: UILabel!
     @IBOutlet weak var safeRateLabel: UILabel!
     @IBOutlet weak var weatherButton: SpringButton!
     @IBOutlet weak var weatherImageView: UIImageView!
@@ -38,6 +39,8 @@ class ResultHeaderView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         closeButton.layer.shadowColor = UIColor.white.cgColor
+        safeLabel.layer.shadowColor = UIColor.black.cgColor
+        safeRateLabel.layer.shadowColor = UIColor.black.cgColor
         NotificationCenter.default.addObserver(self, selector: #selector(showWeatherIcon), name: Notification.Name(rawValue:"showWeatherIcon"), object: nil)
     }
     
